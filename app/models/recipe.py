@@ -12,11 +12,14 @@ class Recipe(db.Model):
     details = db.Column(db.String, nullable=False)
     name = db.Column(db.String, nullable=False)
     user_id = db.Column(db.Integer, nullable=False)
+    image = db.Column(db.String, nullable=False)
     category_id = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
-    
+    # category = db.relationship("Category", back_populates="recipes")
+    # user = db.relationship("User", back_populates="recipes")
+
 
     def to_dict(self):
         return {
@@ -24,6 +27,7 @@ class Recipe(db.Model):
             "details": self.details,
             "name": self.name,
             "userId": self.user_id,
+            "image": self.image,
             "categoryId": self.category_id,
             "createdAt": str(self.created_at),
             "updatedAt": str(self.updated_at)
