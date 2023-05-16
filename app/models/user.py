@@ -17,6 +17,7 @@ class User(db.Model, UserMixin):
 
     recipes = db.relationship("Recipe", back_populates="user")
     ingredients = db.relationship("Ingredient", back_populates="user")
+    recipe_comments = db.relationship("Recipe_comment", back_populates="user")
 
     user_likes = db.relationship(
         "Recipe",
