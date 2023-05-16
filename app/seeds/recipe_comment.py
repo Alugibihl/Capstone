@@ -4,8 +4,8 @@ import random
 
 # Adds a demo user, you can add other users here if you want
 def seed_recipe_comments():
-    for i in range(55):
-        user_id = (i % 3) + 2
+    for i in range(2, 55):
+        user_id = (i % 4) + 1
         recipe_id = i + 1
         details = random.choice(["That looks fun to make!", "That looks delicious!", "I made this and it was bad.", "I can't wait to try this recipe!", "This recipe is a family favorite.", "The flavors in this dish are amazing!", "I highly recommend this recipe.", "I added my own twist to this recipe and it turned out great!"])
 

@@ -47,7 +47,7 @@ def seed_recipes():
     cuisine6 = Recipe(
         name="Chiles en Nogada",
         description="Poblano peppers stuffed with a mixture of ground meat, fruits, and nuts, topped with walnut sauce and pomegranate seeds.",
-        category_id=1
+        category_id=1,
         user_id = 2,
         image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Feldiariony.com%2Fwp-content%2Fuploads%2Fsites%2F2%2F2020%2F08%2Fchilesennogada.jpg%3Fquality%3D80%26strip%3Dall&f=1&nofb=1&ipt=0a41913db8040cac02e51087d80228821bead9b19b2bfab0c001c5fdaaa18b96&ipo=images"
     )
@@ -55,7 +55,7 @@ def seed_recipes():
     cuisine7 = Recipe(
         name="Salsa Roja",
         description="Spicy red salsa made with tomatoes, chili peppers, onions, and garlic.",
-        category_id=1
+        category_id=1,
         user_id = 3,
         image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.whats4eats.com%2Ffiles%2Fsauces-salsa-roja-flickr-pancakejess-873537113-4x3.jpg&f=1&nofb=1&ipt=5aed6dd51ec3450e36fd226cd60e0bbfb097ccad65fe7996ba83b9d449569f41&ipo=images"
     )
@@ -63,7 +63,7 @@ def seed_recipes():
     cuisine8 = Recipe(
         name="Mole Poblano",
         description="Rich and flavorful sauce made with dried chili peppers, chocolate, spices, and nuts, served over chicken or turkey.",
-        category_id=1
+        category_id=1,
         user_id = 4,
         image="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fsalsita-latin.cocolog-nifty.com%2Fphotos%2Funcategorized%2F2010%2F11%2F13%2Fmole_poblano.jpg&f=1&nofb=1&ipt=e4e80e21ad587b63bc09ec2178baebaa299d549ca0ddb8f8094292454231d41a&ipo=images"
     )
@@ -71,7 +71,7 @@ def seed_recipes():
     cuisine9 = Recipe(
         name="Ceviche",
         description="Fresh seafood marinated in lime juice, mixed with tomatoes, onions, cilantro, and served with tortilla chips.",
-        category_id=1
+        category_id=1,
         user_id = 1,
         image= "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.cookingclassy.com%2Fwp-content%2Fuploads%2F2020%2F09%2Fceviche-5.jpg&f=1&nofb=1&ipt=ea8ce0f3d1b62e8bf262d64447f70952f75ee59002fc8fe24959d94d2cb2f081&ipo=images"
     )
@@ -79,7 +79,7 @@ def seed_recipes():
     cuisine10 = Recipe(
         name="Tamales",
         description="Traditional Mexican dish made of masa dough filled with various ingredients, wrapped in corn husks, and steamed.",
-        category_id=1
+        category_id=1,
         user_id = 2,
         image= "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.thespruceeats.com%2Fthmb%2Frgq5jG9oQjGo_9kcDH9ya1T7ZB4%3D%2F2000x1333%2Ffilters%3Afill(auto%2C1)%2Ftamales-5830c7175f9b58d5b1792220.jpg&f=1&nofb=1&ipt=8991447e6d5f4a9cca42527949c508ebcc8f487feb37f4313aed7223d3a15e4d&ipo=images"
     )
@@ -418,7 +418,7 @@ def seed_recipes():
         description="Miso soup is a traditional Japanese soup made from fermented soybean paste called miso, along with dashi (a broth made from dried bonito flakes or kelp), tofu, and various ingredients like seaweed, green onions, and mushrooms. Miso soup is commonly enjoyed as a side dish or as a starter in Japanese meals. It has a rich and savory flavor, and the miso paste provides a depth of umami taste. Miso soup is comforting, nourishing, and a staple in Japanese cuisine.",
         category_id=7,
         user_id=3,
-        image=https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.chopstickchronicles.com%2Fwp-content%2Fuploads%2F2020%2F10%2FMiso-Soup-update-22-1024x1024.jpg&f=1&nofb=1&ipt=4c563e9a4e992fe9a73fcfa580796ca8d14afb66b14046af043b3e5e69d7a630&ipo=images"
+        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.chopstickchronicles.com%2Fwp-content%2Fuploads%2F2020%2F10%2FMiso-Soup-update-22-1024x1024.jpg&f=1&nofb=1&ipt=4c563e9a4e992fe9a73fcfa580796ca8d14afb66b14046af043b3e5e69d7a630&ipo=images"
     )
 
     cuisine55 = Recipe(
