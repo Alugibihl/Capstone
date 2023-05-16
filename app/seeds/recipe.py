@@ -4,7 +4,6 @@ from sqlalchemy.sql import text
 
 # Adds a demo user, you can add other users here if you want
 def seed_recipes():
-   def seed_recipes():
     cuisine1 = Recipe(
         name="Tacos al Pastor",
         description="Authentic Mexican street tacos filled with marinated pork, pineapple, and cilantro.",
@@ -26,7 +25,7 @@ def seed_recipes():
         description="Tortillas filled with shredded chicken, topped with green salsa, cheese, and sour cream.",
         category_id=1,
         user_id = 3,
-        image= "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.laguiadereus.com%2Fwp-content%2Fuploads%2F2018%2F04%2FEnchiladas-Suizas2.jpg&f=1&nofb=1&ipt=af3680d9417d5a50366e2c613f6d6d6c091fba0506c91cc77912ffd3e6a0a06a&ipo=images"
+        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.laguiadereus.com%2Fwp-content%2Fuploads%2F2018%2F04%2FEnchiladas-Suizas2.jpg&f=1&nofb=1&ipt=af3680d9417d5a50366e2c613f6d6d6c091fba0506c91cc77912ffd3e6a0a06a&ipo=images"
     )
 
     cuisine4 = Recipe(
@@ -34,7 +33,7 @@ def seed_recipes():
         description="Classic Mexican dip made with ripe avocados, lime juice, cilantro, tomatoes, and onions.",
         category_id=1,
         user_id = 4,
-        image= "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.modernhoney.com%2Fwp-content%2Fuploads%2F2018%2F06%2FAuthentic-Guacamole-Recipe-1.jpg&f=1&nofb=1&ipt=d300f102f541ccf10ff2eef888a2d296a4fc131baaac7c6528a305c64a2932a7&ipo=images"
+        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.modernhoney.com%2Fwp-content%2Fuploads%2F2018%2F06%2FAuthentic-Guacamole-Recipe-1.jpg&f=1&nofb=1&ipt=d300f102f541ccf10ff2eef888a2d296a4fc131baaac7c6528a305c64a2932a7&ipo=images"
     )
 
     cuisine5 = Recipe(
@@ -42,7 +41,7 @@ def seed_recipes():
         description="Traditional Mexican soup made with hominy, pork, and flavored with spices and herbs.",
         category_id=1,
         user_id = 1,
-        image= "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fmylatinatable.com%2Fwp-content%2Fuploads%2F2016%2F03%2Fpozole-5-1024x681.jpg&f=1&nofb=1&ipt=44385cc96d3b892d4b521f162d9e6429506d8dc7a9c3811d5c70499ace79af4d&ipo=images"
+        image="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fmylatinatable.com%2Fwp-content%2Fuploads%2F2016%2F03%2Fpozole-5-1024x681.jpg&f=1&nofb=1&ipt=44385cc96d3b892d4b521f162d9e6429506d8dc7a9c3811d5c70499ace79af4d&ipo=images"
     )
 
     cuisine6 = Recipe(
@@ -50,7 +49,7 @@ def seed_recipes():
         description="Poblano peppers stuffed with a mixture of ground meat, fruits, and nuts, topped with walnut sauce and pomegranate seeds.",
         category_id=1
         user_id = 2,
-        image= "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Feldiariony.com%2Fwp-content%2Fuploads%2Fsites%2F2%2F2020%2F08%2Fchilesennogada.jpg%3Fquality%3D80%26strip%3Dall&f=1&nofb=1&ipt=0a41913db8040cac02e51087d80228821bead9b19b2bfab0c001c5fdaaa18b96&ipo=images"
+        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Feldiariony.com%2Fwp-content%2Fuploads%2Fsites%2F2%2F2020%2F08%2Fchilesennogada.jpg%3Fquality%3D80%26strip%3Dall&f=1&nofb=1&ipt=0a41913db8040cac02e51087d80228821bead9b19b2bfab0c001c5fdaaa18b96&ipo=images"
     )
 
     cuisine7 = Recipe(
@@ -58,7 +57,7 @@ def seed_recipes():
         description="Spicy red salsa made with tomatoes, chili peppers, onions, and garlic.",
         category_id=1
         user_id = 3,
-        image= "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.whats4eats.com%2Ffiles%2Fsauces-salsa-roja-flickr-pancakejess-873537113-4x3.jpg&f=1&nofb=1&ipt=5aed6dd51ec3450e36fd226cd60e0bbfb097ccad65fe7996ba83b9d449569f41&ipo=images"
+        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.whats4eats.com%2Ffiles%2Fsauces-salsa-roja-flickr-pancakejess-873537113-4x3.jpg&f=1&nofb=1&ipt=5aed6dd51ec3450e36fd226cd60e0bbfb097ccad65fe7996ba83b9d449569f41&ipo=images"
     )
 
     cuisine8 = Recipe(
@@ -66,7 +65,7 @@ def seed_recipes():
         description="Rich and flavorful sauce made with dried chili peppers, chocolate, spices, and nuts, served over chicken or turkey.",
         category_id=1
         user_id = 4,
-        image= "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fsalsita-latin.cocolog-nifty.com%2Fphotos%2Funcategorized%2F2010%2F11%2F13%2Fmole_poblano.jpg&f=1&nofb=1&ipt=e4e80e21ad587b63bc09ec2178baebaa299d549ca0ddb8f8094292454231d41a&ipo=images"
+        image="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fsalsita-latin.cocolog-nifty.com%2Fphotos%2Funcategorized%2F2010%2F11%2F13%2Fmole_poblano.jpg&f=1&nofb=1&ipt=e4e80e21ad587b63bc09ec2178baebaa299d549ca0ddb8f8094292454231d41a&ipo=images"
     )
 
     cuisine9 = Recipe(
@@ -142,7 +141,7 @@ def seed_recipes():
         description="Egg Fried Rice is a classic Chinese dish that combines fluffy rice, scrambled eggs, and a variety of vegetables and seasonings. The dish is known for its simplicity and versatility, making it a popular choice for a quick and delicious meal. To make Egg Fried Rice, you start by cooking leftover or freshly cooked rice to remove excess moisture. Then, scrambled eggs are cooked in a wok or skillet and set aside. The vegetables, such as diced carrots, peas, and green onions, are stir-fried until tender. Finally, the cooked rice, scrambled eggs, and vegetables are combined in the wok and tossed together with soy sauce and seasonings. Serve Egg Fried Rice as a standalone dish or as a side to your favorite Chinese entrees.",
         category_id=2,
         user_id=3,
-        image=
+        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.tYqboVuXAsLIR9YjJbWWkAHaEK%26pid%3DApi&f=1&ipt=3356d7f66d991b82bae5189a7dedde8bd2928d6c1da9e3a29b709689e7c3d9e1&ipo=images"
     )
     cuisine19 = Recipe(
         name="General Tso's Chicken",
@@ -431,13 +430,7 @@ def seed_recipes():
     )
 
     all_recipes = [
-    cuisine1, cuisine2, cuisine3, cuisine4, cuisine5, cuisine6, cuisine7, cuisine8, cuisine9, cuisine10,
-    cuisine11, cuisine12, cuisine13, cuisine14, cuisine15, cuisine16, cuisine17, cuisine18, cuisine19, cuisine20,
-    cuisine21, cuisine22, cuisine23, cuisine24, cuisine25, cuisine26, cuisine27, cuisine28, cuisine29, cuisine30,
-    cuisine31, cuisine32, cuisine33, cuisine34, cuisine35, cuisine36, cuisine37, cuisine38, cuisine39, cuisine40,
-    cuisine41, cuisine42, cuisine43, cuisine44, cuisine45, cuisine46, cuisine47, cuisine48, cuisine49, cuisine50,
-    cuisine51, cuisine52, cuisine53, cuisine54, cuisine55
-]
+    cuisine1, cuisine2, cuisine3, cuisine4, cuisine5, cuisine6, cuisine7, cuisine8, cuisine9, cuisine10, cuisine11, cuisine12, cuisine13, cuisine14, cuisine15, cuisine16, cuisine17, cuisine18, cuisine19, cuisine20, cuisine21, cuisine22, cuisine23, cuisine24, cuisine25, cuisine26, cuisine27, cuisine28, cuisine29, cuisine30, cuisine31, cuisine32, cuisine33, cuisine34, cuisine35, cuisine36, cuisine37, cuisine38, cuisine39, cuisine40, cuisine41, cuisine42, cuisine43, cuisine44, cuisine45, cuisine46, cuisine47, cuisine48, cuisine49, cuisine50, cuisine51, cuisine52, cuisine53, cuisine54, cuisine55]
     add_recipes = [db.session.add(recipe) for recipe in all_recipes]
     db.session.commit()
 
