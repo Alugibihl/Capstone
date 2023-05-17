@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import "./recipes.css"
 import { GetAllRecipesThunk } from "../../store/recipes"
-import RecipeDisplay from "./all_recipes_display"
 import IngredientDisplay from "../Ingredients/ingredient_display"
+import RecipeDisplay from "./allrecipes"
 
 
 const HomePage = () => {
