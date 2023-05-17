@@ -16,7 +16,7 @@ class Recipe_comment(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
     recipe = db.relationship("Recipe", back_populates="recipe_comments")
-    user = db.relationship("User", back_populates="ingredients")
+    user = db.relationship("User", back_populates="recipe_comments")
 
 
     def to_dict(self):
