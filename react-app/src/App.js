@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from "./components/Recipes/homepage";
+import OneRecipe from "./components/Recipes/oneRecipe";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +25,12 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route exact path={"/recipes/:id"}>
+            <OneRecipe />
+          </Route>
+          <Route path={"/ingredients/:id"}>
+
           </Route>
           <Route exact path={"/"}>
             <HomePage />

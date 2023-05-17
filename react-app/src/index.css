@@ -1,1 +1,25 @@
 /* TODO Add site wide styles */
+.title{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: large;
+    font-weight: bolder;
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+    margin: 0px 5% 0px 5%;
+    align-items: center;
+}
+.login-icon{
+    display: flex;
+    justify-content: flex-end;
+}
+.today{
+    font-size: small;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.modal-errors{
+    font-size: smaller;
+    color: red;
+}

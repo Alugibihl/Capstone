@@ -12,3 +12,9 @@ def get_all_recipes_by_category(category_id):
     recipes = Recipe.query.filter(Recipe.category_id == category_id).all()
     response = [recipe.to_dict() for recipe in recipes]
     return {"recipes": response}
+
+@category_routes.route("/")
+def get_all_categories():
+    categories = Category.query.all()
+    response = [category.to_dict() for category in categories]
+    return {"category": response}

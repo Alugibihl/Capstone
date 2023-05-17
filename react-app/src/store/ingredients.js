@@ -15,7 +15,9 @@
 
 
 
-const initialState = {}
+const initialState = {
+    ingredients: {}
+}
 
 const IngredientReducer = (state = initialState, action) => {
     let newState;
