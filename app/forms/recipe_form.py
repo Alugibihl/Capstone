@@ -8,4 +8,4 @@ class RecipeForm(FlaskForm):
     name = StringField("name", validators=[DataRequired()])
     user_id = IntegerField("user_id", validators=[DataRequired()])
     category_id = SelectField("category_id", choices=[])
-    image = StringField("image", validators=[URL])
+    image = StringField("image", validators=[URL()])
