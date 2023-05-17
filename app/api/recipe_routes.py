@@ -58,7 +58,7 @@ def create_one_recipe():
 def delete_recipe(id):
     """Delete a recipe Route"""
     recipe = Recipe.query.get(id)
-    if current_user.id == Recipe.user_id:
+    if current_user.id == recipe.user_id:
         db.session.delete(recipe)
         db.session.commit()
         return "Recipe Deleted"
