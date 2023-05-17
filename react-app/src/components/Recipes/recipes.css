@@ -1,0 +1,15 @@
+.recipe-display{
+    font-size: medium;
+    font-weight: bold;
+    display: flex;
+    width: 60vw;
+}
+.recipe-display img{
+    width: 10vw;
+    height: 10vh;
+}
+.homepage-outer{
+    width: 95vw;
+    display: flex;
+    justify-content: center;
+}

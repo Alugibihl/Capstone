@@ -23,10 +23,8 @@ class Recipe_comment(db.Model):
         return {
             "id": self.id,
             "details": self.details,
-            "name": self.name,
             "userId": self.user_id,
-            "image": self.image,
-            "type": self.type,
+            "recipe_id": self.recipe_id,
             "createdAt": str(self.created_at),
             "updatedAt": str(self.updated_at)
         }
