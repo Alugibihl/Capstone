@@ -1,0 +1,10 @@
+.ingredient-display {
+    font-size: medium;
+    font-weight: bold;
+    display: flex;
+    width: 35vw;
+}
+.ingredient-display img{
+    width: 10vw;
+    height: 10vh;
+}

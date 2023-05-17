@@ -4,9 +4,9 @@
 
 
 
-export const GetAllIngredientsThunk = () = async (dispatch) => {
-    
-}
+// export const GetAllIngredientsThunk = () => async (dispatch) => {
+
+// }
 
 
 

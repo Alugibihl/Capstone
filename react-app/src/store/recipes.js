@@ -9,7 +9,7 @@ export const GetAllRecipes = (recipes) => {
 
 
 
-export const GetAllRecipesThunk = () = async (dispatch) => {
+export const GetAllRecipesThunk = () => async (dispatch) => {
     const response = await fetch("/api/recipes")
     if (response.ok) {
         const data = await response.json()
@@ -26,11 +26,18 @@ export const GetAllRecipesThunk = () = async (dispatch) => {
 
 
 
-const initialState = {}
+const initialState = {
+    recipes: {}
+}
 
 const RecipeReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
+        case GET_RECIPES: {
+            newState = { ...state }
+            newState.recipes = { ...action.payload }
+            return newState
+        }
         default:
             return state
     }
