@@ -1,10 +1,11 @@
-import "./ingredient.css"
+import { NavLink } from "react-router-dom"
+import "../ingredient.css"
 const IngredientDisplay = ({ ingredient }) => {
     return (
-        <div className="ingredient-display">
+        <NavLink to={`/ingredients/${ingredient.id}`} className="ingredient-display">
             <h1>{ingredient.name}</h1>
             <img src={ingredient.image} alt="ingredient"></img>
-        </div>
+        </NavLink>
     )
 }
 export default IngredientDisplay

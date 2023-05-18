@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session'
 import recipes from './recipes';
 import ingredients from './ingredients';
+import categories from './category';
 
 const rootReducer = combineReducers({
   session,
   recipes,
   ingredients,
+  categories
 });
 
 

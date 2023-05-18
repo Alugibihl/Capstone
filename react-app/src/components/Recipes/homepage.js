@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import "./recipes.css"
-import { GetAllRecipesThunk } from "../../store/recipes"
-import RecipeDisplay from "./all_recipes_display"
+import { getAllRecipesThunk } from "../../store/recipes"
 import IngredientDisplay from "../Ingredients/ingredient_display"
+import RecipeDisplay from "./allrecipes"
 
 
 const HomePage = () => {
@@ -14,7 +14,7 @@ const HomePage = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(GetAllRecipesThunk())
+        dispatch(getAllRecipesThunk())
     }, [dispatch])
 
     // const recipesArr = Object.values(recipes)

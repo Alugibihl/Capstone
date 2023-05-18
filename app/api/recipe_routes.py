@@ -13,10 +13,13 @@ def get_all_recipes():
     """Query for all recipes"""
     all_recipes = Recipe.query.all()
     all_ingredients = Ingredient.query.all()
+    all_categories = Category.query.all()
+    cats = [category.to_dict() for category in all_categories]
     ing_res = [ingredient.to_dict() for ingredient in all_ingredients]
     response = [recipe.to_dict() for recipe in all_recipes]
     return {"recipes": response,
-            "ingredients": ing_res}
+            "ingredients": ing_res,
+            "categories": cats}
 
 @recipe_routes.route('/<int:id>')
 @login_required
