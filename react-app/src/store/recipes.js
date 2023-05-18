@@ -74,6 +74,7 @@ export const createRecipeThunk = (details) => async (dispatch) => {
     });
     if (response.ok) {
         const data = await response.json()
+        console.log("--create thunk data--", data);
         dispatch(createRecipe(data))
         return data
     } else if (response.status < 500) {
@@ -88,10 +89,10 @@ export const createRecipeThunk = (details) => async (dispatch) => {
     }
 }
 
-export const editOneRecipeThunk = (recipe) => async (dispatch) => {
+export const editOneRecipeThunk = (info) => async (dispatch) => {
+    const { item, recipe } = info
     console.log('details in Edit Thunk', recipe);
-    const { item, recipeId } = recipe;
-    const response = await fetch(`/api/recipes/${recipeId}`, {
+    const response = await fetch(`/api/recipes/${recipe.id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -153,7 +154,8 @@ const RecipeReducer = (state = initialState, action) => {
         }
         case CREATE_RECIPE: {
             newState = { ...state, recipes: { ...state.recipes } }
-            newState.recipes[action.details.id] = action.details
+            console.log("this is to be looked at", action.payload);
+            newState.recipes[action.payload.id] = action.payload
             return newState
         }
         case DELETE_RECIPE: {
@@ -162,7 +164,7 @@ const RecipeReducer = (state = initialState, action) => {
             return newState
         }
         case EDIT_RECIPE: {
-            newState = { ...state }
+            newState = { ...state, recipes: { ...state.recipes } }
             newState.recipes[action.details.id] = action.details
             return newState
         }

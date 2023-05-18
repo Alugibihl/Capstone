@@ -9,7 +9,6 @@ import OpenModalButton from '../OpenModalButton';
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector(state => state.session.user);
 	let date = new Date().toDateString()
-	console.log(date);
 	return (
 		<div className='navbar'>
 			<div className='today'>{date}

@@ -1,24 +1,24 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { useModal } from "../../../context/Modal";
-import { createRecipeThunk, getAllRecipesThunk } from "../../../store/recipes";
+import { editOneRecipeThunk, getAllRecipesThunk, getOneRecipeThunk } from "../../../store/recipes";
 
-const CreateRecipeModal = () => {
+const EditRecipeModal = ({ recipe }) => {
     const dispatch = useDispatch()
-    const history = useHistory()
     const choices = useSelector((state) => state.recipes.recipes.categories)
-    const [details, setDetails] = useState("")
-    const [image, setImage] = useState("")
-    const [errors, setErrors] = useState([])
-    const [categoryId, setCategoryId] = useState("")
-    const [name, setName] = useState("")
     const currentUser = useSelector((state) => state.session.user)
+    const [details, setDetails] = useState(recipe.details)
+    const [image, setImage] = useState(recipe.image)
+    const [errors, setErrors] = useState([])
+    const [categoryId, setCategoryId] = useState(recipe.categoryId)
+    const [name, setName] = useState(recipe.name)
+    console.log("---------------here", choices, currentUser); // choices is an array of backend options
     const { closeModal } = useModal()
 
     useEffect(() => {
         dispatch(getAllRecipesThunk())
-    }, [dispatch])
+        dispatch(getOneRecipeThunk(recipe.id))
+    }, [dispatch, recipe])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -30,10 +30,11 @@ const CreateRecipeModal = () => {
                 'image': image,
                 'category_id': categoryId,
             }
-            const data = await dispatch(createRecipeThunk(item));
+            const info = { item, recipe }
+            const data = await dispatch(editOneRecipeThunk(info));
             if (data) {
                 closeModal();
-                history.push(`/recipes/${data.recipe.id}`)
+                dispatch(getOneRecipeThunk(recipe.id))
             }
         } else {
             setErrors([
@@ -46,7 +47,7 @@ const CreateRecipeModal = () => {
             <div >
                 <h1
                     className="modal-title"
-                >Add a Recipe</h1>
+                >Edit a Recipe</h1>
             </div>
             <form
                 onSubmit={handleSubmit}
@@ -108,11 +109,11 @@ const CreateRecipeModal = () => {
                 </div>
                 <div>
                     <button onClick={closeModal}>Cancel</button>
-                    <button type="submit">Create Recipe</button>
+                    <button type="submit">Edit Recipe</button>
                 </div>
             </form >
         </div >
     )
 }
 
-export default CreateRecipeModal
+export default EditRecipeModal
