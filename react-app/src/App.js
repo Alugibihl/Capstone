@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from "./components/Recipes/homepage";
 import OneRecipe from "./components/Recipes/oneRecipe";
+import OneIngredient from "./components/Ingredients/one_ingredient";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ function App() {
             <OneRecipe />
           </Route>
           <Route path={"/ingredients/:id"}>
-
+            <OneIngredient />
           </Route>
           <Route exact path={"/"}>
             <HomePage />

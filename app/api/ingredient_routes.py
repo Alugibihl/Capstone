@@ -7,6 +7,12 @@ from flask_login import current_user, login_user, logout_user, login_required
 
 ingredient_routes = Blueprint('ingredient', __name__)
 
+@ingredient_routes.route("/")
+def get_all_ingredients():
+    ingredients = Ingredient.query.all()
+    response = [ingredient.to_dict() for ingredient in ingredients]
+    return {"ingredient": response}
+
 @ingredient_routes.route('/<int:id>')
 @login_required
 def get_one_ingredient(id):
@@ -20,7 +26,6 @@ def get_one_ingredient(id):
 def create_one_ingredient():
     """Creates an ingredient"""
     form = IngredientForm
-    form.category_id.choices = [(category.id, category.name) for category in Category.query.all()]
     #provides choices to the form
     form['csrf_token'].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
