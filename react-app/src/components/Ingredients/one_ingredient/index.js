@@ -14,6 +14,7 @@ function OneIngredient() {
     const user = useSelector(state => state.session.user)
     console.log("one ingredient", ingredient, user, id);
 
+
     useEffect(() => {
         dispatch(getOneIngredientThunk(id))
     }, [dispatch, id])
@@ -23,14 +24,19 @@ function OneIngredient() {
         <div className="single-item-container">
             <img src={ingredient.image} alt={ingredient.name}></img>
             <div><h2>{ingredient.name}</h2></div>
-            <div>{ingredient.details}</div>
+            <div className="poster">Ingredient By: {user.username}</div>
+            <div className="single-details">{ingredient.details}</div>
             <div>
-                {user && user.id === ingredient.userId && <div> <OpenModalButton
-                    buttonText={"Delete an ingredient"}
-                    modalComponent={<DeleteIngredientModal ingredient={ingredient} />} /></div>}
-                {user && user.id === ingredient.userId && <div> <OpenModalButton
-                    buttonText={"Edit an ingredient"}
-                    modalComponent={<EditIngredientModal ingredient={ingredient} />} /></div>}
+                {user && user.id === ingredient.userId && <div>
+                    <OpenModalButton
+                        className="red-button"
+                        buttonText={"Delete an ingredient"}
+                        modalComponent={<DeleteIngredientModal ingredient={ingredient} />} /></div>}
+                {user && user.id === ingredient.userId && <div>
+                    <OpenModalButton
+                        className="green-button"
+                        buttonText={"Edit an ingredient"}
+                        modalComponent={<EditIngredientModal ingredient={ingredient} />} /></div>}
             </div>
         </div >
     )

@@ -6,7 +6,6 @@ import IngredientDisplay from "../Ingredients/ingredient_display"
 import RecipeDisplay from "./allrecipes"
 import CategoryDisplay from "../Categories/category_display"
 
-
 const HomePage = () => {
     const recipes = useSelector(state => state.recipes.recipes)
     const ingredients = useSelector(state => state.recipes.recipes.ingredients)
@@ -25,13 +24,13 @@ const HomePage = () => {
     if (!categories) return null
 
     for (let recipe of recipes.recipes) {
-        if (recipesArr.length < 12) {
+        if (recipesArr.length < 10) {
             recipesArr.push(recipe)
         }
     }
     if (ingredients.length) {
         for (let ingredient of ingredients) {
-            if (ingredientsArr.length < 15) {
+            if (ingredientsArr.length < 21) {
                 ingredientsArr.push(ingredient)
             }
         }

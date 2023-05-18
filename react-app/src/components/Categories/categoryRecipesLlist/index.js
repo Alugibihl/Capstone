@@ -33,7 +33,7 @@ const CategoryRecipes = () => {
     }
     return (
         <div className="category-recipe-page">
-
+            
         </div>
     )
 }

@@ -40,60 +40,62 @@ const EditIngredientModal = ({ ingredient }) => {
         }
     };
     return (
-        <div >
-            <div >
-                <h1
-                    className="modal-title"
-                >Edit a Recipe</h1>
-            </div>
-            <form
-                onSubmit={handleSubmit}
-                encType="multipart/form-data"
-                className="modal-space-form"
-            >
-                <div
-                    className="modal-error-container"
+        <div className="modal-background">
+            <div className="modal-form">
+                <div >
+                    <h1
+                        className="modal-title"
+                    >Edit an Ingredient</h1>
+                </div>
+                <form
+                    onSubmit={handleSubmit}
+                    encType="multipart/form-data"
+                    className="form-styling"
                 >
-                    {errors.map((error, idx) => (
-                        <div
-                            key={idx}
-                            className="modal-errors"
-                        >{error}</div>
-                    ))}
-                </div>
-                <div className="form-data">
-                    <textarea
-                        value={details}
-                        onChange={(e) => setDetails(e.target.value)}
-                        placeholder={`Please share a ingredient you love.`}
-                        required
-                    />
-                    <label>
-                        Place a picture of your ingredient here!
-                        <input
-                            type="url"
-                            value={image}
-                            onChange={(e) => setImage(e.target.value)}
-                            placeholder="url"
+                    <div
+                        className="modal-error-container"
+                    >
+                        {errors.map((error, idx) => (
+                            <div
+                                key={idx}
+                                className="modal-errors"
+                            >{error}</div>
+                        ))}
+                    </div>
+                    <div className="form-data">
+                        <textarea
+                            value={details}
+                            onChange={(e) => setDetails(e.target.value)}
+                            placeholder={`Please share a ingredient you love.`}
                             required
                         />
-                    </label>
-                    <label>
-                        Please Enter the name of your dish.
-                        <input
-                            type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            required
-                            placeholder="Ingredient"
-                        />
-                    </label>
-                </div>
-                <div>
-                    <button onClick={closeModal}>Cancel</button>
-                    <button type="submit">Edit Recipe</button>
-                </div>
-            </form >
+                        <label>
+                            Place a picture of your ingredient here!
+                            <input
+                                type="url"
+                                value={image}
+                                onChange={(e) => setImage(e.target.value)}
+                                placeholder="url"
+                                required
+                            />
+                        </label>
+                        <label>
+                            Please Enter the name of your dish.
+                            <input
+                                type="text"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                                placeholder="Ingredient"
+                            />
+                        </label>
+                    </div>
+                    <div className="modal-buttons">
+                        <button className="red-button" onClick={closeModal}>Cancel</button>
+                        <button className="green-button" type="submit">Edit Recipe</button>
+                    </div>
+                </form >
+            </div>
         </div >
     )
 }
