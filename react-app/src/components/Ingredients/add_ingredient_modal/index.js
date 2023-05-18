@@ -31,7 +31,7 @@ const CreateIngredientModal = () => {
             if (data) {
                 console.log("data-----response---", data);
                 closeModal();
-                // history.push(`/ingredients/${data.ingredient.id}`)
+                history.push(`/ingredients/${data.ingredient.id}`)
             }
         } else {
             setErrors([

@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import HomePage from "./components/Recipes/homepage";
 import OneRecipe from "./components/Recipes/oneRecipe";
 import OneIngredient from "./components/Ingredients/one_ingredient";
+import OneCategory from "./components/Categories/category_recipes";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,17 +22,20 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/login" >
+          <Route exact path="/login" >
             <LoginFormPage />
           </Route>
-          <Route path="/signup">
+          <Route exact path="/signup">
             <SignupFormPage />
           </Route>
           <Route exact path={"/recipes/:id"}>
             <OneRecipe />
           </Route>
-          <Route path={"/ingredients/:id"}>
+          <Route exact path={"/ingredients/:id"}>
             <OneIngredient />
+          </Route>
+          <Route exact path={"/categories/:id"}>
+            <OneCategory />
           </Route>
           <Route exact path={"/"}>
             <HomePage />

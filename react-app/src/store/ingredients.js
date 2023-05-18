@@ -105,7 +105,8 @@ export const editOneIngredientThunk = (info) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json();
         console.log("----- data in edit thunk---", data);
-        dispatch(editIngredient(data));
+        // dispatch(editIngredient(data));
+        dispatch(getOneIngredient(data.id))
         return data
     } else if (response.status < 500) {
         const data = await response.json();
@@ -119,6 +120,7 @@ export const editOneIngredientThunk = (info) => async (dispatch) => {
     }
 }
 export const deleteIngredientThunk = (ingredientId) => async (dispatch) => {
+    console.log("delete thunk", ingredientId);
     const response = await fetch(`/api/ingredients/${ingredientId}`, {
         method: "DELETE",
         headers: {
@@ -127,6 +129,7 @@ export const deleteIngredientThunk = (ingredientId) => async (dispatch) => {
     })
     if (response.ok) {
         dispatch(deleteIngredient(ingredientId));
+        return ingredientId
     } else {
         return [
             "An error occurred. Please try again."
@@ -153,21 +156,26 @@ const IngredientReducer = (state = initialState, action) => {
             return newState
         }
         case CREATE_INGREDIENT: {
-            newState = { ...state, ingredients: { ...state.ingredients } }
             console.log("this is to be looked at", action.payload);
+            newState = { ...state, ingredients: { ...state.ingredients } }
             newState.ingredients[action.payload.id] = action.payload
             return newState
         }
         case DELETE_INGREDIENT: {
-            newState = { ...state }
+            newState = { ...state, ingredients: { ...state.ingredients } }
             delete newState.ingredients[action.ingredientId]
             return newState
         }
         case EDIT_INGREDIENT: {
-            newState = { ...state, ingredients: { ...state.ingredients } }
-            newState.ingredients[action.details.id] = action.details
-            return newState
+            newState = { ...state };
+            newState.ingredients[action.details.id] = {
+                ...newState.ingredients[action.details.id],
+                ...action.details,
+            };
+            console.log("this is new state", newState);
+            return newState;
         }
+
         default:
             return state
     }

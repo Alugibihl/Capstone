@@ -10,9 +10,9 @@ import EditIngredientModal from "../edit_ingredient_modal";
 function OneIngredient() {
     const dispatch = useDispatch()
     const { id } = useParams()
-    const { ingredient } = useSelector(state => state.ingredients.ingredients)
+    const ingredient = useSelector(state => state.ingredients.ingredients.ingredient)
     const user = useSelector(state => state.session.user)
-    console.log("one ingredient", ingredient, user);
+    console.log("one ingredient", ingredient, user, id);
 
     useEffect(() => {
         dispatch(getOneIngredientThunk(id))
@@ -26,13 +26,12 @@ function OneIngredient() {
             <div>{ingredient.details}</div>
             <div>
                 {user && user.id === ingredient.userId && <div> <OpenModalButton
-                    buttonText={"Delete a ingredient"}
+                    buttonText={"Delete an ingredient"}
                     modalComponent={<DeleteIngredientModal ingredient={ingredient} />} /></div>}
                 {user && user.id === ingredient.userId && <div> <OpenModalButton
-                    buttonText={"Edit a ingredient"}
+                    buttonText={"Edit an ingredient"}
                     modalComponent={<EditIngredientModal ingredient={ingredient} />} /></div>}
             </div>
-
         </div >
     )
 }

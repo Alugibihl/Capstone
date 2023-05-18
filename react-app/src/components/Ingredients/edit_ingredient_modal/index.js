@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../../context/Modal";
-import { editOneRecipeThunk, getAllRecipesThunk, getOneRecipeThunk } from "../../../store/recipes";
-import { editOneIngredientThunk } from "../../../store/ingredients";
+import { editOneIngredientThunk, getAllIngredientsThunk, getOneIngredientThunk } from "../../../store/ingredients";
 
 const EditIngredientModal = ({ ingredient }) => {
     const dispatch = useDispatch()
@@ -14,8 +13,8 @@ const EditIngredientModal = ({ ingredient }) => {
     const { closeModal } = useModal()
 
     useEffect(() => {
-        dispatch(getAllRecipesThunk())
-        dispatch(getOneRecipeThunk(ingredient.id))
+        dispatch(getAllIngredientsThunk())
+        dispatch(getOneIngredientThunk(ingredient.id))
     }, [dispatch, ingredient])
 
     const handleSubmit = async (e) => {
@@ -30,8 +29,9 @@ const EditIngredientModal = ({ ingredient }) => {
             const info = { item, ingredient }
             const data = await dispatch(editOneIngredientThunk(info));
             if (data) {
+                console.log("data---", data.ingredient);
                 closeModal();
-                dispatch(getOneRecipeThunk(ingredient.id))
+                dispatch(getOneIngredientThunk(data.ingredient.id))
             }
         } else {
             setErrors([
