@@ -24,6 +24,7 @@ function OneCategory() {
     return (
         <div className="single-item-container">
             <div><h2>{category.name}</h2></div>
+            <div>{category.description}</div>
             <div>{categoryRecipes?.map((recipe) => {
                 return <RecipeDisplay key={recipe.id} recipe={recipe} />
             })}</div>

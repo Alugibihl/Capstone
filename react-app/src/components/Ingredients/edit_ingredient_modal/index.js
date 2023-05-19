@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../../context/Modal";
-import { editOneIngredientThunk, getAllIngredientsThunk, getOneIngredientThunk } from "../../../store/ingredients";
+import { editOneIngredientThunk, getOneIngredientThunk } from "../../../store/ingredients";
 
 const EditIngredientModal = ({ ingredient }) => {
     const dispatch = useDispatch()
@@ -13,7 +13,6 @@ const EditIngredientModal = ({ ingredient }) => {
     const { closeModal } = useModal()
 
     useEffect(() => {
-        dispatch(getAllIngredientsThunk())
         dispatch(getOneIngredientThunk(ingredient.id))
     }, [dispatch, ingredient])
 

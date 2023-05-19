@@ -23,32 +23,32 @@ function LoginFormPage() {
 
   return (
     <>
-      <h1>Log In</h1>
+      <h1 className="form-title">Log In</h1>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Log In</button>
+        <label for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="email@email.com"
+          required
+        />
+        <label for="pwrd">Password</label>
+        <input
+          id="pwrd"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          required
+        />
+        <button className="green-button" type="submit">Log In</button>
       </form>
     </>
   );

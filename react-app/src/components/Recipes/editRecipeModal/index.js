@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import { editOneRecipeThunk, getAllRecipesThunk, getOneRecipeThunk } from "../../../store/recipes";
+import { getAllCategoriesThunk } from "../../../store/category";
 
 const EditRecipeModal = ({ recipe }) => {
     const dispatch = useDispatch()
-    const choices = useSelector((state) => state.recipes.recipes.categories)
+    const choices = useSelector((state) => state.categories.categories.category)
     const currentUser = useSelector((state) => state.session.user)
     const [details, setDetails] = useState(recipe.details)
     const [image, setImage] = useState(recipe.image)
@@ -16,7 +17,7 @@ const EditRecipeModal = ({ recipe }) => {
     const { closeModal } = useModal()
 
     useEffect(() => {
-        dispatch(getAllRecipesThunk())
+        dispatch(getAllCategoriesThunk())
         dispatch(getOneRecipeThunk(recipe.id))
     }, [dispatch, recipe])
 

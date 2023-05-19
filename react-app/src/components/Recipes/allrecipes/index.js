@@ -4,7 +4,7 @@ const RecipeDisplay = ({ recipe }) => {
     return (
         <NavLink to={`/recipes/${recipe.id}`} className="recipe-display">
             <h2>{recipe.name}</h2>
-            <img src={recipe.image} alt={recipe.name}></img>
+            <img style={{ objectFit: "cover" }} src={recipe.image} alt={recipe.name}></img>
         </NavLink>
     )
 }

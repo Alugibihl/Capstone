@@ -1,7 +1,32 @@
 .profile-dropdown {
   position: absolute;
+  right: 0%;
+  width: 30vw;
+  background-color: white;
+  border: pink 3px solid;
+  height: 100%;
+  margin-top: -1vh;
 }
 
 .hidden {
   display: none;
+}
+.button-sort{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.create-buttons{
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+}
+.title{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.today {
+  display: flex;
+  width: 150px;
 }

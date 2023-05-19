@@ -10,6 +10,7 @@ import OneRecipe from "./components/Recipes/oneRecipe";
 import OneIngredient from "./components/Ingredients/one_ingredient";
 import OneCategory from "./components/Categories/category_recipes";
 import Footer from "./components/Footer";
+import SplashPage from "./components/SplashPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,12 +24,12 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route exact path="/login" >
+          {/* <Route exact path="/login" >
             <LoginFormPage />
           </Route>
           <Route exact path="/signup">
             <SignupFormPage />
-          </Route>
+          </Route> */}
           <Route exact path={"/recipes/:id"}>
             <OneRecipe />
           </Route>
@@ -40,6 +41,9 @@ function App() {
           </Route>
           <Route exact path={"/"}>
             <HomePage />
+          </Route>
+          <Route exact path={["/", "/login", "/signup"]}>
+            <SplashPage />
           </Route>
         </Switch>
       )}

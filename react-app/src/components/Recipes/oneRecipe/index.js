@@ -26,7 +26,7 @@ function OneRecipe() {
     if (!category) return null
     return (
         <div className="single-item-container">
-            <img src={recipe.image} alt={recipe.name}></img>
+            <img style={{ objectFit: "cover" }} src={recipe.image} alt={recipe.name}></img>
             <div ><h2>{recipe.name}</h2><div className="poster">Cuisine Category: {myCategory.name}</div> </div>
             <div className="poster">Recipe By: {user.username}</div>
             <div className="single-details">{recipe.details}</div>
