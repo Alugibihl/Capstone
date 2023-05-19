@@ -22,7 +22,7 @@ function OneIngredient() {
     if (!ingredient) return null
     return (
         <div className="single-item-container">
-            <img src={ingredient.image} alt={ingredient.name}></img>
+            <img style={{ objectFit: "cover" }} src={ingredient.image} alt={ingredient.name}></img>
             <div><h2>{ingredient.name}</h2></div>
             <div className="poster">Ingredient By: {user.username}</div>
             <div className="single-details">{ingredient.details}</div>

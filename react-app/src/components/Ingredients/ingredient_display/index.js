@@ -4,7 +4,7 @@ const IngredientDisplay = ({ ingredient }) => {
     return (
         <NavLink to={`/ingredients/${ingredient.id}`} className="ingredient-display">
             <h3>{ingredient.name}</h3>
-            <img src={ingredient.image} alt="ingredient"></img>
+            <img style={{ objectFit: "cover" }} src={ingredient.image} alt="ingredient"></img>
         </NavLink>
     )
 }

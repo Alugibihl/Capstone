@@ -50,10 +50,10 @@ function ProfileButton({ user }) {
             <div className={ulClassName} ref={ulRef}>
               <div className="profile-dropdown-user-link">
                 <div>
-                  Hello {user.username}
+                  {user.email}
                 </div>
                 <div>
-                  {user.email}
+                  Hello {user.username}
                 </div>
                 <div>
                   <p className="styling-line">
