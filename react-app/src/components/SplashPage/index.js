@@ -32,15 +32,13 @@ function SplashPage() {
                         <div className="login-container" >
                             <div>
                                 <LoginFormPage />
-                            </div>
-                            <div>
                                 <button className="blue-button" onClick={handleClick}>Demo User</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
 
     )
 }
