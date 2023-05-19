@@ -5,3 +5,22 @@
 .hidden {
   display: none;
 }
+.button-sort{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.create-buttons{
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+}
+.title{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.today {
+  display: flex;
+  width: 150px;
+}
