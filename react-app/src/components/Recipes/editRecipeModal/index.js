@@ -43,75 +43,76 @@ const EditRecipeModal = ({ recipe }) => {
         }
     };
     return (
-        <div >
-            <div >
-                <h1
-                    className="modal-title"
-                >Edit a Recipe</h1>
-            </div>
-            <form
-                onSubmit={handleSubmit}
-                encType="multipart/form-data"
-                className="modal-space-form"
-            >
-                <div
-                    className="modal-error-container"
+        <div className="modal-background">
+            <div className="modal-form">
+                <div >
+                    <h1
+                        className="modal-title"
+                    >Edit a Recipe</h1>
+                </div>
+                <form
+                    onSubmit={handleSubmit}
+                    encType="multipart/form-data"
+                    className="form-styling"
                 >
-                    {errors.map((error, idx) => (
-                        <div
-                            key={idx}
-                            className="modal-errors"
-                        >{error}</div>
-                    ))}
-                </div>
-                <div className="form-data">
-                    <textarea
-                        value={details}
-                        onChange={(e) => setDetails(e.target.value)}
-                        placeholder={`Please share a recipe you love.`}
-                        required
-                    />
-                    <label>
-                        Place a picture of your recipe here!
-                        <input
-                            type="url"
-                            value={image}
-                            onChange={(e) => setImage(e.target.value)}
-                            placeholder="url"
+                    <div
+                        className="modal-error-container"
+                    >
+                        {errors.map((error, idx) => (
+                            <div
+                                key={idx}
+                                className="modal-errors"
+                            >{error}</div>
+                        ))}
+                    </div>
+                    <div className="form-data">
+                        <textarea
+                            value={details}
+                            onChange={(e) => setDetails(e.target.value)}
+                            placeholder={`Please share a recipe you love.`}
                             required
                         />
-                    </label>
-                    <label>
-                        Please Enter the name of your dish.
-                        <input
-                            type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            required
-                            placeholder="Bone Soup"
-                        />
-                    </label>
-                    <label className="category">
-                        Please Specify your cuisine classification
-                        <select
-                            value={categoryId}
-                            onChange={(e) => setCategoryId(e.target.value)}
-                            required
-                        >
-                            <option>Select One</option>
-                            {choices?.map((choice) => (
-                                <option key={choice.id} value={choice.id}>{choice.name}</option>
-                            ))}
-                        </select>
+                        <label>
+                            Place a picture of your recipe here!
+                            <input
+                                type="url"
+                                value={image}
+                                onChange={(e) => setImage(e.target.value)}
+                                placeholder="url"
+                                required
+                            />
+                        </label>
+                        <label>
+                            Please Enter the name of your dish.
+                            <input
+                                type="text"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                                placeholder="Bone Soup"
+                            />
+                        </label>
+                        <label className="category">
+                            Please Specify your cuisine classification
+                            <select
+                                value={categoryId}
+                                onChange={(e) => setCategoryId(e.target.value)}
+                                required
+                            >
+                                <option>Select One</option>
+                                {choices?.map((choice) => (
+                                    <option key={choice.id} value={choice.id}>{choice.name}</option>
+                                ))}
+                            </select>
+                        </label>
 
-                    </label>
-
-                </div>
-                <div>
-                    <button onClick={closeModal}>Cancel</button>
-                    <button type="submit">Edit Recipe</button>
-                </div>
-            </form >
+                    </div>
+                    <div className="modal-buttons">
+                        <button className="red-button" onClick={closeModal}>Cancel</button>
+                        <button className="green-button" type="submit">Edit Recipe</button>
+                    </div>
+                </form >
+            </div>
         </div >
     )
 }

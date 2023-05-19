@@ -25,7 +25,7 @@ def get_one_ingredient(id):
 @login_required
 def create_one_ingredient():
     """Creates an ingredient"""
-    form = IngredientForm
+    form = IngredientForm()
     #provides choices to the form
     form['csrf_token'].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
@@ -34,7 +34,7 @@ def create_one_ingredient():
             name = data["name"],
             details = data["details"],
             user_id = data["user_id"],
-            image= data["image"]
+            image = data["image"]
         )
         db.session.add(new_ingredient)
         db.session.commit()
@@ -52,7 +52,7 @@ def create_one_ingredient():
 def delete_ingredient(id):
     """Delete an ingredient Route"""
     ingredient = Ingredient.query.get(id)
-    if current_user.id == Ingredient.user_id:
+    if current_user.id == ingredient.user_id:
         db.session.delete(ingredient)
         db.session.commit()
         return "Ingredient Deleted"

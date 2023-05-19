@@ -14,9 +14,8 @@ function Navigation({ isLoaded }) {
 		<div className='navbar'>
 			<div className='today'>{date}
 			</div>
-			<div className='title'>
-				<NavLink exact to="/">The New Fork Dines</NavLink>
-			</div>
+			<h1 className='title'><NavLink exact to="/">The New Fork Dines</NavLink></h1>
+
 			{isLoaded && (
 				<div>
 					<div><OpenModalButton

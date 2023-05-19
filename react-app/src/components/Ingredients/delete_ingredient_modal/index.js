@@ -7,24 +7,26 @@ const DeleteIngredientModal = ({ ingredient }) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const { closeModal } = useModal()
-
+    const ingredientId = ingredient.id
     const deleter = async () => {
-        await dispatch(deleteIngredientThunk(ingredient.id))
+        await dispatch(deleteIngredientThunk(ingredientId))
         closeModal()
         history.push("/")
     }
 
     return (
-        <div >
-            <div >
-                <h1
-                    className="modal-title"
-                >Delete an Ingredient</h1>
-                <div>Are you sure you want to delete your Ingredient for {ingredient.name}?</div>
-            </div>
-            <div>
-                <button onClick={closeModal}>Cancel</button>
-                <button onClick={deleter} type="submit">Delete Ingredient</button>
+        <div className="modal-background">
+            <div className="modal-form">
+                <div >
+                    <h1
+                        className="modal-title"
+                    >Delete an Ingredient</h1>
+                    <div>Are you sure you want to delete your Ingredient {ingredient.name}?</div>
+                </div>
+                <div className="modal-buttons">
+                    <button className="green-button" onClick={closeModal}>Cancel</button>
+                    <button className="red-button" onClick={deleter} type="submit">Delete Ingredient</button>
+                </div>
             </div>
         </div >
     )

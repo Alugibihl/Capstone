@@ -15,16 +15,16 @@ const DeleteRecipeModal = ({ recipe }) => {
     }
 
     return (
-        <div >
-            <div >
-                <h1
-                    className="modal-title"
-                >Delete a Recipe</h1>
-                <div>Are you sure you want to delete your recipe for {recipe.name}?</div>
-            </div>
-            <div>
-                <button onClick={closeModal}>Cancel</button>
-                <button onClick={deleter} type="submit">Delete Recipe</button>
+        <div className="modal-background">
+            <div className="modal-form">
+                <div className="form-data">
+                    <h1 className="modal-title">Delete a Recipe</h1>
+                    <div>Are you sure you want to delete your recipe for {recipe.name}?</div>
+                </div>
+                <div className="modal-buttons">
+                    <button className="green-button" onClick={closeModal}>Cancel</button>
+                    <button className="red-button" onClick={deleter} type="submit">Delete Recipe</button>
+                </div>
             </div>
         </div >
     )

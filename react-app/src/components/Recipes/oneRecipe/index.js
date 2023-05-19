@@ -15,7 +15,7 @@ function OneRecipe() {
     const { category } = useSelector(state => state.categories.categories)
     const myCategory = category?.find(cat => cat.id === recipe?.categoryId)
     const user = useSelector(state => state.session.user)
-    console.log("here", id, recipe, category, myCategory);
+    console.log("here", id, user, recipe, category, myCategory);
 
     useEffect(() => {
         dispatch(getOneRecipeThunk(id))
@@ -27,14 +27,17 @@ function OneRecipe() {
     return (
         <div className="single-item-container">
             <img src={recipe.image} alt={recipe.name}></img>
-            <div><h2>{recipe.name}</h2>Cuisine Category: {myCategory.name} </div>
-            <div>{recipe.details}</div>
-            <div>
+            <div ><h2>{recipe.name}</h2><div className="poster">Cuisine Category: {myCategory.name}</div> </div>
+            <div className="poster">Recipe By: {user.username}</div>
+            <div className="single-details">{recipe.details}</div>
+            <div className="modal-buttons">
                 {user && user.id === recipe.userId && <div> <OpenModalButton
-                    buttonText={"Delete a recipe"}
+                    className="red-button"
+                    buttonText={"Delete this recipe"}
                     modalComponent={<DeleteRecipeModal recipe={recipe} />} /></div>}
                 {user && user.id === recipe.userId && <div> <OpenModalButton
-                    buttonText={"Edit a recipe"}
+                    className="green-button"
+                    buttonText={"Edit this recipe"}
                     modalComponent={<EditRecipeModal recipe={recipe} />} /></div>}
             </div>
 
