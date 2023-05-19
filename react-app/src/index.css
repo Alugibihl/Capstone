@@ -132,3 +132,8 @@ a:hover{
 .styling-line{
     border-bottom: 1px solid black;
 }
+.title-buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}

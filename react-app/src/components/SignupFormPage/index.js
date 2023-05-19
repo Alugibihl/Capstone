@@ -70,7 +70,7 @@ function SignupFormPage() {
           placeholder="Confirm Password"
           required
         />
-        <button type="submit">Sign Up</button>
+        <button className="green-button" type="submit">Sign Up</button>
       </form>
     </>
   );

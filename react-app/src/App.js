@@ -42,7 +42,7 @@ function App() {
           <Route exact path={"/"}>
             <HomePage />
           </Route>
-          <Route exact path={["/", "/login"]}>
+          <Route exact path={["/", "/login", "/signup"]}>
             <SplashPage />
           </Route>
         </Switch>

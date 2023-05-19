@@ -1,0 +1,39 @@
+.splash-page-container{
+    display: flex;
+    border: 3px lime solid;
+    height: 80vh;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 15% 10px 15%;
+}
+.signup-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 15% 0px 15%;
+    border: 1px orange solid;
+}
+
+.login-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 15% 0px 15%;
+    border: indigo 1px solid;
+}
+.form-holder{
+    display: flex;
+    flex-direction: row;
+}
+.half-split{
+    width: 50%;
+    height: 100%;
+}
+.splash-title{
+    margin-top: 30px;
+}
+.splash-message{
+    margin-bottom: 30px;
+}

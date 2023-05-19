@@ -48,7 +48,7 @@ function LoginFormPage() {
           placeholder="Password"
           required
         />
-        <button type="submit">Log In</button>
+        <button className="green-button" type="submit">Log In</button>
       </form>
     </>
   );

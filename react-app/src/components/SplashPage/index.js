@@ -19,17 +19,16 @@ function SplashPage() {
     return (
 
         <div className="splash-background">
-
             <div className="splash-page-container">
-                <h1 >The New Fork Dines</h1>
-                <h2>The Worlds Premier Recipe Lineup</h2>
-                <div>
-                    <div >
-                        <div className="signup container" >
+                <h1 className="splash-title">The New Fork Dines</h1>
+                <h2 className="splash-message">The Worlds Premier Recipe Lineup</h2>
+                <div className="form-holder">
+                    <div className="half-split">
+                        <div className="signup-container" >
                             <SignupFormPage />
                         </div>
                     </div>
-                    <div >
+                    <div className="half-split">
                         <div className="login-container" >
                             <div>
                                 <LoginFormPage />

@@ -16,8 +16,9 @@ function Navigation({ isLoaded }) {
 			<div className='today'>{date}
 			</div>
 			<h1 className='title'><NavLink to="/">The New Fork Dines</NavLink></h1>
-			{sessionUser === null ? <div><button className='blue-button'><NavLink to={"/login"}>
-				Login</NavLink></button></div> : null}
+			{sessionUser === null ? <div className='title-buttons'><button className='blue-button'><NavLink to={"/login"}>
+				Login</NavLink></button><button className='blue-button'><NavLink to={"/signup"}>
+					Sign Up</NavLink></button></div> : null}
 
 			{isLoaded && (
 				<div className='button-sort'>
