@@ -102,6 +102,7 @@ a:hover{
 .single-details{
     width: 50vw;
     margin-top: 15px;
+    margin-bottom: 15px;
     font-size: large;
 }
 .poster{

@@ -26,16 +26,16 @@ function OneIngredient() {
             <div><h2>{ingredient.name}</h2></div>
             <div className="poster">Ingredient By: {user.username}</div>
             <div className="single-details">{ingredient.details}</div>
-            <div>
+            <div className="modal-buttons">
                 {user && user.id === ingredient.userId && <div>
                     <OpenModalButton
                         className="red-button"
-                        buttonText={"Delete an ingredient"}
+                        buttonText={"Delete this ingredient"}
                         modalComponent={<DeleteIngredientModal ingredient={ingredient} />} /></div>}
                 {user && user.id === ingredient.userId && <div>
                     <OpenModalButton
                         className="green-button"
-                        buttonText={"Edit an ingredient"}
+                        buttonText={"Edit this ingredient"}
                         modalComponent={<EditIngredientModal ingredient={ingredient} />} /></div>}
             </div>
         </div >

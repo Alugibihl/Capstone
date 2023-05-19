@@ -9,6 +9,7 @@ import HomePage from "./components/Recipes/homepage";
 import OneRecipe from "./components/Recipes/oneRecipe";
 import OneIngredient from "./components/Ingredients/one_ingredient";
 import OneCategory from "./components/Categories/category_recipes";
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Footer isLoaded={isLoaded} />
     </>
   );
 }

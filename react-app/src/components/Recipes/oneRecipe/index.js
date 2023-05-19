@@ -22,9 +22,6 @@ function OneRecipe() {
         dispatch(getAllCategoriesThunk())
     }, [dispatch, id])
 
-    let greenButton = "green-button"
-    let redButton = "red-button"
-
     if (!recipe) return null
     if (!category) return null
     return (
@@ -33,14 +30,14 @@ function OneRecipe() {
             <div ><h2>{recipe.name}</h2><div className="poster">Cuisine Category: {myCategory.name}</div> </div>
             <div className="poster">Recipe By: {user.username}</div>
             <div className="single-details">{recipe.details}</div>
-            <div>
+            <div className="modal-buttons">
                 {user && user.id === recipe.userId && <div> <OpenModalButton
                     className="red-button"
-                    buttonText={"Delete a recipe"}
+                    buttonText={"Delete this recipe"}
                     modalComponent={<DeleteRecipeModal recipe={recipe} />} /></div>}
                 {user && user.id === recipe.userId && <div> <OpenModalButton
                     className="green-button"
-                    buttonText={"Edit a recipe"}
+                    buttonText={"Edit this recipe"}
                     modalComponent={<EditRecipeModal recipe={recipe} />} /></div>}
             </div>
 
