@@ -2,17 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
-import LoginFormModal from "../LoginFormModal";
-import SignupFormModal from "../SignupFormModal";
-import ProfileModal from "../profileModal";
-import SplashPage from "../SplashPage";
-import { Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
-
 
   const openMenu = () => {
     if (showMenu) return;
@@ -41,46 +37,52 @@ function ProfileButton({ user }) {
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
-  if (!user) {
-    return <Redirect to="/login" />;
-  }
-
   return (
     <>
-      <button onClick={openMenu}>yeah</button>
-      <OpenModalButton
-        buttonText={<i className="fas fa-user-circle" />}
-        onItemClick={openMenu}
-        modalComponent={<ProfileModal user={user} handleLogout={handleLogout} />} />
-      <ul className={ulClassName} ref={ulRef}>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
-            </li>
-          {/* </>
-        ) : (
-          <>
-            <OpenModalButton
-              className="green-button"
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
+      {user && <div>
+        <div className="navbar-profile-button">
+          <button onClick={openMenu}>
+            <i className="fas fa-user-circle" />
+          </button>
+        </div>
+        <div className="navbar-profile-dropdown-container">
+          {user && (
+            <div className={ulClassName} ref={ulRef}>
+              <div className="profile-dropdown-user-link">
+                <div>
+                  Hello {user.username}
+                </div>
+                <div>
+                  {user.email}
+                </div>
+                <div>
+                  <p className="styling-line">
 
-            <OpenModalButton
-              className="green-button"
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
-          </>
-        )
-        } */}
-      </ul >
+                  </p>
 
+                </div>
+                <div>
+
+                </div>
+              </div>
+              <p className="styling-line">
+
+              </p>
+              <div >
+                <button
+                  className="red-button"
+                  onClick={handleLogout}
+                  id="profile-dropdown-logout-button"
+                >
+                  Log Out
+                </button>
+              </div>
+            </div>
+          )
+          }
+        </div>
+      </div >}
     </>
-  );
-}
-
+  )
+};
 export default ProfileButton;

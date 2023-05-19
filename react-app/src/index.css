@@ -124,6 +124,11 @@ a:hover{
     margin-bottom: 20px;
 }
 .profile-menu{
-    width: 30vw;
-    height: 100vh;
+    /* width: 30vw;
+    height: 100vh; */
+    display: flex;
+    flex-direction: column;
+}
+.styling-line{
+    border-bottom: 1px solid black;
 }

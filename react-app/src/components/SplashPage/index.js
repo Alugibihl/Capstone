@@ -9,7 +9,7 @@ function SplashPage() {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
 
-    if (sessionUser) return <Redirect to="/home" />;
+    if (sessionUser) return <Redirect to="/" />;
 
     const handleClick = async (e) => {
         e.preventDefault();
@@ -20,19 +20,21 @@ function SplashPage() {
 
         <div className="splash-background">
 
-            <div className="splash-page-container white-background">
-                <h1 className="query quora-font">Query</h1>
-                <h2 className="mission-statement">A place to share knowledge and better understand the world</h2>
-                <div className="login-signup-container">
-                    <div className="width-fifty">
-                        <div className="signup-splash-page">
+            <div className="splash-page-container">
+                <h1 >The New Fork Dines</h1>
+                <h2>The Worlds Premier Recipe Lineup</h2>
+                <div>
+                    <div >
+                        <div className="signup container" >
                             <SignupFormPage />
                         </div>
                     </div>
-                    <div className="width-fifty right-side">
-                        <div className="login-splash-page">
-                            <LoginFormPage />
-                            <div className="splash-page-demo-button">
+                    <div >
+                        <div className="login-container" >
+                            <div>
+                                <LoginFormPage />
+                            </div>
+                            <div>
                                 <button className="blue-button" onClick={handleClick}>Demo User</button>
                             </div>
                         </div>

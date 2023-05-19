@@ -1,5 +1,11 @@
 .profile-dropdown {
   position: absolute;
+  right: 0%;
+  width: 30vw;
+  background-color: white;
+  border: pink 3px solid;
+  height: 100%;
+  margin-top: -1vh;
 }
 
 .hidden {
