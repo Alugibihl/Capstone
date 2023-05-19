@@ -3,6 +3,7 @@ const GET_ONE = "ingredients/GET_ONE"
 const CREATE_INGREDIENT = "ingredients/CREATE"
 const EDIT_INGREDIENT = "ingredients/EDIT"
 const DELETE_INGREDIENT = "ingredients/DELETE"
+const GET_USER_INGREDIENTS = "/ingredients/CURRENT_USER"
 
 export const getAllIngredients = (ingredients) => {
     return {
@@ -26,6 +27,13 @@ export const editIngredient = (details) => {
     return {
         type: EDIT_INGREDIENT,
         details
+    }
+}
+
+export const getIngredients = (details) => {
+    return {
+        type: GET_USER_INGREDIENTS,
+        payload: details
     }
 }
 
@@ -83,6 +91,19 @@ export const createIngredientThunk = (details) => async (dispatch) => {
         if (data.errors) {
             return data.errors;
         }
+    } else {
+        return [
+            "An error occurred. Please try again."
+        ];
+    }
+}
+
+export const getIngredientsByUser = () => async (dispatch) => {
+    const response = await fetch("/api/ingredients/current")
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(getIngredients(data))
+        return response
     } else {
         return [
             "An error occurred. Please try again."
@@ -175,7 +196,11 @@ const IngredientReducer = (state = initialState, action) => {
             console.log("this is new state", newState);
             return newState;
         }
-
+        case GET_USER_INGREDIENTS: {
+            newState = { ...state }
+            newState.ingredients = { ...action.payload }
+            return newState
+        }
         default:
             return state
     }

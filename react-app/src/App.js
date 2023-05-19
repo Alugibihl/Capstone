@@ -11,6 +11,8 @@ import OneIngredient from "./components/Ingredients/one_ingredient";
 import OneCategory from "./components/Categories/category_recipes";
 import Footer from "./components/Footer";
 import SplashPage from "./components/SplashPage";
+import UserRecipes from "./components/Recipes/RecipesByUser";
+import UserIngredients from "./components/Ingredients/IngredientsByUser";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,8 +32,14 @@ function App() {
           <Route exact path="/signup">
             <SignupFormPage />
           </Route> */}
+          <Route exact path={"/recipes/current"}>
+            <UserRecipes />
+          </Route>
           <Route exact path={"/recipes/:id"}>
             <OneRecipe />
+          </Route>
+          <Route exact path={"/ingredients/current"}>
+            <UserIngredients />
           </Route>
           <Route exact path={"/ingredients/:id"}>
             <OneIngredient />

@@ -1,10 +1,13 @@
 .profile-dropdown {
+  background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.wisc-online.com%2Fasset-repository%2Fgetfile%3Fid%3D932%26getType%3Dview&f=1&nofb=1&ipt=adc0c45d3856771c82139be0c1a78273e4e181e458ac3d34140b5058102e60a1&ipo=images");
+  background-position: bottom;
+  background-size: cover;
   position: absolute;
   right: 0%;
+  top: 0%;
   width: 30vw;
   background-color: white;
-  border: pink 3px solid;
-  height: 100%;
+  height: 101vh;
   margin-top: -1vh;
 }
 
@@ -29,4 +32,21 @@
 .today {
   display: flex;
   width: 150px;
+}
+.borders{
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.exit-button{
+  font-size: larger;
+  font-weight: bolder;
+  position: relative;
+  background: none;
+  border: none;
+
+}
+.demo-exit{
+  display: flex;
+  justify-content: space-between;
+
 }

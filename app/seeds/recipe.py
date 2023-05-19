@@ -148,7 +148,7 @@ def seed_recipes():
         details="General Tso's Chicken is a popular Chinese dish that features crispy chicken bites tossed in a sweet and spicy sauce. The dish is known for its bold flavors and addictive taste. To make General Tso's Chicken, you start by coating chicken pieces in a mixture of cornstarch, soy sauce, and spices, then deep-frying them until golden and crispy. The sauce is made with a combination of soy sauce, vinegar, sugar, garlic, ginger, and chili peppers for a perfect balance of savory, tangy, and spicy flavors. The fried chicken is then tossed in the sauce and garnished with sesame seeds and sliced green onions. Serve General Tso's Chicken with steamed rice for a satisfying and flavorful meal.",
         category_id=2,
         user_id=4,
-        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.tYqboVuXAsLIR9YjJbWWkAHaEK%26pid%3DApi&f=1&ipt=3356d7f66d991b82bae5189a7dedde8bd2928d6c1da9e3a29b709689e7c3d9e1&ipo=images"
+        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi1.wp.com%2Fwww.eat-the-heat.com%2Fwp-content%2Fuploads%2F2020%2F04%2FGeneral-Tsao-Chicken.jpg%3Ffit%3D1632%252C1224%26ssl%3D1&f=1&nofb=1&ipt=58248677a3001b89f6e8ea6aa7b31a354395825c67f90d55a0696f8f7945c236&ipo=images"
     )
     cuisine20 = Recipe(
         name="Ma Po Eggplant",

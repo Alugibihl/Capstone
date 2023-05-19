@@ -13,6 +13,13 @@ def get_all_ingredients():
     response = [ingredient.to_dict() for ingredient in ingredients]
     return {"ingredient": response}
 
+@ingredient_routes.route("/current")
+@login_required
+def get_all_ingredients_by_user():
+    ingredients = Ingredient.query.filter(Ingredient.user_id == current_user.id).all()
+    response = [ingredient.to_dict() for ingredient in ingredients]
+    return {"ingredients": response}
+
 @ingredient_routes.route('/<int:id>')
 @login_required
 def get_one_ingredient(id):

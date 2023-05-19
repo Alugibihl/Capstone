@@ -13,6 +13,7 @@
 .login-icon{
     display: flex;
     justify-content: flex-end;
+    align-items: center;
 }
 .today{
     font-size: small;
@@ -69,6 +70,7 @@ button{
 .red-button:hover{
     background-color: rgb(218, 86, 86);
     color: white;
+    font-weight: bold;
     cursor: pointer;
 }
 .green-button{
@@ -79,6 +81,7 @@ button{
 .green-button:hover{
     background-color: green;
     color: white;
+    font-weight: bold;
     cursor: pointer;
 }
 .blue-button{
@@ -89,7 +92,9 @@ button{
 .blue-button:hover{
     background-color: blue;
     color: white;
+    font-weight: bold;
     cursor: pointer;
+
 }
 a{
     text-decoration: none;
@@ -136,4 +141,14 @@ a:hover{
     display: flex;
     flex-direction: row;
     gap: 30px;
+}
+.my-posts{
+    width: 50vw;
+}
+.my-posts-container{
+    display: flex;
+    justify-content: center;
+}
+.remove-styling{
+    text-decoration: none;
 }
