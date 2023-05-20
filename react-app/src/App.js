@@ -26,12 +26,6 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          {/* <Route exact path="/login" >
-            <LoginFormPage />
-          </Route>
-          <Route exact path="/signup">
-            <SignupFormPage />
-          </Route> */}
           <Route exact path={"/recipes/current"}>
             <UserRecipes />
           </Route>

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { getOneIngredientThunk } from "../../../store/ingredients";
 import DeleteIngredientModal from "../delete_ingredient_modal";
@@ -20,6 +20,7 @@ function OneIngredient() {
     }, [dispatch, id])
 
     if (!ingredient) return null
+    if (!user) return <Redirect to={"/login"} />
     return (
         <div className="single-item-container">
             <img style={{ objectFit: "cover" }} src={ingredient.image} alt={ingredient.name}></img>

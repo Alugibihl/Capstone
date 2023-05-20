@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { getOneRecipeThunk } from "../../../store/recipes";
 import { getAllCategoriesThunk } from "../../../store/category";
@@ -24,6 +24,7 @@ function OneRecipe() {
 
     if (!recipe) return null
     if (!category) return null
+    if (!user) return <Redirect to={"/login"} />
     return (
         <div className="single-item-container">
             <img style={{ objectFit: "cover" }} src={recipe.image} alt={recipe.name}></img>
