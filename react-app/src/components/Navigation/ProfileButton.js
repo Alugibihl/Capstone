@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 
 
 function ProfileButton({ user }) {
@@ -48,39 +48,47 @@ function ProfileButton({ user }) {
         <div className="navbar-profile-dropdown-container">
           {user && (
             <div className={ulClassName} ref={ulRef}>
-              <div className="profile-dropdown-user-link">
-                <div>
-                  {user.email}
-                </div>
-                <div>
-                  Hello {user.username}
-                </div>
-                <div>
-                  <p className="styling-line">
+              <div className="borders">
+                <div className="profile-dropdown-user-link">
+                  <div className="demo-exit"><h1>
+                    {user.email}
+                  </h1>
+                    <button className="exit-button" onClick={closeMenu}>X</button>
+                  </div>
+                  <div>
+                    <h2>Hello {user.username}</h2>
+                    <h3>
+                      To view the content created by your account
+                      Click on a category below
+                    </h3>
+                  </div>
 
-                  </p>
-
+                  <p className="styling-line">Recipes</p>
+                  <div>
+                    <button className="green-button"><NavLink className="green-button" to={"/recipes/current"}>Your Recipes</NavLink></button>
+                  </div>
+                  <p className="styling-line">Ingredients</p>
+                  <div>
+                    <button className="green-button"><NavLink className="green-button" to={"/ingredients/current"}>Your Ingredients</NavLink></button>
+                  </div>
                 </div>
-                <div>
+                <p className="styling-line">
 
+                </p>
+                <div >
+                  <button
+                    className="red-button"
+                    onClick={handleLogout}
+                    id="profile-dropdown-logout-button"
+                  >
+                    Log Out
+                  </button>
                 </div>
-              </div>
-              <p className="styling-line">
-
-              </p>
-              <div >
-                <button
-                  className="red-button"
-                  onClick={handleLogout}
-                  id="profile-dropdown-logout-button"
-                >
-                  Log Out
-                </button>
-              </div>
+              </div >
             </div>
           )
           }
-        </div>
+        </div >
       </div >}
     </>
   )

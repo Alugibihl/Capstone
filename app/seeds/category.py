@@ -11,7 +11,7 @@ def seed_categories():
     Italian = Category(
         name="Italian", description="Italian cuisine is beloved worldwide for its simplicity and emphasis on fresh ingredients.")
     Indian = Category(
-        name="Indian", description=": Indian cuisine is renowned for its rich flavors, spices, and diverse regional dishes. It incorporates ingredients like rice, lentils, vegetables, and a wide range of spices.")
+        name="Indian", description="Indian cuisine is renowned for its rich flavors, spices, and diverse regional dishes. It incorporates ingredients like rice, lentils, vegetables, and a wide range of spices.")
     American = Category(
         name="American", description="American cuisine is diverse and influenced by various cultures and regional specialties.")
     French = Category(

@@ -7,6 +7,13 @@ from flask_login import current_user, login_user, logout_user, login_required
 
 recipe_routes = Blueprint('recipe', __name__)
 
+@recipe_routes.route("/current")
+@login_required
+def get_all_recipes_by_user():
+    recipes = Recipe.query.filter(Recipe.user_id == current_user.id).all()
+    response = [recipe.to_dict() for recipe in recipes]
+    return {"recipes": response}
+
 #Get all recipes
 @recipe_routes.route("/")
 def get_all_recipes():

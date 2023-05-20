@@ -12,31 +12,33 @@ function Navigation({ isLoaded }) {
 	let date = new Date().toDateString()
 
 	return (
-		<div className='navbar'>
-			<div className='today'>{date}
-			</div>
-			<h1 className='title'><NavLink to="/">The New Fork Dines</NavLink></h1>
-			{sessionUser === null ? <div className='title-buttons'><button className='blue-button'><NavLink to={"/login"}>
-				Login</NavLink></button><button className='blue-button'><NavLink to={"/signup"}>
+		<div className='nav-background'>
+			<div className='navbar'>
+				<div className='today'>{date}
+				</div>
+				<h1 className='title'><NavLink to="/">The New Fork Dines</NavLink></h1>
+				{sessionUser === null ? <div className='title-buttons'><button className='blue-button'><NavLink className='blue-button' to={"/login"}>
+				</NavLink>Login</button><button className='blue-button' ><NavLink to={"/signup"}>
 					Sign Up</NavLink></button></div> : null}
 
-			{isLoaded && (
-				<div className='button-sort'>
-					{sessionUser && <div className='create-buttons'>
-						<div><OpenModalButton
-							className="green-button"
-							buttonText={"Create a New Recipe!"}
-							modalComponent={<CreateRecipeModal />} /></div>
-						<div><OpenModalButton
-							className="green-button"
-							buttonText={"Create a New Ingredient!"}
-							modalComponent={<CreateIngredientModal />} /></div>
-					</div>}
-					<div className='login-icon'>
-						<ProfileButton user={sessionUser} />
+				{isLoaded && (
+					<div className='button-sort'>
+						{sessionUser && <div className='create-buttons'>
+							<div><OpenModalButton
+								className="green-button"
+								buttonText={"Create a New Recipe!"}
+								modalComponent={<CreateRecipeModal />} /></div>
+							<div><OpenModalButton
+								className="green-button"
+								buttonText={"Create a New Ingredient!"}
+								modalComponent={<CreateIngredientModal />} /></div>
+						</div>}
+						<div className='login-icon'>
+							<ProfileButton user={sessionUser} />
+						</div>
 					</div>
-				</div>
-			)}
+				)}
+			</div>
 		</div>
 	);
 }
