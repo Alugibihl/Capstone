@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Redirect } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
@@ -10,6 +10,16 @@ import CreateIngredientModal from '../Ingredients/add_ingredient_modal';
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector(state => state.session.user);
 	let date = new Date().toDateString()
+	const history = useHistory()
+
+	const loginRoute = () => {
+		let path = "/login"
+		history.push(path)
+	}
+	const signupRoute = () => {
+		let path = "/signup"
+		history.push(path)
+	}
 
 	return (
 		<div className='nav-background'>
@@ -17,9 +27,7 @@ function Navigation({ isLoaded }) {
 				<div className='today'>{date}
 				</div>
 				<h1 className='title'><NavLink to="/">The New Fork Dines</NavLink></h1>
-				{sessionUser === null ? <div className='title-buttons'><button className='blue-button'><NavLink className='blue-button' to={"/login"}>
-				</NavLink>Login</button><button className='blue-button' ><NavLink to={"/signup"}>
-					Sign Up</NavLink></button></div> : null}
+				{sessionUser === null ? <div className='title-buttons'><button onClick={loginRoute} className='blue-button'>Login</button><button onClick={signupRoute} className='blue-button' >Sign Up</button></div> : null}
 
 				{isLoaded && (
 					<div className='button-sort'>

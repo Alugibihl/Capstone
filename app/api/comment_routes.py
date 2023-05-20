@@ -12,7 +12,11 @@ def get_comments_by_recipe(recipe_id):
     """Gets all comments on a recipe by recipe_id"""
     comments = Recipe_comment.query.filter(Recipe_comment.recipe_id == recipe_id).all()
     response = [comment.to_dict() for comment in comments]
-    return {"comment": response}
+    users = User.query.filter(User.id == Recipe_comment.user_id).all()
+    print("_-_____------___----_----__-_--_-_", users)
+    userRes = [user.to_dict() for user in users]
+    return {"comment": response,
+            "user": userRes}
 
 @comment_routes.route("/new", methods=["POST"])
 @login_required

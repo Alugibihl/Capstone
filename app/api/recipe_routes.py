@@ -33,8 +33,11 @@ def get_all_recipes():
 def get_one_recipe(id):
     """Query for one recipe"""
     recipe = Recipe.query.get(id)
+    users = User.query.filter(User.id == recipe.user_id)
+    user = [user.to_dict() for user in users]
     response = recipe.to_dict()
-    return {"recipe": response}
+    return {"recipe": response,
+            "users": user}
 
 @recipe_routes.route("/new", methods=["POST"])
 @login_required

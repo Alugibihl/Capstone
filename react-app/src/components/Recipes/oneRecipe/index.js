@@ -6,7 +6,8 @@ import { getAllCategoriesThunk } from "../../../store/category";
 import OpenModalButton from "../../OpenModalButton";
 import DeleteRecipeModal from "../deleteRecipeModal";
 import EditRecipeModal from "../editRecipeModal";
-
+import CommentsByRecipe from "../../Comments/getComments"
+import { getAllCommentsThunk } from "../../../store/comments";
 
 function OneRecipe() {
     const dispatch = useDispatch()
@@ -15,21 +16,28 @@ function OneRecipe() {
     const { category } = useSelector(state => state.categories.categories)
     const myCategory = category?.find(cat => cat.id === recipe?.categoryId)
     const user = useSelector(state => state.session.user)
-    console.log("here", id, user, recipe, category, myCategory);
+    const recipeOwner = useSelector(state => state.recipes.recipes.users)
 
     useEffect(() => {
         dispatch(getOneRecipeThunk(id))
         dispatch(getAllCategoriesThunk())
     }, [dispatch, id])
 
-    if (!recipe) return null
-    if (!category) return null
     if (!user) return <Redirect to={"/login"} />
+    if (!recipe) return null
+    if (!recipeOwner) return null
+    if (!category) return null
     return (
         <div className="single-item-container">
             <img style={{ objectFit: "cover" }} src={recipe.image} alt={recipe.name}></img>
-            <div ><h2>{recipe.name}</h2><div className="poster">Cuisine Category: {myCategory.name}</div> </div>
-            <div className="poster">Recipe By: {user.username}</div>
+            <div ><h2>{recipe.name}</h2><div className="poster">Cuisine Category: {myCategory.name}</div>
+                {/* <div>
+                    <OpenModalButton
+                        buttonText={<i class="fa fa-regular fa-comment"></i>}
+                        modalComponent={<CommentsByRecipe recipe={recipe} />} />
+                </div> */}
+            </div>
+            <div className="poster">Recipe By: {recipeOwner[0].username}</div>
             <div className="single-details">{recipe.details}</div>
             <div className="modal-buttons">
                 {user && user.id === recipe.userId && <div> <OpenModalButton
