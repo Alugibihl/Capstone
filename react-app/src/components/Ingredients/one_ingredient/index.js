@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { getOneIngredientThunk } from "../../../store/ingredients";
 import DeleteIngredientModal from "../delete_ingredient_modal";
@@ -12,19 +12,20 @@ function OneIngredient() {
     const { id } = useParams()
     const ingredient = useSelector(state => state.ingredients.ingredients.ingredient)
     const user = useSelector(state => state.session.user)
-    console.log("one ingredient", ingredient, user, id);
-
+    const ingredientOwner = useSelector(state => state.ingredients.ingredients.users)
+    console.log("yo", ingredientOwner);
 
     useEffect(() => {
         dispatch(getOneIngredientThunk(id))
     }, [dispatch, id])
 
     if (!ingredient) return null
+    if (!user) return <Redirect to={"/login"} />
     return (
         <div className="single-item-container">
             <img style={{ objectFit: "cover" }} src={ingredient.image} alt={ingredient.name}></img>
             <div><h2>{ingredient.name}</h2></div>
-            <div className="poster">Ingredient By: {user.username}</div>
+            <div className="poster">Ingredient By: {ingredientOwner[0].username}</div>
             <div className="single-details">{ingredient.details}</div>
             <div className="modal-buttons">
                 {user && user.id === ingredient.userId && <div>

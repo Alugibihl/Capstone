@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { getOneCategoryThunk } from "../../../store/category";
 import { useParams } from "react-router-dom";
 import { getAllRecipesThunk } from "../../../store/recipes";
-// import CategoryRecipes from "../categoryRecipesLlist";
 import RecipeDisplay from "../../Recipes/allrecipes";
 
 function OneCategory() {
@@ -23,8 +22,8 @@ function OneCategory() {
     if (!categoryRecipes) return null
     return (
         <div className="single-item-container">
-            <div><h2>{category.name}</h2></div>
-            <div>{category.description}</div>
+            <div className="category-title"><h2>{category.name}</h2></div>
+            <div className="category-desc">{category.description}</div>
             <div>{categoryRecipes?.map((recipe) => {
                 return <RecipeDisplay key={recipe.id} recipe={recipe} />
             })}</div>

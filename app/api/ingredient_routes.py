@@ -25,8 +25,11 @@ def get_all_ingredients_by_user():
 def get_one_ingredient(id):
     """Query for one ingredient"""
     ingredient = Ingredient.query.get(id)
+    users = User.query.filter(User.id == ingredient.user_id)
+    user = [user.to_dict() for user in users]
     response = ingredient.to_dict()
-    return {"ingredient": response}
+    return {"ingredient": response,
+            "users": user}
 
 @ingredient_routes.route("/new", methods=["POST"])
 @login_required
