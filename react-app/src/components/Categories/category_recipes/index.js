@@ -8,7 +8,7 @@ import RecipeDisplay from "../../Recipes/allrecipes";
 function OneCategory() {
     const dispatch = useDispatch()
     const { id } = useParams()
-    const user = useSelector(state => state.session.user)
+    // const user = useSelector(state => state.session.user)
     const categoryRecipes = useSelector(state => state.categories.categories.recipes)
     const categories = useSelector(state => state.recipes.recipes.categories)
     const category = categories?.find(category => category.id === Number(id))
@@ -24,7 +24,7 @@ function OneCategory() {
         <div className="single-item-container">
             <div className="category-title"><h2>{category.name}</h2></div>
             <div className="category-desc">{category.description}</div>
-            <div>{categoryRecipes?.map((recipe) => {
+            <div className="category-recipe-styling">{categoryRecipes?.map((recipe) => {
                 return <RecipeDisplay key={recipe.id} recipe={recipe} />
             })}</div>
         </div >

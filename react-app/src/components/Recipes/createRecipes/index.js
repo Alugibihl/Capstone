@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useModal } from "../../../context/Modal";
-import { createRecipeThunk, getAllRecipesThunk } from "../../../store/recipes";
+import { createRecipeThunk, getAllRecipesThunk, getOneRecipeThunk } from "../../../store/recipes";
 
 const CreateRecipeModal = () => {
     const dispatch = useDispatch()
     const history = useHistory()
+    const { id } = useParams()
     const choices = useSelector((state) => state.recipes.recipes.categories)
     const [details, setDetails] = useState("")
     const [image, setImage] = useState("")
@@ -18,7 +19,11 @@ const CreateRecipeModal = () => {
 
     useEffect(() => {
         dispatch(getAllRecipesThunk())
-    }, [dispatch])
+        if (id) {
+            console.log("id", id);
+            dispatch(getOneRecipeThunk(id))
+        }
+    }, [dispatch, id])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -52,11 +57,8 @@ const CreateRecipeModal = () => {
                 <form
                     className="form-styling"
                     onSubmit={handleSubmit}
-                    encType="multipart/form-data"
-                >
-                    <div
-                        className="modal-error-container"
-                    >
+                    encType="multipart/form-data">
+                    <div className="modal-error-container">
                         {errors.map((error, idx) => (
                             <div
                                 key={idx}
@@ -91,21 +93,20 @@ const CreateRecipeModal = () => {
                                 placeholder="Bone Soup"
                             />
                         </label>
-                        <label className="category" for="cuisine">Please Specify your cuisine classification</label>
-                        <br />
-                        <select
-                            value={categoryId}
-                            id="cuisine"
-                            onChange={(e) => setCategoryId(e.target.value)}
-                            required
-                        >
-                            <option>Select One</option>
-                            {choices?.map((choice) => (
-                                <option key={choice.id} value={choice.id}>{choice.name}</option>
-                            ))}
-                        </select>
-
-
+                        <label className="category">Please Specify your cuisine classification
+                            <br />
+                            <select
+                                value={categoryId}
+                                id="cuisine"
+                                onChange={(e) => setCategoryId(e.target.value)}
+                                required
+                            >
+                                <option>Select One</option>
+                                {choices?.map((choice) => (
+                                    <option key={choice.id} value={choice.id}>{choice.name}</option>
+                                ))}
+                            </select>
+                        </label>
                     </div>
                     <div className="modal-buttons">
                         <button className="red-button" onClick={closeModal}>Cancel</button>

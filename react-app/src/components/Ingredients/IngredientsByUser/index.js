@@ -27,7 +27,7 @@ const UserIngredients = () => {
             <div className="my-posts">
                 <h1>Your Ingredients</h1>
                 <div>{ingredients?.length === 0 ? <div><div>No Ingredients Yet. Make one Now!</div>
-                    <div><OpenModalButton
+                    <div className="modal-buttons"><OpenModalButton
                         className="green-button"
                         buttonText={"Create your First Ingredient!"}
                         modalComponent={<CreateIngredientModal />} /></div></div> : null}</div>

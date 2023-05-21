@@ -22,6 +22,10 @@
     justify-content: flex-end;
     align-items: center;
 }
+button{
+    background-color: antiquewhite;
+}
+
 .today{
     font-size: small;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -120,7 +124,7 @@ a:hover{
     /* border: 3px pink solid; */
 }
 .single-item-container img{
-    max-width: 50vw;
+    width: 50vw;
 }
 .single-details{
     width: 50vw;
@@ -169,7 +173,13 @@ a:hover{
     text-align: center;
     padding-bottom: 20px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    max-width: 50vw;
 }
 html{
     background-color: rgb(231, 196, 151);
+}
+.category-recipe-styling{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

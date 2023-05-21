@@ -24,13 +24,13 @@ const UserRecipes = () => {
             <div className="my-posts">
                 <h1>Your Recipes</h1>
                 <div>
-                    {recipes?.length === 0 ? <div><div>"No Recipes Yet"</div>
-                        <div><OpenModalButton
+                    {recipes?.length === 0 ? <div><div>No Recipes Yet. Make one now!</div>
+                        <div className="modal-buttons"><OpenModalButton
                             className="green-button"
                             buttonText={"Create your first Recipe!"}
                             modalComponent={<CreateRecipeModal />} /></div></div> : null}
                 </div>
-                <div>{recipes?.map((recipe) => {
+                <div>{recipes.map((recipe) => {
                     return <RecipeDisplay key={recipe.id} recipe={recipe} />
                 })}</div>
             </div>

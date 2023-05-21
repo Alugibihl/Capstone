@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useModal } from "../../../context/Modal";
-import { createIngredientThunk, getAllIngredientsThunk } from "../../../store/ingredients";
+import { createIngredientThunk, getAllIngredientsThunk, getOneIngredientThunk } from "../../../store/ingredients";
 
 const CreateIngredientModal = () => {
     const dispatch = useDispatch()
+    const { id } = useParams()
     const history = useHistory()
     const [details, setDetails] = useState("")
     const [image, setImage] = useState("")
@@ -16,7 +17,10 @@ const CreateIngredientModal = () => {
 
     useEffect(() => {
         dispatch(getAllIngredientsThunk())
-    }, [dispatch])
+        if (id) {
+            dispatch(getOneIngredientThunk(id))
+        }
+    }, [dispatch, id])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -29,7 +33,6 @@ const CreateIngredientModal = () => {
             }
             const data = await dispatch(createIngredientThunk(item));
             if (data) {
-                console.log("data-----response---", data);
                 closeModal();
                 history.push(`/ingredients/${data.ingredient.id}`)
             }
