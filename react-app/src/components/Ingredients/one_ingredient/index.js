@@ -13,14 +13,14 @@ function OneIngredient() {
     const ingredient = useSelector(state => state.ingredients.ingredients.ingredient)
     const user = useSelector(state => state.session.user)
     const ingredientOwner = useSelector(state => state.ingredients.ingredients.users)
-    console.log("yo", ingredientOwner);
 
     useEffect(() => {
         dispatch(getOneIngredientThunk(id))
     }, [dispatch, id])
 
-    if (!ingredient) return null
     if (!user) return <Redirect to={"/login"} />
+    if (!ingredient) return null
+    if (!ingredientOwner) return null
     return (
         <div className="single-item-container">
             <img style={{ objectFit: "cover" }} src={ingredient.image} alt={ingredient.name}></img>

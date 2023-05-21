@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../../context/Modal";
-import { editOneRecipeThunk, getAllRecipesThunk, getOneRecipeThunk } from "../../../store/recipes";
+import { editOneRecipeThunk, getOneRecipeThunk } from "../../../store/recipes";
 import { getAllCategoriesThunk } from "../../../store/category";
 
 const EditRecipeModal = ({ recipe }) => {
@@ -13,7 +13,6 @@ const EditRecipeModal = ({ recipe }) => {
     const [errors, setErrors] = useState([])
     const [categoryId, setCategoryId] = useState(recipe.categoryId)
     const [name, setName] = useState(recipe.name)
-    console.log("---------------here", choices, currentUser); // choices is an array of backend options
     const { closeModal } = useModal()
 
     useEffect(() => {
@@ -93,19 +92,19 @@ const EditRecipeModal = ({ recipe }) => {
                                 placeholder="Bone Soup"
                             />
                         </label>
-                        <label className="category">
-                            Please Specify your cuisine classification
-                            <select
-                                value={categoryId}
-                                onChange={(e) => setCategoryId(e.target.value)}
-                                required
-                            >
-                                <option>Select One</option>
-                                {choices?.map((choice) => (
-                                    <option key={choice.id} value={choice.id}>{choice.name}</option>
-                                ))}
-                            </select>
-                        </label>
+                        <label className="category" for="cuisine">Please Specify your cuisine classification</label>
+                        <br />
+                        <select
+                            id="cuisine"
+                            value={categoryId}
+                            onChange={(e) => setCategoryId(e.target.value)}
+                            required
+                        >
+                            <option>Select One</option>
+                            {choices?.map((choice) => (
+                                <option key={choice.id} value={choice.id}>{choice.name}</option>
+                            ))}
+                        </select>
 
                     </div>
                     <div className="modal-buttons">

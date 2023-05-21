@@ -2,6 +2,13 @@
 .title{
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: bolder;
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.title img{
+    height: 2rem;
 }
 .navbar{
     display: flex;
@@ -15,6 +22,10 @@
     justify-content: flex-end;
     align-items: center;
 }
+button{
+    background-color: antiquewhite;
+}
+
 .today{
     font-size: small;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -50,20 +61,18 @@
     width: 100%;
     resize: none;
 }
-.form-styling select{
-    background-color: green;
-    color: white;
-}
+
 .modal-buttons{
  display: flex;
  justify-content: center;
- gap: 30px;
+ gap: 40px;
+ margin-top: 30px;
 }
 button{
     text-align: center;
 }
 .red-button{
-    background-color: white;
+    background-color: antiquewhite;
     color: red;
     border-radius: 10px;
 }
@@ -74,7 +83,7 @@ button{
     cursor: pointer;
 }
 .green-button{
-    background-color: white;
+    background-color: antiquewhite;
     color: darkgreen;
     border-radius: 10px;
 }
@@ -85,16 +94,19 @@ button{
     cursor: pointer;
 }
 .blue-button{
-    background-color: white;
+    background-color: antiquewhite;
     color: darkblue;
     border-radius: 10px;
+    min-width: 4vw;
+}
+.blue-button button{
+    text-align: center;
 }
 .blue-button:hover{
-    background-color: blue;
+    background-color: rgb(32, 77, 155);
     color: white;
     font-weight: bold;
     cursor: pointer;
-
 }
 a{
     text-decoration: none;
@@ -112,7 +124,7 @@ a:hover{
     /* border: 3px pink solid; */
 }
 .single-item-container img{
-    max-width: 50vw;
+    width: 50vw;
 }
 .single-details{
     width: 50vw;
@@ -161,4 +173,13 @@ a:hover{
     text-align: center;
     padding-bottom: 20px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    max-width: 50vw;
+}
+html{
+    background-color: rgb(231, 196, 151);
+}
+.category-recipe-styling{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
