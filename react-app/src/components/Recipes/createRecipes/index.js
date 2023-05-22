@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useModal } from "../../../context/Modal";
-import { createRecipeThunk, getAllRecipesThunk, getOneRecipeThunk } from "../../../store/recipes";
+import { createRecipeThunk } from "../../../store/recipes";
+import { getAllCategoriesThunk } from "../../../store/category";
 
 const CreateRecipeModal = () => {
     const dispatch = useDispatch()
     const history = useHistory()
-    const { id } = useParams()
-    const choices = useSelector((state) => state.recipes.recipes.categories)
+    const choicesArr = useSelector(state => state.categories.categories.category)
     const [details, setDetails] = useState("")
     const [image, setImage] = useState("")
     const [errors, setErrors] = useState([])
@@ -16,14 +16,11 @@ const CreateRecipeModal = () => {
     const [name, setName] = useState("")
     const currentUser = useSelector((state) => state.session.user)
     const { closeModal } = useModal()
+    console.log("choices list", choicesArr);
 
     useEffect(() => {
-        dispatch(getAllRecipesThunk())
-        if (id) {
-            console.log("id", id);
-            dispatch(getOneRecipeThunk(id))
-        }
-    }, [dispatch, id])
+        dispatch(getAllCategoriesThunk())
+    }, [dispatch])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -102,7 +99,7 @@ const CreateRecipeModal = () => {
                                 required
                             >
                                 <option>Select One</option>
-                                {choices?.map((choice) => (
+                                {choicesArr?.map((choice) => (
                                     <option key={choice.id} value={choice.id}>{choice.name}</option>
                                 ))}
                             </select>

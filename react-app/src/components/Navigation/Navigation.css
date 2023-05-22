@@ -2,14 +2,13 @@
   background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.wisc-online.com%2Fasset-repository%2Fgetfile%3Fid%3D932%26getType%3Dview&f=1&nofb=1&ipt=adc0c45d3856771c82139be0c1a78273e4e181e458ac3d34140b5058102e60a1&ipo=images");
   background-position: bottom;
   background-size: cover;
-  position: absolute;
+  position: fixed;
   right: 0%;
   top: 0%;
   width: 30vw;
   background-color: white;
   height: 101vh;
 }
-
 .hidden {
   display: none;
 }

@@ -6,8 +6,8 @@ import { getAllCategoriesThunk } from "../../../store/category";
 import OpenModalButton from "../../OpenModalButton";
 import DeleteRecipeModal from "../deleteRecipeModal";
 import EditRecipeModal from "../editRecipeModal";
-// import CommentsByRecipe from "../../Comments/getComments"
-// import { getAllCommentsThunk } from "../../../store/comments";
+import CommentsByRecipe from "../../Comments/getComments"
+import { getAllCommentsThunk } from "../../../store/comments";
 
 function OneRecipe() {
     const dispatch = useDispatch()
@@ -31,11 +31,11 @@ function OneRecipe() {
         <div className="single-item-container">
             <img style={{ objectFit: "cover" }} src={recipe.image} alt={recipe.name}></img>
             <div ><h2>{recipe.name}</h2><div className="poster">Cuisine Category: {myCategory.name}</div>
-                {/* <div>
+                <div>
                     <OpenModalButton
                         buttonText={<i class="fa fa-regular fa-comment"></i>}
                         modalComponent={<CommentsByRecipe recipe={recipe} />} />
-                </div> */}
+                </div>
             </div>
             <div className="poster">Recipe By: {recipeOwner[0].username}</div>
             <div className="single-details">{recipe.details}</div>

@@ -15,12 +15,6 @@ const CreateIngredientModal = () => {
     const currentUser = useSelector((state) => state.session.user)
     const { closeModal } = useModal()
 
-    useEffect(() => {
-        dispatch(getAllIngredientsThunk())
-        if (id) {
-            dispatch(getOneIngredientThunk(id))
-        }
-    }, [dispatch, id])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
