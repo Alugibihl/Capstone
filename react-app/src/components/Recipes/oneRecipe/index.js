@@ -28,9 +28,9 @@ function OneRecipe() {
     if (!recipeOwner) return null
     if (!category) return null
     return (
-        <div className="single-item-container">
+        <div className="single-item-container wrap-break">
             <img style={{ objectFit: "cover" }} src={recipe.image} alt={recipe.name}></img>
-            <div ><h2>{recipe.name}</h2><div className="poster">Cuisine Category: {myCategory.name}</div>
+            <div className="name-holder wrap-break"><h2 >{recipe.name}</h2><div className="wrap-break poster">Cuisine Category: {myCategory.name}</div>
                 <div>
                     <OpenModalButton
                         buttonText={<i class="fa fa-regular fa-comment"></i>}
@@ -38,7 +38,7 @@ function OneRecipe() {
                 </div>
             </div>
             <div className="poster">Recipe By: {recipeOwner[0].username}</div>
-            <div className="single-details">{recipe.details}</div>
+            <div className="single-details wrap-break">{recipe.details}</div>
             <div className="modal-buttons">
                 {user && user.id === recipe.userId && <div> <OpenModalButton
                     className="red-button"

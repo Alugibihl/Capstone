@@ -19,7 +19,7 @@ const DeleteRecipeModal = ({ recipe }) => {
             <div className="modal-form">
                 <div className="form-data">
                     <h1 className="modal-title">Delete a Recipe</h1>
-                    <div>Are you sure you want to delete your recipe for {recipe.name}?</div>
+                    <div className="wrap-break">Are you sure you want to delete your recipe for {recipe.name}?</div>
                 </div>
                 <div className="modal-buttons">
                     <button className="green-button" onClick={closeModal}>Cancel</button>

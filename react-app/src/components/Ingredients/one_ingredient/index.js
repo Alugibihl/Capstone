@@ -24,9 +24,9 @@ function OneIngredient() {
     return (
         <div className="single-item-container">
             <img style={{ objectFit: "cover" }} src={ingredient.image} alt={ingredient.name}></img>
-            <div><h2>{ingredient.name}</h2></div>
-            <div className="poster">Ingredient By: {ingredientOwner[0].username}</div>
-            <div className="single-details">{ingredient.details}</div>
+            <div className="name-holder wrap-break"><h2>{ingredient.name}</h2></div>
+            <div className="poster wrap-break">Ingredient By: {ingredientOwner[0].username}</div>
+            <div className="single-details wrap-break">{ingredient.details}</div>
             <div className="modal-buttons">
                 {user && user.id === ingredient.userId && <div>
                     <OpenModalButton
