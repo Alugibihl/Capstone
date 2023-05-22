@@ -5,6 +5,8 @@ import IngredientDisplay from "../ingredient_display"
 import { Redirect } from "react-router-dom"
 import OpenModalButton from "../../OpenModalButton"
 import CreateIngredientModal from "../add_ingredient_modal"
+import RecipeDisplay from "../../Recipes/allrecipes"
+import UserIngredientDisplay from "../user_ingredient_display/userIngredientDisplay"
 
 
 
@@ -33,7 +35,7 @@ const UserIngredients = () => {
                         modalComponent={<CreateIngredientModal />} /></div></div> : null}</div>
                 <div>
                     {ingredients?.map((ingredient) => {
-                        return <IngredientDisplay key={ingredient.id} ingredient={ingredient} />
+                        return <UserIngredientDisplay key={ingredient.id} ingredient={ingredient} />
                     })}
                 </div>
             </div>

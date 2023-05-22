@@ -21,7 +21,7 @@ const DeleteIngredientModal = ({ ingredient }) => {
                     <h1
                         className="modal-title"
                     >Delete an Ingredient</h1>
-                    <div>Are you sure you want to delete your Ingredient {ingredient.name}?</div>
+                    <div className="wrap-break">Are you sure you want to delete your Ingredient {ingredient.name}?</div>
                 </div>
                 <div className="modal-buttons">
                     <button className="green-button" onClick={closeModal}>Cancel</button>

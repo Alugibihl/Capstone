@@ -11,12 +11,14 @@ import Footer from "./components/Footer";
 import SplashPage from "./components/SplashPage";
 import UserRecipes from "./components/Recipes/RecipesByUser";
 import UserIngredients from "./components/Ingredients/IngredientsByUser";
+import { getAllCategoriesThunk } from "./store/category";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
+    dispatch(getAllCategoriesThunk())
   }, [dispatch]);
 
   return (

@@ -1,30 +1,39 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getOneCategoryThunk } from "../../../store/category";
+import { getAllCategoriesThunk, getOneCategoryThunk } from "../../../store/category";
 import { useParams } from "react-router-dom";
-import { getAllRecipesThunk } from "../../../store/recipes";
 import RecipeDisplay from "../../Recipes/allrecipes";
+import { getAllRecipesThunk } from "../../../store/recipes";
 
 function OneCategory() {
     const dispatch = useDispatch()
     const { id } = useParams()
     // const user = useSelector(state => state.session.user)
-    const categoryRecipes = useSelector(state => state.categories.categories.recipes)
     const categories = useSelector(state => state.recipes.recipes.categories)
     const category = categories?.find(category => category.id === Number(id))
-    console.log("categories", category, id, categoryRecipes);
+    const recipes = useSelector(state => state.recipes.recipes.recipes)
+    const recArr = []
+
     useEffect(() => {
-        dispatch(getOneCategoryThunk(id))
+        // dispatch(getOneCategoryThunk(id))
+        // dispatch(getAllCategoriesThunk())
         dispatch(getAllRecipesThunk())
     }, [dispatch, id])
 
-    if (!categories) return null
+    if (!category) return null
+    const categoryRecipes = recipes?.map((recipe) => {
+        if (recipe.categoryId === category.id) { recArr.push(recipe) }
+        return recArr
+    })
     if (!categoryRecipes) return null
+    console.log("categories list", category, id, categoryRecipes);
+
+
     return (
         <div className="single-item-container">
             <div className="category-title"><h2>{category.name}</h2></div>
             <div className="category-desc">{category.description}</div>
-            <div className="category-recipe-styling">{categoryRecipes?.map((recipe) => {
+            <div className="category-recipe-styling">{recArr?.map((recipe) => {
                 return <RecipeDisplay key={recipe.id} recipe={recipe} />
             })}</div>
         </div >
