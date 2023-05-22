@@ -13,7 +13,7 @@ function OneRecipe() {
     const dispatch = useDispatch()
     const { id } = useParams()
     const recipe = useSelector(state => state.recipes.recipes.recipe)
-    const { category } = useSelector(state => state.categories.categories)
+    const category = useSelector(state => state.categories.categories.category)
     const myCategory = category?.find(cat => cat.id === recipe?.categoryId)
     const user = useSelector(state => state.session.user)
     const recipeOwner = useSelector(state => state.recipes.recipes.users)

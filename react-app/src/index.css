@@ -139,10 +139,10 @@ a:hover{
 }
 .category-bar{
     margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 .profile-menu{
-    /* width: 30vw;
-    height: 100vh; */
     display: flex;
     flex-direction: column;
 }
@@ -177,6 +177,10 @@ a:hover{
 }
 html{
     background-color: rgb(231, 196, 151);
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+img{
+    border-radius: 10px;
 }
 .category-recipe-styling{
     display: flex;

@@ -12,7 +12,7 @@ def seed_recipes():
         image= "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fmilrecetas.net%2Fwp-content%2Fuploads%2F2016%2F09%2FTacos-al-pastor-3.jpg&f=1&nofb=1&ipt=25b19e31734ff8d0a06a19ec827360b43cbd45b2ebdc51dafc80472074d1c1fb&ipo=images"
     )
 
-    cuisine2 = Recipe(
+    cuisine31 = Recipe(
         name="Chiles Rellenos",
         details="Poblano peppers stuffed with cheese, dipped in egg batter, and fried until golden.",
         category_id=1,
@@ -28,7 +28,7 @@ def seed_recipes():
         image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.laguiadereus.com%2Fwp-content%2Fuploads%2F2018%2F04%2FEnchiladas-Suizas2.jpg&f=1&nofb=1&ipt=af3680d9417d5a50366e2c613f6d6d6c091fba0506c91cc77912ffd3e6a0a06a&ipo=images"
     )
 
-    cuisine4 = Recipe(
+    cuisine18 = Recipe(
         name="Guacamole",
         details="Classic Mexican dip made with ripe avocados, lime juice, cilantro, tomatoes, and onions.",
         category_id=1,
@@ -36,7 +36,7 @@ def seed_recipes():
         image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.modernhoney.com%2Fwp-content%2Fuploads%2F2018%2F06%2FAuthentic-Guacamole-Recipe-1.jpg&f=1&nofb=1&ipt=d300f102f541ccf10ff2eef888a2d296a4fc131baaac7c6528a305c64a2932a7&ipo=images"
     )
 
-    cuisine5 = Recipe(
+    cuisine51 = Recipe(
         name="Pozole",
         details="Traditional Mexican soup made with hominy, pork, and flavored with spices and herbs.",
         category_id=1,
@@ -44,7 +44,7 @@ def seed_recipes():
         image="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fmylatinatable.com%2Fwp-content%2Fuploads%2F2016%2F03%2Fpozole-5-1024x681.jpg&f=1&nofb=1&ipt=44385cc96d3b892d4b521f162d9e6429506d8dc7a9c3811d5c70499ace79af4d&ipo=images"
     )
 
-    cuisine6 = Recipe(
+    cuisine55 = Recipe(
         name="Chiles en Nogada",
         details="Poblano peppers stuffed with a mixture of ground meat, fruits, and nuts, topped with walnut sauce and pomegranate seeds.",
         category_id=1,
@@ -52,7 +52,7 @@ def seed_recipes():
         image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Feldiariony.com%2Fwp-content%2Fuploads%2Fsites%2F2%2F2020%2F08%2Fchilesennogada.jpg%3Fquality%3D80%26strip%3Dall&f=1&nofb=1&ipt=0a41913db8040cac02e51087d80228821bead9b19b2bfab0c001c5fdaaa18b96&ipo=images"
     )
 
-    cuisine7 = Recipe(
+    cuisine26 = Recipe(
         name="Salsa Roja",
         details="Spicy red salsa made with tomatoes, chili peppers, onions, and garlic.",
         category_id=1,
@@ -60,7 +60,7 @@ def seed_recipes():
         image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.whats4eats.com%2Ffiles%2Fsauces-salsa-roja-flickr-pancakejess-873537113-4x3.jpg&f=1&nofb=1&ipt=5aed6dd51ec3450e36fd226cd60e0bbfb097ccad65fe7996ba83b9d449569f41&ipo=images"
     )
 
-    cuisine8 = Recipe(
+    cuisine36 = Recipe(
         name="Mole Poblano",
         details="Rich and flavorful sauce made with dried chili peppers, chocolate, spices, and nuts, served over chicken or turkey.",
         category_id=1,
@@ -76,7 +76,7 @@ def seed_recipes():
         image= "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.cookingclassy.com%2Fwp-content%2Fuploads%2F2020%2F09%2Fceviche-5.jpg&f=1&nofb=1&ipt=ea8ce0f3d1b62e8bf262d64447f70952f75ee59002fc8fe24959d94d2cb2f081&ipo=images"
     )
 
-    cuisine10 = Recipe(
+    cuisine44 = Recipe(
         name="Tamales",
         details="Traditional Mexican dish made of masa dough filled with various ingredients, wrapped in corn husks, and steamed.",
         category_id=1,
@@ -136,7 +136,7 @@ def seed_recipes():
         image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ffthmb.tqn.com%2F4XpujmtwGSMFv12YujeW83q6DpY%3D%2F1280x860%2Ffilters%3Afill(auto%2C1)%2F469872303-56a949605f9b58b7d0f9e962.jpg&f=1&nofb=1&ipt=148ffba91a1d0ba02cc85e39f6c5db9181ecdf6c45519dc7423c7a1c11e3f25f&ipo=images"
     )
 
-    cuisine18 = Recipe(
+    cuisine4 = Recipe(
         name="Egg Fried Rice",
         details="Egg Fried Rice is a classic Chinese dish that combines fluffy rice, scrambled eggs, and a variety of vegetables and seasonings. The dish is known for its simplicity and versatility, making it a popular choice for a quick and delicious meal. To make Egg Fried Rice, you start by cooking leftover or freshly cooked rice to remove excess moisture. Then, scrambled eggs are cooked in a wok or skillet and set aside. The vegetables, such as diced carrots, peas, and green onions, are stir-fried until tender. Finally, the cooked rice, scrambled eggs, and vegetables are combined in the wok and tossed together with soy sauce and seasonings. Serve Egg Fried Rice as a standalone dish or as a side to your favorite Chinese entrees.",
         category_id=2,
@@ -196,7 +196,7 @@ def seed_recipes():
         image="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fassets.epicurious.com%2Fphotos%2F5761d0268accf290434553aa%2Fmaster%2Fpass%2Fpanna-cotta.jpg&f=1&nofb=1&ipt=be42abfcf585d0753b135fb9e7ede7adf0e838528a12edb60d20b90ad9fbf353&ipo=images"
     )
 
-    cuisine26 = Recipe(
+    cuisine7 = Recipe(
         name="Gnocchi with Pesto",
         details="Gnocchi with Pesto is a delightful Italian dish that features tender potato dumplings tossed in a vibrant and aromatic pesto sauce. This flavorful combination is perfect for pasta lovers. To make Gnocchi with Pesto, cook the gnocchi until they float to the surface of boiling water, then drain. In a separate bowl, blend fresh basil leaves, pine nuts, garlic, Parmesan cheese, and olive oil to create a smooth pesto sauce. Toss the cooked gnocchi in the pesto sauce until well coated. Garnish with additional grated Parmesan cheese and a sprinkle of toasted pine nuts. Serve this delicious and comforting dish as a main course or as a side dish.",
         category_id=3,
@@ -235,7 +235,7 @@ def seed_recipes():
         image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fs4.scoopwhoop.com%2Fanj%2Fsw%2F5312bf12-5ba7-444f-b13e-b7fc0b6aabfb.jpg&f=1&nofb=1&ipt=ce571e18491f5ec935c697585932c51fb2240d1e2c7816e1e05d0451a87597a1&ipo=images"
     )
 
-    cuisine31 = Recipe(
+    cuisine2 = Recipe(
         name="Masala Dosa",
         details="Masala dosa is a popular South Indian breakfast dish that consists of a thin, crispy crepe-like shell made from fermented rice and lentil batter, filled with a spiced potato filling. The potato filling is prepared by sautéing boiled and mashed potatoes with onions, mustard seeds, cumin, and other spices. Masala dosa is typically served with coconut chutney and sambar (a lentil and vegetable stew).",
         category_id=4,
@@ -273,7 +273,7 @@ def seed_recipes():
         image="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fimages.huffingtonpost.com%2F2013-05-27-IMG_3321.jpg&f=1&nofb=1&ipt=2032d978b4dd69cabc8d1fe9e2352b7687394d42201edf7237e893aeae124878&ipo=images"
     )
 
-    cuisine36 = Recipe(
+    cuisine8 = Recipe(
         name="BBQ Ribs",
         details="BBQ ribs are a popular American dish that features tender and flavorful pork ribs cooked low and slow on a grill or smoker. The ribs are typically seasoned with a dry rub mixture of spices, such as paprika, brown sugar, garlic powder, and chili powder. They are then cooked over indirect heat, allowing the flavors to develop and the meat to become tender. BBQ sauce is often applied during the cooking process or served on the side for dipping. BBQ ribs are a delicious and satisfying dish, perfect for backyard gatherings and summer cookouts.",
         category_id=5,
@@ -324,7 +324,7 @@ def seed_recipes():
         details="The croissant is a classic French pastry known for its flaky and buttery texture. It is made from a yeast-leavened dough layered with butter, then rolled and folded multiple times to create thin layers. The croissant is then baked until golden and crisp. It is a versatile pastry that can be enjoyed plain or filled with various sweet or savory fillings like chocolate, almond paste, or ham and cheese. Croissants are a popular choice for breakfast or as a snack with a cup of coffee.",
         category_id=6,
         user_id=3,
-        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fsecureservercdn.net%2F198.71.233.51%2F8zq.a8c.myftpupload.com%2Fwp-content%2Fuploads%2F2020%2F03%2FCroissant.jpg&f=1&nofb=1&ipt=655d0db9e8eae6094200da7b6ab8d35a4be1d529abe98f9add48863a019dff3a&ipo=images"
+        image="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F4.bp.blogspot.com%2F-lMjvs1EFyxY%2FUHbxT49MkqI%2FAAAAAAAABGg%2FjubEsg39W9Q%2Fs1600%2Fcroissant%2Bau%2Bbeurre.JPG&f=1&nofb=1&ipt=70126bf0aa8808a991e437492f6882abe55ed2e4cc959ac2114296c9be9177c6&ipo=images"
     )
 
     cuisine43 = Recipe(
@@ -335,7 +335,7 @@ def seed_recipes():
         image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.traiteurs-resto.fr%2Fwp-content%2Fuploads%2F2018%2F10%2Fcoq-au-vin.jpeg&f=1&nofb=1&ipt=d8438d0ec62bb188c7ee237705877ac836030440ba6caf3958d0a196a4f43646&ipo=images"
     )
 
-    cuisine44 = Recipe(
+    cuisine10 = Recipe(
         name="Ratatouille",
         details="Ratatouille is a traditional French vegetable stew that originated in the Provence region. It is made with a combination of summer vegetables such as eggplant, zucchini, bell peppers, tomatoes, and onions. The vegetables are typically sautéed in olive oil with garlic and herbs like thyme and basil until they are tender and flavorful. Ratatouille can be served as a side dish or as a main course, and it pairs well with crusty bread or rice. This vibrant and colorful stew showcases the freshness and simplicity of French cuisine.",
         category_id=6,
@@ -390,7 +390,7 @@ def seed_recipes():
         image="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fgirlontherange.com%2Fwp-content%2Fuploads%2F2015%2F12%2Framen-bowl-again-www.girlontherange.com_.jpg&f=1&nofb=1&ipt=2c7278018d2f96ef561aebb8797e866a00f7dff574a86934dea9471f11b351cc&ipo=images"
     )
 
-    cuisine51 = Recipe(
+    cuisine5 = Recipe(
         name="Tempura",
         details="Tempura is a Japanese dish that consists of battered and deep-fried seafood, vegetables, or even tofu. The ingredients are coated in a light and crispy batter made from flour, water, and sometimes egg. Tempura is typically served with a dipping sauce called tentsuyu, which is made from dashi, soy sauce, and mirin. The dish is known for its delicate and crispy texture, as well as its vibrant presentation. Tempura is a popular choice in Japanese cuisine and is often enjoyed as an appetizer or part of a larger meal.",
         category_id=7,
@@ -421,7 +421,7 @@ def seed_recipes():
         image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.chopstickchronicles.com%2Fwp-content%2Fuploads%2F2020%2F10%2FMiso-Soup-update-22-1024x1024.jpg&f=1&nofb=1&ipt=4c563e9a4e992fe9a73fcfa580796ca8d14afb66b14046af043b3e5e69d7a630&ipo=images"
     )
 
-    cuisine55 = Recipe(
+    cuisine6 = Recipe(
         name="Okonomiyaki",
         details="Okonomiyaki is a savory pancake-like dish that is a popular street food in Japan. It is made with a batter of flour, grated yam, water, and shredded cabbage, along with various fillings like pork belly, shrimp, or octopus. The ingredients are mixed together and cooked on a griddle or hot plate. Okonomiyaki is often topped with a sweet and tangy sauce, mayonnaise, bonito flakes, and dried seaweed. It is a versatile dish that can be customized to individual preferences and is enjoyed by people of all ages.",
         category_id=7,

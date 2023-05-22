@@ -4,7 +4,7 @@ import "./recipes.css"
 import { getAllRecipesThunk } from "../../store/recipes"
 import IngredientDisplay from "../Ingredients/ingredient_display"
 import RecipeDisplay from "./allrecipes"
-import CategoryDisplay from "../Categories/category_display"
+
 
 const HomePage = () => {
     const recipes = useSelector(state => state.recipes.recipes)
@@ -19,6 +19,7 @@ const HomePage = () => {
 
     let recipesArr = []
     let ingredientsArr = []
+
     if (!recipes) return null
     if (!ingredients) return null
     if (!categories) return null
@@ -30,18 +31,14 @@ const HomePage = () => {
     }
     if (ingredients.length) {
         for (let ingredient of ingredients) {
-            if (ingredientsArr.length < 21) {
+            if (ingredientsArr.length < 20) {
                 ingredientsArr.push(ingredient)
             }
         }
     }
     return (
         <>
-            <div className="category-bar">
-                {categories.map((category) => {
-                    return <CategoryDisplay key={category.id} category={category} />
-                })}
-            </div>
+
             <div className="homepage-outer">
                 <div className="home-recipe">
                     {recipesArr.map((recipe) => {
