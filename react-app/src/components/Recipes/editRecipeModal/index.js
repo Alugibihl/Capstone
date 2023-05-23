@@ -10,6 +10,7 @@ const EditRecipeModal = ({ recipe }) => {
     const currentUser = useSelector((state) => state.session.user)
     const [details, setDetails] = useState(recipe.details)
     const [image, setImage] = useState(recipe.image)
+    const [imageLoading, setImageLoading] = useState(false)
     const [errors, setErrors] = useState([])
     const [categoryId, setCategoryId] = useState(recipe.categoryId)
     const [name, setName] = useState(recipe.name)

@@ -9,7 +9,8 @@ const CreateIngredientModal = () => {
     const { id } = useParams()
     const history = useHistory()
     const [details, setDetails] = useState("")
-    const [image, setImage] = useState("")
+    const [image, setImage] = useState(null)
+    const [imageLoading, setImageLoading] = useState(false)
     const [errors, setErrors] = useState([])
     const [name, setName] = useState("")
     const currentUser = useSelector((state) => state.session.user)
@@ -19,13 +20,20 @@ const CreateIngredientModal = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (details.length >= 10) {
-            const item = {
-                'details': details,
-                'name': name,
-                'user_id': currentUser.id,
-                'image': image,
-            }
-            const data = await dispatch(createIngredientThunk(item));
+            const formData = new FormData();
+            formData.append("details", details)
+            formData.append("name", name)
+            formData.append("user_id", currentUser.id)
+            formData.append("image", image);
+            setImageLoading(true);
+
+            // const item = {
+            //     'details': details,
+            //     'name': name,
+            //     'user_id': currentUser.id,
+            //     'image': image,
+            // }
+            const data = await dispatch(createIngredientThunk(formData));
             if (data) {
                 closeModal();
                 history.push(`/ingredients/${data.ingredient.id}`)
@@ -34,7 +42,23 @@ const CreateIngredientModal = () => {
             setErrors([
                 "Ingredients must be at least 10 characters.",
             ]);
+
         }
+        // const res = await fetch('/api/images', {
+        //     method: "POST",
+        //     body: formData,
+        // });
+        // if (res.ok) {
+        //     await res.json();
+        //     setImageLoading(false);
+        //     history.push("/images");
+        // }
+        // else {
+        //     setImageLoading(false);
+        //     // a real app would probably use more advanced
+        //     // error handling
+        //     console.log("error");
+        // }
     };
     return (
         <div className="modal-background">
@@ -69,10 +93,9 @@ const CreateIngredientModal = () => {
                         <label>
                             Place a picture of your Ingredient here!
                             <input
-                                type="url"
-                                value={image}
-                                onChange={(e) => setImage(e.target.value)}
-                                placeholder="url"
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => setImage(e.target.files[0])}
                                 required
                             />
                         </label>
@@ -91,6 +114,7 @@ const CreateIngredientModal = () => {
                         <button className="red-button" onClick={closeModal}>Cancel</button>
                         <button className="green-button" type="submit">Create Ingredient</button>
                     </div>
+                    {(imageLoading) && <p>Loading...</p>}
                 </form >
             </div>
         </div >

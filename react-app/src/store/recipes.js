@@ -85,16 +85,14 @@ export const getRecipeByUser = () => async (dispatch) => {
 export const createRecipeThunk = (details) => async (dispatch) => {
     const response = await fetch("/api/recipes/new", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(
+        // headers: {
+        //     "Content-Type": "application/json",
+        // },
+        body:
             details
-        ),
     });
     if (response.ok) {
         const data = await response.json()
-        console.log("--create thunk data--", data);
         dispatch(createRecipe(data))
         return data
     } else if (response.status < 500) {

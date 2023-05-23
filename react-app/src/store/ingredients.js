@@ -74,16 +74,13 @@ export const createIngredientThunk = (details) => async (dispatch) => {
     console.log("create thunk details", details);
     const response = await fetch("/api/ingredients/new", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(
-            details
-        ),
+        // headers: {
+        //     "Content-Type": "application/json",
+        // },
+        body: details
     });
     if (response.ok) {
         const data = await response.json()
-        console.log("--create thunk data--", data);
         dispatch(createIngredient(data))
         return data
     } else if (response.status < 500) {

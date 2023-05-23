@@ -4,6 +4,7 @@ from app.forms import LoginForm
 from app.forms import SignUpForm, RecipeForm
 from ..models import Recipe, Ingredient, Category
 from flask_login import current_user, login_user, logout_user, login_required
+from ..api.aws_helpers import get_unique_filename, upload_file_to_s3
 
 recipe_routes = Blueprint('recipe', __name__)
 
@@ -49,12 +50,19 @@ def create_one_recipe():
     form['csrf_token'].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
         data = form.data
+        image = data["image"]
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+
+        if "url" not in upload:
+            return {"errors": upload["errors"]}
+
         new_recipe = Recipe(
             name = data["name"],
             details = data["details"],
             user_id = data["user_id"],
             category_id = data["category_id"],
-            image= data["image"]
+            image= upload["url"]
         )
         db.session.add(new_recipe)
         db.session.commit()
