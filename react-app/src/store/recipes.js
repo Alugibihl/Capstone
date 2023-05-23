@@ -108,16 +108,11 @@ export const createRecipeThunk = (details) => async (dispatch) => {
 }
 
 export const editOneRecipeThunk = (info) => async (dispatch) => {
-    const { item, recipe } = info
-    console.log('details in Edit Thunk', recipe);
+    const { formData, recipe } = info
+    console.log('details in Edit Thunk', formData.entries, recipe);
     const response = await fetch(`/api/recipes/${recipe.id}`, {
         method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(
-            item
-        ),
+        body: formData,
     });
     if (response.ok) {
         const data = await response.json();
@@ -135,6 +130,7 @@ export const editOneRecipeThunk = (info) => async (dispatch) => {
         ];
     }
 }
+
 export const deleteRecipeThunk = (recipeId) => async (dispatch) => {
     const response = await fetch(`/api/recipes/${recipeId}`, {
         method: "DELETE",

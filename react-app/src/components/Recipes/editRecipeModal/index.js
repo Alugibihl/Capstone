@@ -15,6 +15,7 @@ const EditRecipeModal = ({ recipe }) => {
     const [categoryId, setCategoryId] = useState(recipe.categoryId)
     const [name, setName] = useState(recipe.name)
     const { closeModal } = useModal()
+    console.log("this is recipe", recipe.image);
 
     useEffect(() => {
         dispatch(getAllCategoriesThunk())
@@ -24,14 +25,20 @@ const EditRecipeModal = ({ recipe }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (details.length >= 20) {
-            const item = {
-                'details': details,
-                'name': name,
-                'user_id': currentUser.id,
-                'image': image,
-                'category_id': categoryId,
-            }
-            const info = { item, recipe }
+            const formData = new FormData()
+            formData.append("details", details)
+            formData.append("name", name)
+            formData.append("user_id", currentUser.id)
+            formData.append("image", image)
+            formData.append("category_id", categoryId)
+            // const item = {
+            //     'details': details,
+            //     'name': name,
+            //     'user_id': currentUser.id,
+            //     'image': image,
+            //     'category_id': categoryId,
+            // }
+            const info = { formData, recipe }
             const data = await dispatch(editOneRecipeThunk(info));
             if (data) {
                 closeModal();
@@ -53,6 +60,7 @@ const EditRecipeModal = ({ recipe }) => {
                 </div>
                 <form
                     onSubmit={handleSubmit}
+                    method="PUT"
                     encType="multipart/form-data"
                     className="form-styling"
                 >
@@ -76,11 +84,9 @@ const EditRecipeModal = ({ recipe }) => {
                         <label>
                             Place a picture of your recipe here!
                             <input
-                                type="url"
-                                value={image}
-                                onChange={(e) => setImage(e.target.value)}
-                                placeholder="url"
-                                required
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => setImage(e.target.files[0])}
                             />
                         </label>
                         <label>
@@ -93,7 +99,7 @@ const EditRecipeModal = ({ recipe }) => {
                                 placeholder="Bone Soup"
                             />
                         </label>
-                        <label className="category" for="cuisine">Please Specify your cuisine classification</label>
+                        <label className="category">Please Specify your cuisine classification</label>
                         <br />
                         <select
                             id="cuisine"

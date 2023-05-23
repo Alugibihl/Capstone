@@ -19,14 +19,13 @@ const CreateIngredientModal = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (details.length >= 10) {
+        if (details.length >= 10 && name.length >= 3 && name.length <= 40) {
             const formData = new FormData();
             formData.append("details", details)
             formData.append("name", name)
             formData.append("user_id", currentUser.id)
             formData.append("image", image);
-            setImageLoading(true);
-
+            // setImageLoading(true);
             // const item = {
             //     'details': details,
             //     'name': name,
@@ -35,6 +34,7 @@ const CreateIngredientModal = () => {
             // }
             const data = await dispatch(createIngredientThunk(formData));
             if (data) {
+                console.log("data", data);
                 closeModal();
                 history.push(`/ingredients/${data.ingredient.id}`)
             }

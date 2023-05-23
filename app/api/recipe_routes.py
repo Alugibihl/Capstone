@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import User, db
 from app.forms import LoginForm
-from app.forms import SignUpForm, RecipeForm
+from app.forms import SignUpForm, RecipeForm, EditRecipeForm
 from ..models import Recipe, Ingredient, Category
 from flask_login import current_user, login_user, logout_user, login_required
 from ..api.aws_helpers import get_unique_filename, upload_file_to_s3
@@ -90,18 +90,25 @@ def delete_recipe(id):
 @login_required
 def edit_one_recipe(id):
     """Edit a recipe"""
-    form = RecipeForm()
+    form = EditRecipeForm()
     form.category_id.choices = [(category.id, category.name) for category in Category.query.all()]
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
+        image = data["image"]
+            # Can only edit an ingredient if the current user id == question user id
         recipe = Recipe.query.get(id)
-        # Can only edit an ingredient if the current user id == question user id
         if current_user.id == recipe.user_id:
+            if image:
+                image.filename = get_unique_filename(image.filename)
+                upload = upload_file_to_s3(image)
+                if "url" not in upload:
+                    return {"errors": upload["errors"]}
+                recipe.image = upload["url"]
+
             recipe.details = data["details"]
-            recipe.user_id = request.json.get("user_id")
+            recipe.user_id = int(data["user_id"])
             recipe.category_id = data["category_id"]
-            recipe.image = data["image"]
             recipe.name = data["name"]
             db.session.commit()
             return {
