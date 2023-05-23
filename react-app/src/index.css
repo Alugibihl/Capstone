@@ -190,7 +190,7 @@ img{
 }
 .wrap-break{
     word-wrap: break-word;
-    border: 5px green solid;
+    /* border: 5px green solid; */
 }
 .name-holder{
     width: 50vw;

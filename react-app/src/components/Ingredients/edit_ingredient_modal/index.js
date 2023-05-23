@@ -8,6 +8,7 @@ const EditIngredientModal = ({ ingredient }) => {
     const currentUser = useSelector((state) => state.session.user)
     const [details, setDetails] = useState(ingredient.details)
     const [image, setImage] = useState(ingredient.image)
+    const [imageLoading, setImageLoading] = useState(false)
     const [errors, setErrors] = useState([])
     const [name, setName] = useState(ingredient.name)
     const { closeModal } = useModal()
@@ -18,19 +19,18 @@ const EditIngredientModal = ({ ingredient }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (details.length >= 10) {
-            const item = {
-                'details': details,
-                'name': name,
-                'user_id': currentUser.id,
-                'image': image,
-            }
-            const info = { item, ingredient }
+        if (details.length >= 10 && name.length >= 3 && name.length <= 40) {
+            const formData = new FormData();
+            formData.append("details", details)
+            formData.append("name", name)
+            formData.append("user_id", currentUser.id)
+            formData.append("image", image);
+            const info = { formData, ingredient }
             const data = await dispatch(editOneIngredientThunk(info));
             if (data) {
-                console.log("data---", data.ingredient);
+                console.log("data---", data);
                 closeModal();
-                dispatch(getOneIngredientThunk(data.ingredient.id))
+                dispatch(getOneIngredientThunk(ingredient.id))
             }
         } else {
             setErrors([
@@ -71,11 +71,9 @@ const EditIngredientModal = ({ ingredient }) => {
                         <label>
                             Place a picture of your ingredient here!
                             <input
-                                type="url"
-                                value={image}
-                                onChange={(e) => setImage(e.target.value)}
-                                placeholder="url"
-                                required
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => setImage(e.target.files[0])}
                             />
                         </label>
                         <label>

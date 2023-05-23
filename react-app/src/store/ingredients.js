@@ -74,16 +74,13 @@ export const createIngredientThunk = (details) => async (dispatch) => {
     console.log("create thunk details", details);
     const response = await fetch("/api/ingredients/new", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(
-            details
-        ),
+        // headers: {
+        //     "Content-Type": "application/json",
+        // },
+        body: details
     });
     if (response.ok) {
         const data = await response.json()
-        console.log("--create thunk data--", data);
         dispatch(createIngredient(data))
         return data
     } else if (response.status < 500) {
@@ -112,22 +109,17 @@ export const getIngredientsByUser = () => async (dispatch) => {
 }
 
 export const editOneIngredientThunk = (info) => async (dispatch) => {
-    const { item, ingredient } = info
+    const { formData, ingredient } = info
     console.log('details in Edit Thunk', ingredient);
     const response = await fetch(`/api/ingredients/${ingredient.id}`, {
         method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(
-            item
-        ),
+        body: formData
     });
     if (response.ok) {
         const data = await response.json();
         console.log("----- data in edit thunk---", data);
-        // dispatch(editIngredient(data));
-        dispatch(getOneIngredient(data.id))
+        dispatch(editIngredient(data));
+        // dispatch(getOneIngredient(data.id))
         return data
     } else if (response.status < 500) {
         const data = await response.json();

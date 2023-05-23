@@ -1,9 +1,10 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import User, db
 from app.forms import LoginForm
-from app.forms import SignUpForm, IngredientForm
+from app.forms import SignUpForm, IngredientForm, EditIngredientForm
 from ..models import Ingredient
 from flask_login import current_user, login_user, logout_user, login_required
+from ..api.aws_helpers import get_unique_filename, upload_file_to_s3
 
 ingredient_routes = Blueprint('ingredient', __name__)
 
@@ -31,6 +32,7 @@ def get_one_ingredient(id):
     return {"ingredient": response,
             "users": user}
 
+
 @ingredient_routes.route("/new", methods=["POST"])
 @login_required
 def create_one_ingredient():
@@ -40,11 +42,19 @@ def create_one_ingredient():
     form['csrf_token'].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
         data = form.data
+        image = data["image"]
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+
+        if "url" not in upload:
+            return {"errors": upload["errors"]}
+
+
         new_ingredient = Ingredient(
             name = data["name"],
             details = data["details"],
             user_id = data["user_id"],
-            image = data["image"]
+            image = upload["url"]
         )
         db.session.add(new_ingredient)
         db.session.commit()
@@ -73,17 +83,23 @@ def delete_ingredient(id):
 @login_required
 def edit_one_ingredient(id):
     """ Edit an ingredient"""
-    form = IngredientForm()
+    form = EditIngredientForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
+        image = data["image"]
         ingredient = Ingredient.query.get(id)
         # Can only edit an ingredient if the current user id == question user id
         if current_user.id == ingredient.user_id:
+            if image:
+                image.filename = get_unique_filename(image.filename)
+                upload = upload_file_to_s3(image)
+                if "url" not in upload:
+                    return {"errors": upload["errors"]}
+                ingredient.image = upload["url"]
             ingredient.details = data["details"]
-            ingredient.user_id = request.json.get("user_id")
+            ingredient.user_id = int(data["user_id"])
             ingredient.name = data["name"]
-            ingredient.image = data["image"]
             db.session.commit()
             return {
                 "ingredient": ingredient.to_dict()

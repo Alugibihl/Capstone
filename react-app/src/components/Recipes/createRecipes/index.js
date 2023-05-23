@@ -10,7 +10,8 @@ const CreateRecipeModal = () => {
     const history = useHistory()
     const choicesArr = useSelector(state => state.categories.categories.category)
     const [details, setDetails] = useState("")
-    const [image, setImage] = useState("")
+    const [image, setImage] = useState(null)
+    const [imageLoading, setImageLoading] = useState(false)
     const [errors, setErrors] = useState([])
     const [categoryId, setCategoryId] = useState("")
     const [name, setName] = useState("")
@@ -25,14 +26,20 @@ const CreateRecipeModal = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (details.length >= 20) {
-            const item = {
-                'details': details,
-                'name': name,
-                'user_id': currentUser.id,
-                'image': image,
-                'category_id': categoryId,
-            }
-            const data = await dispatch(createRecipeThunk(item));
+            const formData = new FormData()
+            formData.append("details", details)
+            formData.append("name", name)
+            formData.append("user_id", currentUser.id)
+            formData.append("image", image)
+            formData.append("category_id", categoryId)
+            // const item = {
+            //     'details': details,
+            //     'name': name,
+            //     'user_id': currentUser.id,
+            //     'image': image,
+            //     'category_id': categoryId,
+            // }
+            const data = await dispatch(createRecipeThunk(formData));
             if (data) {
                 closeModal();
                 history.push(`/recipes/${data.recipe.id}`)
@@ -73,10 +80,9 @@ const CreateRecipeModal = () => {
                         <label>
                             Place a picture of your recipe here!
                             <input
-                                type="url"
-                                value={image}
-                                onChange={(e) => setImage(e.target.value)}
-                                placeholder="url"
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => setImage(e.target.files[0])}
                                 required
                             />
                         </label>
