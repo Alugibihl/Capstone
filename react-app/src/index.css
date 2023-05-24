@@ -197,9 +197,9 @@ img{
     width: 50vw;
 }
 .ingredients-home-title{
-    padding: 5px 10px 0px 10px;
+    padding: 5px 10px 5px 10px;
     box-sizing: border-box;
 }
 .recipe-home-title{
-    padding: 5px 10px 0px 10px;
+    padding: 5px 10px 5px 60px;
 }
