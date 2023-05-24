@@ -11,7 +11,7 @@ const CreateRecipeModal = () => {
     const choicesArr = useSelector(state => state.categories.categories.category)
     const [details, setDetails] = useState("")
     const [image, setImage] = useState(null)
-    const [imageLoading, setImageLoading] = useState(false)
+    // const [imageLoading, setImageLoading] = useState(false)
     const [errors, setErrors] = useState([])
     const [categoryId, setCategoryId] = useState("")
     const [name, setName] = useState("")
@@ -25,24 +25,24 @@ const CreateRecipeModal = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (details.length >= 20) {
-            const formData = new FormData()
-            formData.append("details", details)
-            formData.append("name", name)
-            formData.append("user_id", currentUser.id)
-            formData.append("image", image)
-            formData.append("category_id", categoryId)
-            // const item = {
-            //     'details': details,
-            //     'name': name,
-            //     'user_id': currentUser.id,
-            //     'image': image,
-            //     'category_id': categoryId,
-            // }
-            const data = await dispatch(createRecipeThunk(formData));
-            if (data) {
-                closeModal();
-                history.push(`/recipes/${data.recipe.id}`)
+        if (details.trim().length >= 20) {
+            if (name.trim().length < 3 || name.trim().length > 40) {
+                setErrors([
+                    "Recipe name must be between 3 and 40 characters.",
+                ]);
+            } else {
+                const formData = new FormData()
+                formData.append("details", details)
+                formData.append("name", name)
+                formData.append("user_id", currentUser.id)
+                formData.append("image", image)
+                formData.append("category_id", categoryId)
+                const data = await dispatch(createRecipeThunk(formData));
+                if (data) {
+                    closeModal();
+                    console.log("---- data---", data);
+                    history.push(`/recipes/${data.recipe.id}`)
+                }
             }
         } else {
             setErrors([
@@ -71,12 +71,15 @@ const CreateRecipeModal = () => {
                         ))}
                     </div>
                     <div className="form-data">
-                        <textarea
-                            value={details}
-                            onChange={(e) => setDetails(e.target.value)}
-                            placeholder={`Please share a recipe you love.`}
-                            required
-                        />
+                        <label>
+                            Describe or fill out your recipe
+                            <textarea
+                                value={details}
+                                onChange={(e) => setDetails(e.target.value)}
+                                placeholder={`Please share a recipe you love.`}
+                                required
+                            />
+                        </label>
                         <label>
                             Place a picture of your recipe here!
                             <input
@@ -87,7 +90,7 @@ const CreateRecipeModal = () => {
                             />
                         </label>
                         <label>
-                            Please Enter the name of your dish.
+                            Enter the name of your dish.
                             <input
                                 type="text"
                                 value={name}
@@ -96,7 +99,7 @@ const CreateRecipeModal = () => {
                                 placeholder="Bone Soup"
                             />
                         </label>
-                        <label className="category">Please Specify your cuisine classification
+                        <label className="category">Specify your cuisine classification
                             <br />
                             <select
                                 value={categoryId}

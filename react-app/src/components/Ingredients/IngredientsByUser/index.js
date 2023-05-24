@@ -1,11 +1,9 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getIngredientsByUser } from "../../../store/ingredients"
-import IngredientDisplay from "../ingredient_display"
 import { Redirect } from "react-router-dom"
 import OpenModalButton from "../../OpenModalButton"
 import CreateIngredientModal from "../add_ingredient_modal"
-import RecipeDisplay from "../../Recipes/allrecipes"
 import UserIngredientDisplay from "../user_ingredient_display/userIngredientDisplay"
 
 

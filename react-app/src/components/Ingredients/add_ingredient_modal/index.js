@@ -1,12 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useModal } from "../../../context/Modal";
-import { createIngredientThunk, getAllIngredientsThunk, getOneIngredientThunk } from "../../../store/ingredients";
+import { createIngredientThunk } from "../../../store/ingredients";
 
 const CreateIngredientModal = () => {
     const dispatch = useDispatch()
-    const { id } = useParams()
     const history = useHistory()
     const [details, setDetails] = useState("")
     const [image, setImage] = useState(null)
@@ -19,24 +18,24 @@ const CreateIngredientModal = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (details.length >= 10 && name.length >= 3 && name.length <= 40) {
-            const formData = new FormData();
-            formData.append("details", details)
-            formData.append("name", name)
-            formData.append("user_id", currentUser.id)
-            formData.append("image", image);
-            // setImageLoading(true);
-            // const item = {
-            //     'details': details,
-            //     'name': name,
-            //     'user_id': currentUser.id,
-            //     'image': image,
-            // }
-            const data = await dispatch(createIngredientThunk(formData));
-            if (data) {
-                console.log("data", data);
-                closeModal();
-                history.push(`/ingredients/${data.ingredient.id}`)
+        if (details.trim().length >= 10) {
+            if (name.trim().length < 3 || name.trim().length > 40) {
+                setErrors([
+                    "Ingredient's name must be between 3 and 40 characters.",
+                ]);
+            } else {
+                const formData = new FormData();
+                formData.append("details", details)
+                formData.append("name", name)
+                formData.append("user_id", currentUser.id)
+                formData.append("image", image);
+
+                const data = await dispatch(createIngredientThunk(formData));
+                if (data) {
+                    console.log("data", data);
+                    closeModal();
+                    history.push(`/ingredients/${data.ingredient.id}`)
+                }
             }
         } else {
             setErrors([
@@ -84,12 +83,15 @@ const CreateIngredientModal = () => {
                         ))}
                     </div>
                     <div className="form-data">
-                        <textarea
-                            value={details}
-                            onChange={(e) => setDetails(e.target.value)}
-                            placeholder={`Please share an Ingredient you love.`}
-                            required
-                        />
+                        <label>
+                            Describe your Ingredient and its uses
+                            <textarea
+                                value={details}
+                                onChange={(e) => setDetails(e.target.value)}
+                                placeholder={`Please share an Ingredient you love.`}
+                                required
+                            />
+                        </label>
                         <label>
                             Place a picture of your Ingredient here!
                             <input
@@ -100,7 +102,7 @@ const CreateIngredientModal = () => {
                             />
                         </label>
                         <label>
-                            Please Enter the name of your Ingredient.
+                            Enter the name of your Ingredient.
                             <input
                                 type="text"
                                 value={name}

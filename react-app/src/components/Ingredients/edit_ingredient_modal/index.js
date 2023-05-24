@@ -8,7 +8,7 @@ const EditIngredientModal = ({ ingredient }) => {
     const currentUser = useSelector((state) => state.session.user)
     const [details, setDetails] = useState(ingredient.details)
     const [image, setImage] = useState(ingredient.image)
-    const [imageLoading, setImageLoading] = useState(false)
+    // const [imageLoading, setImageLoading] = useState(false)
     const [errors, setErrors] = useState([])
     const [name, setName] = useState(ingredient.name)
     const { closeModal } = useModal()
@@ -19,18 +19,24 @@ const EditIngredientModal = ({ ingredient }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (details.length >= 10 && name.length >= 3 && name.length <= 40) {
-            const formData = new FormData();
-            formData.append("details", details)
-            formData.append("name", name)
-            formData.append("user_id", currentUser.id)
-            formData.append("image", image);
-            const info = { formData, ingredient }
-            const data = await dispatch(editOneIngredientThunk(info));
-            if (data) {
-                console.log("data---", data);
-                closeModal();
-                dispatch(getOneIngredientThunk(ingredient.id))
+        if (details.trim().length >= 10) {
+            if (name.trim().length < 3 || name.trim().length > 40) {
+                setErrors([
+                    "Ingredient's name must be between 3 and 40 characters.",
+                ]);
+            } else {
+                const formData = new FormData();
+                formData.append("details", details)
+                formData.append("name", name)
+                formData.append("user_id", currentUser.id)
+                formData.append("image", image);
+                const info = { formData, ingredient }
+                const data = await dispatch(editOneIngredientThunk(info));
+                if (data) {
+                    console.log("data---", data);
+                    closeModal();
+                    dispatch(getOneIngredientThunk(ingredient.id))
+                }
             }
         } else {
             setErrors([
@@ -62,12 +68,15 @@ const EditIngredientModal = ({ ingredient }) => {
                         ))}
                     </div>
                     <div className="form-data">
-                        <textarea
-                            value={details}
-                            onChange={(e) => setDetails(e.target.value)}
-                            placeholder={`Please share a ingredient you love.`}
-                            required
-                        />
+                        <label>
+                            Edit your Ingredient description and it's uses
+                            <textarea
+                                value={details}
+                                onChange={(e) => setDetails(e.target.value)}
+                                placeholder={`Please share a ingredient you love.`}
+                                required
+                            />
+                        </label>
                         <label>
                             Place a picture of your ingredient here!
                             <input
@@ -77,7 +86,7 @@ const EditIngredientModal = ({ ingredient }) => {
                             />
                         </label>
                         <label>
-                            Please Enter the name of your dish.
+                            Edit the name of your dish.
                             <input
                                 type="text"
                                 value={name}
