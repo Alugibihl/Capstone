@@ -217,7 +217,9 @@ img{
     position: fixed;
     right: 0%;
     top: 0%;
-    background-color: lightblue;
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F2b%2F33%2F2d%2F2b332d58330366179d7f046943ce1584.jpg&f=1&nofb=1&ipt=c0e3c398b7fb6acb2319240aca469c41d3a8606bfef6f12a9ebbd02c3198c0d8&ipo=images");
+    background-position: center;
+    background-size: cover;
 }
 .comments-modal-text{
     margin: 15px;

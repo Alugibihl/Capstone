@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { editOneCommentThunk, getAllCommentsThunk, getCommentsByRecipe } from "../../../store/comments"
+import { editOneCommentThunk, getAllCommentsThunk } from "../../../store/comments"
 
 
 const EditCommentForm = ({ comment, recipe }) => {
@@ -8,32 +8,28 @@ const EditCommentForm = ({ comment, recipe }) => {
     const currentUser = useSelector((state) => state.session.user)
     const [errors, setErrors] = useState([])
     const [details, setDetails] = useState(comment.details)
-    // const comments = useSelector(state => state.comments.comments.comment)
     console.log("------- recipe", recipe, comment);
 
-    // useEffect(() => {
-    //     dispatch(getCommentsByRecipe())
-    // }, [dispatch])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (details.trim().length >= 3 && details.trim().length <= 500) {
-            const info = {
-                "details": details,
-                "user_id": currentUser.id,
-                "recipe_id": recipe.id
-            }
-            const data = { info, comment }
-            setDetails("")
-            setErrors([])
-            await dispatch(editOneCommentThunk(data))
-            await dispatch(getAllCommentsThunk(recipe.id))
+            const item = {
+                details: details,
+                user_id: currentUser.id,
+                recipe_id: recipe.id
+            };
+            setDetails("");
+            setErrors([]);
+            await dispatch(editOneCommentThunk(comment.id, { item: item, comment: comment }));
+            await dispatch(getAllCommentsThunk(recipe.id));
         } else {
             setErrors([
                 "Comments must be between 3 and 500 characters.",
             ]);
         }
     };
+
 
     return (
         <div >
