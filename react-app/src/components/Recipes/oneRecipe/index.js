@@ -7,7 +7,7 @@ import OpenModalButton from "../../OpenModalButton";
 import DeleteRecipeModal from "../deleteRecipeModal";
 import EditRecipeModal from "../editRecipeModal";
 import CommentsByRecipe from "../../Comments/getComments"
-import { getAllCommentsThunk } from "../../../store/comments";
+// import { getAllCommentsThunk } from "../../../store/comments";
 
 function OneRecipe() {
     const dispatch = useDispatch()

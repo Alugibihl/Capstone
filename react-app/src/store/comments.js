@@ -69,15 +69,15 @@ export const createaCommentThunk = (details) => async (dispatch) => {
     }
 }
 
-export const editOneCommentThunk = (info) => async (dispatch) => {
-    const { item, comment } = info
-    const response = await fetch(`/api/comments/${comment.id}`, {
+export const editOneCommentThunk = (commentId, data) => async (dispatch) => {
+    console.log("comment", commentId);
+    const response = await fetch(`/api/comments/${commentId}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(
-            item
+            data.item
         ),
     });
     if (response.ok) {

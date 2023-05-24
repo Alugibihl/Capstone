@@ -9,7 +9,7 @@ const CreateIngredientModal = () => {
     const history = useHistory()
     const [details, setDetails] = useState("")
     const [image, setImage] = useState(null)
-    const [imageLoading, setImageLoading] = useState(false)
+    // const [imageLoading, setImageLoading] = useState(false)
     const [errors, setErrors] = useState([])
     const [name, setName] = useState("")
     const currentUser = useSelector((state) => state.session.user)
@@ -116,7 +116,7 @@ const CreateIngredientModal = () => {
                         <button className="red-button" onClick={closeModal}>Cancel</button>
                         <button className="green-button" type="submit">Create Ingredient</button>
                     </div>
-                    {(imageLoading) && <p>Loading...</p>}
+                    {/* {(imageLoading) && <p>Loading...</p>} */}
                 </form >
             </div>
         </div >
