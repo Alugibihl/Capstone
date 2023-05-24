@@ -10,7 +10,7 @@ const EditRecipeModal = ({ recipe }) => {
     const currentUser = useSelector((state) => state.session.user)
     const [details, setDetails] = useState(recipe.details)
     const [image, setImage] = useState(recipe.image)
-    const [imageLoading, setImageLoading] = useState(false)
+    // const [imageLoading, setImageLoading] = useState(false)
     const [errors, setErrors] = useState([])
     const [categoryId, setCategoryId] = useState(recipe.categoryId)
     const [name, setName] = useState(recipe.name)
@@ -24,25 +24,24 @@ const EditRecipeModal = ({ recipe }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (details.length >= 20) {
-            const formData = new FormData()
-            formData.append("details", details)
-            formData.append("name", name)
-            formData.append("user_id", currentUser.id)
-            formData.append("image", image)
-            formData.append("category_id", categoryId)
-            // const item = {
-            //     'details': details,
-            //     'name': name,
-            //     'user_id': currentUser.id,
-            //     'image': image,
-            //     'category_id': categoryId,
-            // }
-            const info = { formData, recipe }
-            const data = await dispatch(editOneRecipeThunk(info));
-            if (data) {
-                closeModal();
-                dispatch(getOneRecipeThunk(recipe.id))
+        if (details.trim().length >= 20) {
+            if (name.trim().length < 3 || name.trim().length > 40) {
+                setErrors([
+                    "Recipe name must be between 3 and 40 characters.",
+                ]);
+            } else {
+                const formData = new FormData()
+                formData.append("details", details)
+                formData.append("name", name)
+                formData.append("user_id", currentUser.id)
+                formData.append("image", image)
+                formData.append("category_id", categoryId)
+                const info = { formData, recipe }
+                const data = await dispatch(editOneRecipeThunk(info));
+                if (data) {
+                    closeModal();
+                    dispatch(getOneRecipeThunk(recipe.id))
+                }
             }
         } else {
             setErrors([
@@ -75,12 +74,15 @@ const EditRecipeModal = ({ recipe }) => {
                         ))}
                     </div>
                     <div className="form-data">
-                        <textarea
-                            value={details}
-                            onChange={(e) => setDetails(e.target.value)}
-                            placeholder={`Please share a recipe you love.`}
-                            required
-                        />
+                        <label>
+                            Edit your recipe or its description
+                            <textarea
+                                value={details}
+                                onChange={(e) => setDetails(e.target.value)}
+                                placeholder={`Please share a recipe you love.`}
+                                required
+                            />
+                        </label>
                         <label>
                             Place a picture of your recipe here!
                             <input
@@ -90,7 +92,7 @@ const EditRecipeModal = ({ recipe }) => {
                             />
                         </label>
                         <label>
-                            Please Enter the name of your dish.
+                            Edit the name of your dish.
                             <input
                                 type="text"
                                 value={name}
@@ -99,7 +101,7 @@ const EditRecipeModal = ({ recipe }) => {
                                 placeholder="Bone Soup"
                             />
                         </label>
-                        <label className="category">Please Specify your cuisine classification</label>
+                        <label className="category">Update your cuisine classification</label>
                         <br />
                         <select
                             id="cuisine"

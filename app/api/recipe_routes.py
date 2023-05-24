@@ -53,6 +53,7 @@ def create_one_recipe():
         image = data["image"]
         image.filename = get_unique_filename(image.filename)
         upload = upload_file_to_s3(image)
+        print("-----------", upload)
 
         if "url" not in upload:
             return {"errors": upload["errors"]}
@@ -64,8 +65,12 @@ def create_one_recipe():
             category_id = data["category_id"],
             image= upload["url"]
         )
+        print("-----_____----- upload[url]", image)
         db.session.add(new_recipe)
+        print("i am here!!! after add, before commit")
         db.session.commit()
+        print("i am here!!! after commit")
+
         return {
             "recipe": new_recipe.to_dict()
         }

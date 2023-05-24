@@ -41,11 +41,13 @@ const HomePage = () => {
 
             <div className="homepage-outer">
                 <div className="home-recipe">
+                    <h4 className="recipe-home-title">Currently Popular Recipes</h4>
                     {recipesArr.map((recipe) => {
                         return <RecipeDisplay key={recipe.id} recipe={recipe} />
                     })}
                 </div>
                 <div className="home-ingredients">
+                    <h4 className="ingredients-home-title">Currently Popular Ingredients</h4>
                     {ingredientsArr.map((ingredient) => {
                         return <IngredientDisplay key={ingredient.id} ingredient={ingredient} />
                     })}

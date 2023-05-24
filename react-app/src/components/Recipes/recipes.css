@@ -32,6 +32,6 @@
 .home-ingredients{
     width: 30%;
     display: flex;
-    /* border: 3px orange solid; */
+    border-left: 1px black solid;
     flex-direction: column;
 }
