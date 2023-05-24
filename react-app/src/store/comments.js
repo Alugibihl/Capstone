@@ -69,8 +69,9 @@ export const createaCommentThunk = (details) => async (dispatch) => {
     }
 }
 
-export const editOneCommentThunk = (info) => async (dispatch) => {
-    const { item, comment } = info
+export const editOneCommentThunk = (data) => async (dispatch) => {
+    const { item, comment } = data
+    console.log("comment", comment);
     const response = await fetch(`/api/comments/${comment.id}`, {
         method: "PUT",
         headers: {

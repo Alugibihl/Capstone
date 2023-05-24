@@ -78,6 +78,7 @@ button{
 }
 button{
     text-align: center;
+    cursor: pointer;
 }
 .red-button{
     background-color: antiquewhite;
@@ -209,4 +210,18 @@ img{
 }
 .recipe-home-title{
     padding: 5px 10px 5px 60px;
+}
+.comments-modal-container{
+    height: 101vh;
+    width: 30vw;
+    position: fixed;
+    right: 0%;
+    top: 0%;
+    background-color: lightblue;
+}
+.comments-modal-text{
+    margin: 15px;
+}
+.comments-arr{
+    border-bottom: 1px black solid;
 }
