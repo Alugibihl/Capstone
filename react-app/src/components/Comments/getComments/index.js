@@ -12,7 +12,6 @@ const CommentsByRecipe = ({ recipe }) => {
     const user = useSelector(state => state.session.user)
     const [editFormStatus, setEditFormStatus] = useState({})
     const [selectedCommentId, setSelectedCommentId] = useState(null)
-    const [comments, setComments] = useState("")
     const [deleteVisible, setDeleteVisible] = useState(false)
 
     useEffect(() => {
@@ -29,6 +28,7 @@ const CommentsByRecipe = ({ recipe }) => {
         setEditFormStatus(currentStatus);
         setSelectedCommentId(commentId);
         setDeleteVisible(false);
+        console.log("statuses", editFormStatus, deleteVisible);
     };
 
     if (!recipeComments) return null
@@ -54,13 +54,14 @@ const CommentsByRecipe = ({ recipe }) => {
                                     editVisibility={editVisibility}
                                     deleteVisible={deleteVisible}
                                     setDeleteVisible={setDeleteVisible}
+                                    editFormStatus={editFormStatus}
                                 />
                                 {user.id === comment.userId && (
                                     <div>
                                         <div>
                                             {editFormStatus[comment.id] && (
                                                 <div>
-                                                    <EditCommentForm comment={comment} recipe={recipe} />
+                                                    <EditCommentForm comment={comment} recipe={recipe} setEditFormStatus={setEditFormStatus} editFormStatus={editFormStatus} />
                                                 </div>
                                             )}
                                         </div>

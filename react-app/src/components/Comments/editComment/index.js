@@ -3,13 +3,11 @@ import { useDispatch, useSelector } from "react-redux"
 import { editOneCommentThunk, getAllCommentsThunk } from "../../../store/comments"
 
 
-const EditCommentForm = ({ comment, recipe }) => {
+const EditCommentForm = ({ comment, recipe, setEditFormStatus, editFormStatus }) => {
     const dispatch = useDispatch()
     const currentUser = useSelector((state) => state.session.user)
     const [errors, setErrors] = useState([])
     const [details, setDetails] = useState(comment.details)
-    console.log("------- recipe", recipe, comment);
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,6 +19,7 @@ const EditCommentForm = ({ comment, recipe }) => {
             };
             setDetails("");
             setErrors([]);
+            setEditFormStatus(!editFormStatus)
             await dispatch(editOneCommentThunk(comment.id, { item: item, comment: comment }));
             await dispatch(getAllCommentsThunk(recipe.id));
         } else {
@@ -29,7 +28,6 @@ const EditCommentForm = ({ comment, recipe }) => {
             ]);
         }
     };
-
 
     return (
         <div >
