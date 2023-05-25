@@ -217,15 +217,17 @@ img{
     position: fixed;
     right: 0%;
     top: 0%;
-    background-image: url("https://i.pinimg.com/originals/65/ea/2f/65ea2fff87a448c8ce953facbdd7d2ca.jpg");
+    /* background-image: url("https://i.pinimg.com/originals/65/ea/2f/65ea2fff87a448c8ce953facbdd7d2ca.jpg"); */
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.wisc-online.com%2Fasset-repository%2Fgetfile%3Fid%3D932%26getType%3Dview&f=1&nofb=1&ipt=adc0c45d3856771c82139be0c1a78273e4e181e458ac3d34140b5058102e60a1&ipo=images");
     background-position: center;
-    background-size: 300%;
+    background-size:cover;
     overflow: auto;
 }
 .comments-modal-text{
     margin: 15px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: 700;
+
 }
 .comments-arr{
     border-bottom: 1px black solid;
@@ -241,4 +243,31 @@ img{
     align-items: center;
     justify-content: flex-start;
     font-weight: bolder;
+}
+.long-button{
+    width: 50%;
+}
+.single-button{
+    display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+    width: 25vw;
+}
+.comment-page-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.comment-page-title button{
+    background: none;
+    border: none;
+    font-weight: bold;
+    font-size: larger;
+}
+/* .filler-space{
+    height: 134px;
+} */
+.border-base-comments{
+    margin-bottom: 10vh;
+    /* border: 3px green solid; */
 }

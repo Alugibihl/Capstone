@@ -4,6 +4,7 @@ import { getAllCommentsThunk } from "../../../store/comments"
 import OneComment from "../oneComment"
 import CreateCommentForm from "../addComment"
 import EditCommentForm from "../editComment"
+import { useModal } from "../../../context/Modal"
 
 const CommentsByRecipe = ({ recipe }) => {
     const dispatch = useDispatch()
@@ -13,6 +14,7 @@ const CommentsByRecipe = ({ recipe }) => {
     const [editFormStatus, setEditFormStatus] = useState({})
     const [selectedCommentId, setSelectedCommentId] = useState(null)
     const [deleteVisible, setDeleteVisible] = useState(false)
+    const { closeModal } = useModal()
 
     useEffect(() => {
         dispatch(getAllCommentsThunk(recipe.id))
@@ -35,41 +37,47 @@ const CommentsByRecipe = ({ recipe }) => {
     if (!allUsers) return null
     return (
         <div className="comments-modal-container wrap-break">
-            <div className="comments-modal-text">
-                <h1>Comments {recipeComments.length}</h1>
-                <h2>Please keep your comments respectful</h2>
-                {!editFormStatus[selectedCommentId] && (
-                    <div>
-                        <CreateCommentForm recipe={recipe} />
+            <div className="border-base-comments">
+                <div className="comments-modal-text">
+                    <div className="comment-page-title">
+                        <h1>Comments {recipeComments.length}</h1>
+                        <button onClick={closeModal}> X </button>
                     </div>
-                )}
-                <div>
-                    {recipeComments.map((comment) => {
-                        return (
-                            <div key={comment.id}>
-                                <OneComment
-                                    comment={comment}
-                                    recipe={recipe}
-                                    allUsers={allUsers}
-                                    editVisibility={editVisibility}
-                                    deleteVisible={deleteVisible}
-                                    setDeleteVisible={setDeleteVisible}
-                                    editFormStatus={editFormStatus}
-                                />
-                                {user.id === comment.userId && (
-                                    <div>
+                    <h2>Please keep your comments respectful</h2>
+                    {!editFormStatus[selectedCommentId] ? (
+                        <div>
+                            <CreateCommentForm recipe={recipe} />
+                        </div>
+                    ) : (<div className="filler-space"> </div>)}
+
+                    <div>
+                        {recipeComments.map((comment) => {
+                            return (
+                                <div key={comment.id}>
+                                    <OneComment
+                                        comment={comment}
+                                        recipe={recipe}
+                                        allUsers={allUsers}
+                                        editVisibility={editVisibility}
+                                        deleteVisible={deleteVisible}
+                                        setDeleteVisible={setDeleteVisible}
+                                        editFormStatus={editFormStatus}
+                                    />
+                                    {user.id === comment.userId && (
                                         <div>
-                                            {editFormStatus[comment.id] && (
-                                                <div>
-                                                    <EditCommentForm comment={comment} recipe={recipe} setEditFormStatus={setEditFormStatus} editFormStatus={editFormStatus} />
-                                                </div>
-                                            )}
+                                            <div>
+                                                {editFormStatus[comment.id] && (
+                                                    <div>
+                                                        <EditCommentForm comment={comment} recipe={recipe} setEditFormStatus={setEditFormStatus} editFormStatus={editFormStatus} />
+                                                    </div>
+                                                )}
+                                            </div>
                                         </div>
-                                    </div>
-                                )}
-                            </div>
-                        )
-                    })}
+                                    )}
+                                </div>
+                            )
+                        })}
+                    </div>
                 </div>
             </div>
         </div>
