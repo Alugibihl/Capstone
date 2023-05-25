@@ -4,6 +4,7 @@ import { getAllCommentsThunk } from "../../../store/comments"
 import OneComment from "../oneComment"
 import CreateCommentForm from "../addComment"
 import EditCommentForm from "../editComment"
+import { useModal } from "../../../context/Modal"
 
 const CommentsByRecipe = ({ recipe }) => {
     const dispatch = useDispatch()
@@ -13,6 +14,7 @@ const CommentsByRecipe = ({ recipe }) => {
     const [editFormStatus, setEditFormStatus] = useState({})
     const [selectedCommentId, setSelectedCommentId] = useState(null)
     const [deleteVisible, setDeleteVisible] = useState(false)
+    const { closeModal } = useModal()
 
     useEffect(() => {
         dispatch(getAllCommentsThunk(recipe.id))
@@ -36,7 +38,10 @@ const CommentsByRecipe = ({ recipe }) => {
     return (
         <div className="comments-modal-container wrap-break">
             <div className="comments-modal-text">
-                <h1>Comments {recipeComments.length}</h1>
+                <div className="comment-page-title">
+                    <h1>Comments {recipeComments.length}</h1>
+                    <button onClick={closeModal}> X </button>
+                </div>
                 <h2>Please keep your comments respectful</h2>
                 {!editFormStatus[selectedCommentId] && (
                     <div>

@@ -22,7 +22,7 @@ const OneComment = ({ comment, recipe, allUsers, editVisibility, deleteVisible, 
             <div className="modal-buttons">
                 {sessionUser.id === user.id && (
                     <div>
-                        {!visible && !deleteVisible && (
+                        {!editFormStatus[comment.id] && !visible && !deleteVisible && (
                             <button className="red-button" onClick={() => setVisible(true)}>
                                 Delete Comment
                             </button>
@@ -47,8 +47,8 @@ const OneComment = ({ comment, recipe, allUsers, editVisibility, deleteVisible, 
                 {sessionUser.id === comment.userId && (
                     <div>
                         {!visible && !editVisibility[comment.id] && (
-                            <div>
-                                <button className={!editFormStatus[comment.id] ? "green-button" : "red-button"} onClick={() => {
+                            <div className={!editFormStatus[comment.id] ? "" : "single-button"}>
+                                <button className={!editFormStatus[comment.id] ? "green-button" : "red-button long-button"} onClick={() => {
                                     editVisibility(comment.id)
                                     setDeleteVisible(false)
                                 }}>

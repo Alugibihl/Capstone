@@ -9,6 +9,7 @@ const EditCommentForm = ({ comment, recipe, setEditFormStatus, editFormStatus })
     const [errors, setErrors] = useState([])
     const [details, setDetails] = useState(comment.details)
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (details.trim().length >= 3 && details.trim().length <= 500) {
