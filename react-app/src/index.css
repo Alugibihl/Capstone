@@ -227,6 +227,7 @@ img{
     margin: 15px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: 700;
+
 }
 .comments-arr{
     border-bottom: 1px black solid;
@@ -262,4 +263,11 @@ img{
     border: none;
     font-weight: bold;
     font-size: larger;
+}
+/* .filler-space{
+    height: 134px;
+} */
+.border-base-comments{
+    margin-bottom: 10vh;
+    /* border: 3px green solid; */
 }
