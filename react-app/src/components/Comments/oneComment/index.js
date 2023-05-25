@@ -47,8 +47,8 @@ const OneComment = ({ comment, recipe, allUsers, editVisibility, deleteVisible, 
                 {sessionUser.id === comment.userId && (
                     <div>
                         {!visible && !editVisibility[comment.id] && (
-                            <div className={!editFormStatus[comment.id] ? "" : "single-button"}>
-                                <button className={!editFormStatus[comment.id] ? "green-button" : "red-button long-button"} onClick={() => {
+                            <div className={!editFormStatus[comment.id] ? "" : "hidden"}>
+                                <button className="green-button" onClick={() => {
                                     editVisibility(comment.id)
                                     setDeleteVisible(false)
                                 }}>

@@ -9,6 +9,10 @@ const EditCommentForm = ({ comment, recipe, setEditFormStatus, editFormStatus })
     const [errors, setErrors] = useState([])
     const [details, setDetails] = useState(comment.details)
 
+    const canceler = () => {
+        setDetails("")
+        setEditFormStatus(!editFormStatus)
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -60,7 +64,7 @@ const EditCommentForm = ({ comment, recipe, setEditFormStatus, editFormStatus })
                         </label>
                     </div>
                     <div className="modal-buttons">
-                        <button className="red-button" onClick={() => setDetails("")}>Clear</button>
+                        <button className="red-button" onClick={canceler}>Cancel</button>
                         <button className="green-button" type="submit">Edit Comment</button>
                     </div>
                 </form >
