@@ -25,6 +25,7 @@ function OneRecipe() {
         dispatch(getAllCategoriesThunk())
     }, [dispatch, id])
 
+
     if (!user) return <Redirect to={"/login"} />
     if (!recipe) return null
     if (!recipeOwner) return null
