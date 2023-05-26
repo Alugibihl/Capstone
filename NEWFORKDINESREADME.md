@@ -1,10 +1,10 @@
-# Query
+# The New Fork Dines
 
 Welcome to The New Fork Dines, a web application that allows you to create, manage, edit and delete Recipes an comments. You are able also able Comment on recipes and leave feed back for their creator. This README will provide you with the necessary information to get started with The New Fork Dines.
 
 # Technologies Used
 
-- Query uses a Flask/SQLAlchemy backend
+- The New Fork Dines uses a Flask/SQLAlchemy backend
 - React/Redux frontend
 - Alembic
 - Jinja2
@@ -13,7 +13,7 @@ Welcome to The New Fork Dines, a web application that allows you to create, mana
 
 # Getting Started
 
-To get started with Query, you will need to have Python 3.9.4 and Node.js installed on your machine. Once you have these installed, follow the steps below:
+To get started with The New Fork Dines, you will need to have Python 3.9.4 and Node.js installed on your machine. Once you have these installed, follow the steps below:
 
 1. Clone the repository:
 
