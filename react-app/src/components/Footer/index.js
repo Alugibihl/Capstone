@@ -11,7 +11,7 @@ function Footer({ isLoaded }) {
                     <div>
                         <a href="https://github.com/Alugibihl/The-New-Fork-Dines" rel="noopener noreferrer" target="_blank"><i class="fab fa-github"></i> Github Repo</a>
                     </div>
-                    <div>@2023 The New Fork Dines Company</div>
+                    <div>Created by Alexander Lugibihl @2023</div>
                     <div>
                         <a href="https://www.linkedin.com/in/alexander-lugibihl-2abb70169/" rel="noopener noreferrer" target="_blank"><i class="fab fa-linkedin"></i> Linkedin Profile</a>
                     </div>

@@ -22,11 +22,11 @@ class Recipe(db.Model):
     user = db.relationship("User", back_populates="recipes")
     recipe_comments = db.relationship("Recipe_comment", back_populates="recipe", cascade="all, delete-orphan")
 
-    # recipe_likes = db.relationship(
-    #     "User",
-    #     secondary=likes,
-    #     back_populates="user_likes"
-    # )
+    recipe_likes = db.relationship(
+        "User",
+        secondary=likes,
+        back_populates="user_likes"
+    )
 
     def to_dict(self):
         return {
@@ -36,6 +36,7 @@ class Recipe(db.Model):
             "userId": self.user_id,
             "image": self.image,
             "categoryId": self.category_id,
+            "likes": len(self.recipe_likes),
             "createdAt": str(self.created_at),
             "updatedAt": str(self.updated_at)
         }

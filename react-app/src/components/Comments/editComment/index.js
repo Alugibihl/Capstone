@@ -2,7 +2,6 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { editOneCommentThunk, getAllCommentsThunk } from "../../../store/comments"
 
-
 const EditCommentForm = ({ comment, recipe, setEditFormStatus, editFormStatus }) => {
     const dispatch = useDispatch()
     const currentUser = useSelector((state) => state.session.user)

@@ -4,6 +4,9 @@ const CREATE_RECIPE = "recipes/CREATE"
 const EDIT_RECIPE = "recipes/EDIT"
 const DELETE_RECIPE = "recipes/DELETE"
 const GET_USER_RECIPES = "recipes/CURRENT_USER"
+const GET_LIKES = "recipes/GET_LIKES"
+const ADD_LIKE = "recipes/ADD_LIKES"
+const DELETE_LIKE = "recipes/DELETE_LIKES"
 
 export const getAllRecipes = (recipes) => {
     return {
@@ -42,6 +45,27 @@ export const deleteRecipe = (recipeId) => {
         recipeId
     }
 }
+
+export const getLikes = (likes) => {
+    return {
+        type: GET_LIKES,
+        payload: likes,
+    };
+};
+
+export const addLike = (recipeId) => {
+    return {
+        type: ADD_LIKE,
+        recipeId,
+    };
+};
+
+export const deleteLike = (recipeId) => {
+    return {
+        type: DELETE_LIKE,
+        recipeId,
+    };
+};
 
 export const getAllRecipesThunk = () => async (dispatch) => {
     const response = await fetch("/api/recipes")
@@ -85,9 +109,6 @@ export const getRecipeByUser = () => async (dispatch) => {
 export const createRecipeThunk = (details) => async (dispatch) => {
     const response = await fetch("/api/recipes/new", {
         method: "POST",
-        // headers: {
-        //     "Content-Type": "application/json",
-        // },
         body:
             details
     });
@@ -146,48 +167,122 @@ export const deleteRecipeThunk = (recipeId) => async (dispatch) => {
         ];
     }
 }
+export const getRecipeLikesThunk = (id) => async (dispatch) => {
+    const response = await fetch(`/api/recipes/${id}/likes`);
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(getLikes(data.likes));
+        return response;
+    } else {
+        return ["An error occurred. Please try again."];
+    }
+};
+
+export const addLikeThunk = (recipeId) => async (dispatch) => {
+    const response = await fetch(`/api/recipes/${recipeId}/likes`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+    if (response.ok) {
+        // dispatch(addLike(recipeId));
+        getRecipeLikesThunk(recipeId)
+        return response;
+    } else {
+        return ["An error occurred. Please try again."];
+    }
+};
+
+export const deleteLikeThunk = (recipeId) => async (dispatch) => {
+    const response = await fetch(`/api/recipes/${recipeId}/likes`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+    if (response.ok) {
+        // dispatch(deleteLike(recipeId));
+        getRecipeLikesThunk(recipeId)
+        return response;
+    } else {
+        return ["An error occurred. Please try again."];
+    }
+};
+
 
 const initialState = {
-    recipes: {}
-}
+    recipes: {},
+};
 
 const RecipeReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
-        case GET_RECIPES: {
-            newState = { ...state }
-            newState.recipes = { ...action.payload }
-            return newState
-        }
-        case GET_ONE: {
-            newState = { ...state }
-            newState.recipes = { ...action.payload }
-            return newState
-        }
-        case CREATE_RECIPE: {
-            newState = { ...state, recipes: { ...state.recipes } }
-            console.log("this is to be looked at", action.payload);
-            newState.recipes[action.payload.id] = action.payload
-            return newState
-        }
-        case DELETE_RECIPE: {
-            newState = { ...state }
-            delete newState.recipes[action.recipeId]
-            return newState
-        }
-        case EDIT_RECIPE: {
-            newState = { ...state, recipes: { ...state.recipes } }
-            newState.recipes[action.details.id] = action.details
-            return newState
-        }
-        case GET_USER_RECIPES: {
-            newState = { ...state }
-            newState.recipes = { ...action.payload }
-            return newState
-        }
+        case GET_RECIPES:
+            newState = { ...state };
+            newState.recipes = { ...action.payload };
+            return newState;
+
+        case GET_ONE:
+            newState = { ...state };
+            newState.recipes = { ...action.payload };
+            return newState;
+
+        case CREATE_RECIPE:
+            newState = { ...state, recipes: { ...state.recipes } };
+            newState.recipes[action.payload.id] = action.payload;
+            return newState;
+
+        case DELETE_RECIPE:
+            newState = { ...state };
+            delete newState.recipes[action.recipeId];
+            return newState;
+
+        case EDIT_RECIPE:
+            newState = { ...state, recipes: { ...state.recipes } };
+            newState.recipes[action.details.id] = action.details;
+            return newState;
+
+        case GET_USER_RECIPES:
+            newState = { ...state };
+            newState.recipes = { ...action.payload };
+            return newState;
+
+        case GET_LIKES:
+            newState = { ...state };
+            newState.recipes = {
+                ...state.recipes, ...state.recipes.recipes,
+                [action.payload.recipeId]: {
+                    ...state.recipes[action.payload.recipeId],
+                    likes: action.payload.likes,
+                },
+            };
+            return newState;
+
+        case ADD_LIKE:
+            newState = { ...state };
+            newState.recipes = {
+                ...state.recipes, ...state.recipes.recipes,
+                [action.recipeId]: {
+                    ...state.recipes[action.recipeId],
+                    likes: state.recipes[action.recipeId].likes + 1,
+                },
+            };
+            return newState;
+
+        case DELETE_LIKE:
+            newState = { ...state };
+            newState.recipes = {
+                ...state.recipes, ...state.recipes.recipes,
+                [action.recipeId]: {
+                    ...state.recipes[action.recipeId],
+                    likes: state.recipes[action.recipeId].likes - 1,
+                },
+            };
+            return newState;
+
         default:
-            return state
+            return state;
     }
 }
-
 export default RecipeReducer

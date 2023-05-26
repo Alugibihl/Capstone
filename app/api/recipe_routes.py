@@ -37,8 +37,8 @@ def get_one_recipe(id):
     users = User.query.filter(User.id == recipe.user_id)
     user = [user.to_dict() for user in users]
     response = recipe.to_dict()
-    return {"recipe": response,
-            "users": user}
+    response["likes"] = len(recipe.recipe_likes)
+    return {"recipe": response, "users": user}
 
 @recipe_routes.route("/new", methods=["POST"])
 @login_required
@@ -46,14 +46,12 @@ def create_one_recipe():
     """Creates a recipe"""
     form = RecipeForm()
     form.category_id.choices = [(category.id, category.name) for category in Category.query.all()]
-    #provides choices to the form
     form['csrf_token'].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
         data = form.data
         image = data["image"]
         image.filename = get_unique_filename(image.filename)
         upload = upload_file_to_s3(image)
-        print("-----------", upload)
 
         if "url" not in upload:
             return {"errors": upload["errors"]}
@@ -65,11 +63,8 @@ def create_one_recipe():
             category_id = data["category_id"],
             image= upload["url"]
         )
-        print("-----_____----- upload[url]", image)
         db.session.add(new_recipe)
-        print("i am here!!! after add, before commit")
         db.session.commit()
-        print("i am here!!! after commit")
 
         return {
             "recipe": new_recipe.to_dict()
@@ -125,3 +120,44 @@ def edit_one_recipe(id):
     return {
         "errors": form.errors
     }
+
+@recipe_routes.route("/<int:id>/likes", methods=["POST"])
+@login_required
+def add_like(id):
+    recipe = Recipe.query.get(id)
+    user_id = current_user.id
+    likes = recipe.likes
+    # Check if the user has already liked the recipe
+    if recipe and user_id not in [user.id for user in recipe.recipe_likes]:
+        # Add the like to the recipe
+        recipe.recipe_likes.append(current_user)
+        db.session.commit()
+
+    # Return the updated number of likes for the recipe
+    likes = len(recipe.recipe_likes)
+    return {"likes": likes}
+
+
+
+@recipe_routes.route("/<int:id>/likes", methods=["DELETE"])
+@login_required
+def remove_like(id):
+    recipe = Recipe.query.get(id)
+    user_id = current_user.id
+
+    # Check if the user has liked the recipe
+    if recipe and user_id in [user.id for user in recipe.recipe_likes]:
+        # Remove the like from the recipe
+        recipe.recipe_likes.remove(current_user)
+        db.session.commit()
+
+    # Return the updated number of likes for the recipe
+    likes = len(recipe.recipe_likes)
+    return {"likes": likes}
+
+@recipe_routes.route("/<int:id>/likes")
+@login_required
+def get_likes(id):
+    recipe = Recipe.query.get(id)
+    likes = len(recipe.recipe_likes)
+    return {"likes": likes}
