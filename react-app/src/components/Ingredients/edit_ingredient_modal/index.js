@@ -98,7 +98,7 @@ const EditIngredientModal = ({ ingredient }) => {
                     </div>
                     <div className="modal-buttons">
                         <button className="red-button" onClick={closeModal}>Cancel</button>
-                        <button className="green-button" type="submit">Edit Recipe</button>
+                        <button className="green-button" type="submit">Edit Ingredient</button>
                     </div>
                 </form >
             </div>
