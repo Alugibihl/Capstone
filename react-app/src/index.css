@@ -222,7 +222,13 @@ img{
     background-position: center;
     background-size:cover;
     overflow: auto;
+    transition: transform 0.5s ease-in-out;
+    transform: translateX(100%);
 }
+.slider {
+    transform: translateX(0%);
+  }
+
 .comments-modal-text{
     margin: 15px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;

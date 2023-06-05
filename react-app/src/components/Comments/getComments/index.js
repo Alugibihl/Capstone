@@ -7,6 +7,7 @@ import EditCommentForm from "../editComment"
 import { useModal } from "../../../context/Modal"
 
 const CommentsByRecipe = ({ recipe }) => {
+    const [isOpen, setIsOpen] = useState(false)
     const dispatch = useDispatch()
     const recipeComments = useSelector(state => state.comments.comments.comment)
     const allUsers = useSelector(state => state.comments.comments.user)
@@ -18,6 +19,7 @@ const CommentsByRecipe = ({ recipe }) => {
 
     useEffect(() => {
         dispatch(getAllCommentsThunk(recipe.id))
+        setIsOpen(true)
     }, [dispatch, recipe])
 
     const editVisibility = (commentId) => {
@@ -36,7 +38,7 @@ const CommentsByRecipe = ({ recipe }) => {
     if (!recipeComments) return null
     if (!allUsers) return null
     return (
-        <div className="comments-modal-container wrap-break">
+        <div className={`comments-modal-container wrap-break ${isOpen ? "slider" : ""}`}>
             <div className="border-base-comments">
                 <div className="comments-modal-text">
                     <div className="comment-page-title">

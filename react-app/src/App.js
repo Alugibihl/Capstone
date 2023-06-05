@@ -47,6 +47,9 @@ function App() {
           <Route exact path={["/", "/login", "/signup"]}>
             <SplashPage />
           </Route>
+          <Route>
+            404 Page Not Found!
+          </Route>
         </Switch>
       )}
       <Footer isLoaded={isLoaded} />
