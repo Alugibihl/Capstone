@@ -39,7 +39,7 @@ const CreateIngredientModal = () => {
             }
         } else {
             setErrors([
-                "Ingredients must be at least 10 characters.",
+                "Ingredient Description must be at least 10 characters.",
             ]);
 
         }
