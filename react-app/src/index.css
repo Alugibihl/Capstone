@@ -107,7 +107,7 @@ button {
 .green-button {
     background-color: antiquewhite;
     color: darkgreen;
-    font: bold;
+    font-weight: bold;
     border-radius: 10px;
 }
 
@@ -122,10 +122,12 @@ button {
     color: darkblue;
     border-radius: 10px;
     min-width: 4vw;
+    font-weight: bold;
 }
 
 .blue-button button {
     text-align: center;
+    padding: 3%;
 }
 
 .blue-button:hover {
