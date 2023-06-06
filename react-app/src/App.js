@@ -12,6 +12,7 @@ import SplashPage from "./components/SplashPage";
 import UserRecipes from "./components/Recipes/RecipesByUser";
 import UserIngredients from "./components/Ingredients/IngredientsByUser";
 import { getAllCategoriesThunk } from "./store/category";
+import NotFound from "./components/PageNotFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,7 +49,7 @@ function App() {
             <SplashPage />
           </Route>
           <Route>
-            404 Page Not Found!
+            <NotFound />
           </Route>
         </Switch>
       )}
