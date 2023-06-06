@@ -9,40 +9,52 @@
   background-color: white;
   height: 101vh;
 }
+
 .hidden {
   display: none;
 }
-.button-sort{
+
+.button-sort {
   display: flex;
   flex-direction: row;
   gap: 10px;
 }
-.create-buttons{
+
+.create-buttons {
   display: flex;
   gap: 4px;
   flex-direction: column;
+  align-items: center;
+  /* width: 20vw; */
+  box-sizing: border-box;
+  /* border: red solid 1px; */
 }
-.title{
+
+.title {
   display: flex;
   justify-content: center;
   width: 100%;
 }
+
 .today {
   display: flex;
   width: 150px;
 }
-.borders{
+
+.borders {
   margin-left: 15px;
   margin-right: 15px;
 }
-.exit-button{
+
+.exit-button {
   font-size: larger;
   font-weight: bolder;
   position: relative;
   background: none;
   border: none;
 }
-.demo-exit{
+
+.demo-exit {
   display: flex;
   justify-content: space-between;
 
