@@ -1,11 +1,12 @@
-.splash-page-container{
+.splash-page-container {
     display: flex;
     height: 80vh;
     flex-direction: column;
     align-items: center;
     margin: 10px 15% 10px 15%;
 }
-.signup-container{
+
+.signup-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -14,7 +15,7 @@
     /* border: 1px orange solid; */
 }
 
-.login-container{
+.login-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -22,33 +23,41 @@
     margin: 0px 15% 0px 15%;
     /* border: indigo 1px solid; */
 }
-.signup-container input{
+
+.signup-container input {
     width: 100%;
     margin-bottom: 5px;
 }
-.login-container input{
+
+.login-container input {
     width: 100%;
     margin-bottom: 5px;
 }
-.form-holder{
+
+.form-holder {
     display: flex;
     flex-direction: row;
 }
-.half-split{
+
+.half-split {
     width: 50%;
     height: 80%;
 }
-.splash-title{
+
+.splash-title {
     margin-top: 70px;
 }
-.splash-message{
+
+.splash-message {
     margin-bottom: 0px;
 }
-.form-title{
+
+.form-title {
     width: 100%;
     margin-bottom: -10px;
 }
-.splash-background{
+
+.splash-background {
     background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F2b%2F33%2F2d%2F2b332d58330366179d7f046943ce1584.jpg&f=1&nofb=1&ipt=c0e3c398b7fb6acb2319240aca469c41d3a8606bfef6f12a9ebbd02c3198c0d8&ipo=images");
     background-position: center;
     background-size: cover;
