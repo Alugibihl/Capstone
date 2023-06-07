@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
     dispatch(getAllCategoriesThunk())
-  }, [dispatch]);
+  }, [dispatch])
 
   return (
     <>
