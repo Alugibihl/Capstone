@@ -16,7 +16,6 @@ To see how it should look, you can see it by going to <a target="_blank" href="h
 - AWS
 
 ![Screenshot 2023-06-02 130250](https://github.com/Alugibihl/The-New-Fork-Dines/assets/111261195/179080a1-9aae-4f93-99bc-7b43df5afe15)
-![commenttab](https://github.com/Alugibihl/The-New-Fork-Dines/assets/111261195/b85f8c2e-4ec1-4829-9684-bcf8924e1560)
 
 
 # Getting Started
@@ -102,7 +101,7 @@ The New Fork Dines is currently in development and does not have is does not inc
 15. Delete any `Recipe` along with all the associated `comments`
 
 ![commenttab](https://github.com/Alugibihl/The-New-Fork-Dines/assets/111261195/5fc50f93-508c-4d5c-ab7a-d13071b2f4a8)
-
+   
 # Contributors
 
 The following individuals are responsible for the creation of this application:
