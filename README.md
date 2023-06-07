@@ -2,6 +2,9 @@
 
 Welcome to The New Fork Dines, a web application that allows you to create, manage, edit and delete Recipes an comments. You are able also able Comment on recipes and leave feed back for their creator. This README will provide you with the necessary information to get started with The New Fork Dines.
 
+![Screenshot 2023-06-02 130305](https://github.com/Alugibihl/The-New-Fork-Dines/assets/111261195/8ae1f890-dc04-4338-b202-a35da3cfbaee)
+
+
 # Technologies Used
 
 - The New Fork Dines uses a Flask/SQLAlchemy backend
@@ -10,6 +13,9 @@ Welcome to The New Fork Dines, a web application that allows you to create, mana
 - Jinja2
 - Boto3
 - AWS
+
+![Screenshot 2023-06-02 130250](https://github.com/Alugibihl/The-New-Fork-Dines/assets/111261195/179080a1-9aae-4f93-99bc-7b43df5afe15)
+
 
 # Getting Started
 
@@ -55,9 +61,13 @@ To get started with The New Fork Dines, you will need to have Python 3.9.4 and N
 
 8. The frontend will be accessible at http://localhost:3000/
 
-# Navigating Query
+![Screenshot 2023-06-02 130333](https://github.com/Alugibihl/The-New-Fork-Dines/assets/111261195/011cc519-f24b-442c-b2e1-8463e181f390)
 
-Query is currently in development and does not have is does not include all the functionality the contributors intend to add. The functions that query currently have are:
+![Screenshot 2023-06-02 130321](https://github.com/Alugibihl/The-New-Fork-Dines/assets/111261195/6f81ce80-822d-420a-8bdc-4b969bffe50d)
+
+# Navigating The New Fork Dines
+
+The New Fork Dines is currently in development and does not have is does not include all the functionality the contributors intend to add. The functions that the New Fork Times currently has:
 
 1. `LogIn` using any of the included demo user accounts
 
