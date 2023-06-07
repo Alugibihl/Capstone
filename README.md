@@ -1,6 +1,7 @@
 # The New Fork Dines
 
 Welcome to The New Fork Dines, a web application that allows you to create, manage, edit and delete Recipes an comments. You are able also able Comment on recipes and leave feed back for their creator. This README will provide you with the necessary information to get started with The New Fork Dines.
+To see how it should look, you can see it by going to <a target="_blank" href="https://the-new-fork-dines.onrender.com/">The Live Site</a>
 
 ![Screenshot 2023-06-02 130305](https://github.com/Alugibihl/The-New-Fork-Dines/assets/111261195/8ae1f890-dc04-4338-b202-a35da3cfbaee)
 
@@ -15,6 +16,7 @@ Welcome to The New Fork Dines, a web application that allows you to create, mana
 - AWS
 
 ![Screenshot 2023-06-02 130250](https://github.com/Alugibihl/The-New-Fork-Dines/assets/111261195/179080a1-9aae-4f93-99bc-7b43df5afe15)
+![commenttab](https://github.com/Alugibihl/The-New-Fork-Dines/assets/111261195/b85f8c2e-4ec1-4829-9684-bcf8924e1560)
 
 
 # Getting Started
@@ -98,6 +100,8 @@ The New Fork Dines is currently in development and does not have is does not inc
 14. Edit any `Recipes` created by the user
 
 15. Delete any `Recipe` along with all the associated `comments`
+
+![commenttab](https://github.com/Alugibihl/The-New-Fork-Dines/assets/111261195/5fc50f93-508c-4d5c-ab7a-d13071b2f4a8)
 
 # Contributors
 
