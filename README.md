@@ -5,7 +5,6 @@ To see how it should look, you can see it by going to <a href="https://the-new-f
 
 ![Screenshot 2023-06-02 130305](https://github.com/Alugibihl/The-New-Fork-Dines/assets/111261195/8ae1f890-dc04-4338-b202-a35da3cfbaee)
 
-
 ### :hammer_and_wrench: Technologies Used :
 
 <div align="center">
@@ -22,9 +21,10 @@ To see how it should look, you can see it by going to <a href="https://the-new-f
   <img src="https://github.com/devicons/devicon/blob/master/icons/sqlalchemy/sqlalchemy-original.svg" title="SQLA" alt="sqla" height="40"/>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original-wordmark.svg" title="Git" **alt="Git" width="40" height="40"/>
 </div>
-              
 
-![Screenshot 2023-06-02 130250](https://github.com/Alugibihl/The-New-Fork-Dines/assets/111261195/179080a1-9aae-4f93-99bc-7b43df5afe15)
+
+---
+
 
 
 # Getting Started
