@@ -11,4 +11,3 @@ class RecipeForm(FlaskForm):
     user_id = IntegerField("user_id", validators=[DataRequired()])
     category_id = SelectField("category_id", choices=[])
     image = FileField("image", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
-    # image = StringField("image", validators=[URL()])

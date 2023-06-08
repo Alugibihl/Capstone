@@ -1,7 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getIngredientsByUser } from "../../../store/ingredients"
-import { Redirect } from "react-router-dom"
 import OpenModalButton from "../../OpenModalButton"
 import CreateIngredientModal from "../add_ingredient_modal"
 import UserIngredientDisplay from "../user_ingredient_display/userIngredientDisplay"
@@ -11,15 +10,13 @@ import UserIngredientDisplay from "../user_ingredient_display/userIngredientDisp
 const UserIngredients = () => {
     const dispatch = useDispatch()
     const ingredients = useSelector(state => state.ingredients.ingredients.ingredients)
-    const sessionUser = useSelector(state => state.session.user)
-    console.log("___ingredients___", ingredients);
+    // console.log("___ingredients___", ingredients);
 
 
     useEffect(() => {
         dispatch(getIngredientsByUser())
     }, [dispatch])
 
-    if (!sessionUser) return <Redirect to="/login" />
     if (!ingredients) return null
 
     return (

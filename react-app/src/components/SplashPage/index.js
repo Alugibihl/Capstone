@@ -17,7 +17,6 @@ function SplashPage() {
     }
 
     return (
-
         <div className="splash-background">
             <div className="splash-page-container">
                 <h1 className="splash-title">The New Fork Dines</h1>
@@ -39,7 +38,6 @@ function SplashPage() {
                 </div>
             </div>
         </div >
-
     )
 }
 

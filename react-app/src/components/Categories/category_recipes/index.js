@@ -4,19 +4,17 @@ import { getAllCategoriesThunk, getOneCategoryThunk } from "../../../store/categ
 import { useParams } from "react-router-dom";
 import RecipeDisplay from "../../Recipes/allrecipes";
 import { getAllRecipesThunk } from "../../../store/recipes";
+import NotFound from "../../PageNotFound";
 
 function OneCategory() {
     const dispatch = useDispatch()
     const { id } = useParams()
-    // const user = useSelector(state => state.session.user)
     const categories = useSelector(state => state.recipes.recipes.categories)
     const category = categories?.find(category => category.id === Number(id))
     const recipes = useSelector(state => state.recipes.recipes.recipes)
     const recArr = []
 
     useEffect(() => {
-        // dispatch(getOneCategoryThunk(id))
-        // dispatch(getAllCategoriesThunk())
         dispatch(getAllRecipesThunk())
     }, [dispatch, id])
 
@@ -25,9 +23,7 @@ function OneCategory() {
         if (recipe.categoryId === category.id) { recArr.push(recipe) }
         return recArr
     })
-    if (!categoryRecipes) return null
-    console.log("categories list", category, id, categoryRecipes);
-
+    if (!categoryRecipes) return <NotFound />
 
     return (
         <div className="single-item-container">

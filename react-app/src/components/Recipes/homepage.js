@@ -11,7 +11,6 @@ const HomePage = () => {
     const ingredients = useSelector(state => state.recipes.recipes.ingredients)
     const categories = useSelector(state => state.recipes.recipes.categories)
     const dispatch = useDispatch()
-    console.log("-------------", recipes, ingredients, categories);
 
     useEffect(() => {
         dispatch(getAllRecipesThunk())

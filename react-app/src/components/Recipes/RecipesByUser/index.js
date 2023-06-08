@@ -2,23 +2,21 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getRecipeByUser } from "../../../store/recipes"
 import RecipeDisplay from "../allrecipes"
-import { Redirect } from "react-router-dom"
 import OpenModalButton from "../../OpenModalButton"
 import CreateRecipeModal from "../createRecipes"
-
+import NotFound from "../../PageNotFound"
 
 const UserRecipes = () => {
     const dispatch = useDispatch()
-    const sessionUser = useSelector((state) => state.session.user);
+    // const sessionUser = useSelector((state) => state.session.user);
     const recipes = useSelector(state => state.recipes.recipes.recipes)
-    console.log("___recipes___", recipes);
+    // console.log("___recipes___", recipes);
 
     useEffect(() => {
         dispatch(getRecipeByUser())
     }, [dispatch])
 
-    if (!sessionUser) return <Redirect to="/login" />
-    if (!recipes) return null
+    if (!recipes) return <NotFound />
     return (
         <div className="my-posts-container">
             <div className="my-posts">
