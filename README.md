@@ -120,28 +120,28 @@ The New Fork Dines is currently in development and does not have is does not inc
 15. Delete any `Recipe` along with all the associated `comments`
 
 ### API Endpoints
-| HTTP Verbs | Endpoints | Action |
-| --- | --- | --- |
-| POST | /api/user/signup | To sign up a new user account |
-| POST | /api/user/login | To login an existing user account |
-| POST | /api/recipes/new | To create a new recipe |
-| POST | /api/ingredients/new | To create a new ingredients |
-| POST | /api/comments/new | To create a new comment |
-| GET | /api/recipes/:id | To retrieve one recipe |
-| GET | /api/recipes | To retrieve all questions |
-| GET | /api/recipes/current | To retrieve all of the current users recipes |
+| HTTP Verbs | Endpoints | Action | Return Value |
+| --- | --- | --- | --- |
+| POST | /api/user/signup | To sign up a new user account | { id: #, username: '...', email: '...', password: '...' } as JSON |
+| POST | /api/user/login | To login an existing user account | { id: #, username: '...', email: '...', password: '...' } as JSON |
+| POST | /api/recipes/new | To create a new recipe | { id: #, details: '...', name: '...', user_id: #, category_id: #, image: '...' } as JSON |
+| POST | /api/ingredients/new | To create a new ingredients | { id: #, details: '...', name: '...', user_id: #, image: '...' } as JSON |
+| POST | /api/comments/new | To create a new comment | { id: #, details: '...', recipe_id: #, user_id: # } as JSON |
+| GET | /api/recipes/:id | To retrieve one recipe |  { id: #, details: '...', name: '...', user_id: #, category_id: #, image: '...' } as JSON |
+| GET | /api/recipes | To retrieve all questions | { id: #, details: '...', name: '...', user_id: #, category_id: #, image: '...' } as a list as JSON |
+| GET | /api/recipes/current | To retrieve all of the current users recipes |  { id: #, details: '...', name: '...', user_id: #, category_id: #, image: '...' } as a list as JSON |
 | GET | /api/ingredients/current | To retrieve all of the current users ingredients |
-| GET | /api/ingredients | To retrieve all ingredients |
-| GET | /api/ingredients/:id | To retrieve one ingredient |
-| GET | /api/comments/:id | To retrieve one comment |
-| GET | /api/categories/:id | To retrieve all recipes by category |
-| GET | /api/categories | To retrieve all categories |
-| PUT | /api/recipes/:id | To edit the details of a single recipe |
-| PUT | /api/ingredients/:id | To edit the details of a ingredients |
-| PUT | /api/comments/:id | To edit the details of a comments |
-| DELETE | /api/recipes/:id  | To delete a single recipe |
-| DELETE | /api/ingredients/:id  | To delete a single ingredients |
-| DELETE | /api/comments/:id  | To delete a single comments |
+| GET | /api/ingredients | To retrieve all ingredients | { id: #, details: '...', name: '...', user_id: #, image: '...' } as a list of JSON objects |
+| GET | /api/ingredients/:id | To retrieve one ingredient | { id: #, details: '...', name: '...', user_id: #, image: '...' } as JSON |
+| GET | /api/comments/:id | To retrieve one comment | { id: #, details: '...', recipe_id: #, user_id: # } as JSON |
+| GET | /api/categories/:id | To retrieve all recipes in one category |  { id: #, details: '...', name: '...', user_id: #, category_id: #, image: '...' } as a list as JSON |
+| GET | /api/categories | To retrieve all categories | { id: #, name: '...', description: '...' } as JSON |
+| PUT | /api/recipes/:id | To edit the details of a single recipe |  { id: #, details: '...', name: '...', user_id: #, category_id: #, image: '...' } as JSON |
+| PUT | /api/ingredients/:id | To edit the details of a ingredients |  { id: #, details: '...', name: '...', user_id: #, image: '...' } as JSON |
+| PUT | /api/comments/:id | To edit the details of a comments | { id: #, details: '...', recipe_id: #, user_id: # } as JSON |
+| DELETE | /api/recipes/:id  | To delete a single recipe | None|
+| DELETE | /api/ingredients/:id  | To delete a single ingredients | None |
+| DELETE | /api/comments/:id  | To delete a single comments | None |
    
 # Contributors
 
