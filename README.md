@@ -127,7 +127,7 @@ The New Fork Dines is currently in development and does not have is does not inc
 | POST | /api/recipes/new | To create a new recipe |
 | POST | /api/ingredients/new | To create a new ingredients |
 | POST | /api/comments/new | To create a new comment |
-| GET | /api/recipes/:id | To retrieve recipe |
+| GET | /api/recipes/:id | To retrieve one recipe |
 | GET | /api/recipes | To retrieve all questions |
 | GET | /api/recipes/current | To retrieve all of the current users recipes |
 | GET | /api/ingredients/current | To retrieve all of the current users ingredients |
