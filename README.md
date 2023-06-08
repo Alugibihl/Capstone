@@ -127,7 +127,7 @@ The New Fork Dines is currently in development and does not have is does not inc
 | POST | /api/recipes/new | To create a new recipe |
 | POST | /api/ingredients/new | To create a new ingredients |
 | POST | /api/comments/new | To create a new comment |
-| GET | /api/recipes/:id | To retrieve recipe |
+| GET | /api/recipes/:id | To retrieve one recipe |
 | GET | /api/recipes | To retrieve all questions |
 | GET | /api/recipes/current | To retrieve all of the current users recipes |
 | GET | /api/ingredients/current | To retrieve all of the current users ingredients |
@@ -136,7 +136,7 @@ The New Fork Dines is currently in development and does not have is does not inc
 | GET | /api/comments/:id | To retrieve one comment |
 | GET | /api/categories/:id | To retrieve all recipes by category |
 | GET | /api/categories | To retrieve all categories |
-| PUT | /api/recipes/:id | To edit the details of a single |
+| PUT | /api/recipes/:id | To edit the details of a single recipe |
 | PUT | /api/ingredients/:id | To edit the details of a ingredients |
 | PUT | /api/comments/:id | To edit the details of a comments |
 | DELETE | /api/recipes/:id  | To delete a single recipe |
