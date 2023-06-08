@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { getOneIngredientThunk } from "../../../store/ingredients";
 import DeleteIngredientModal from "../delete_ingredient_modal";
 import OpenModalButton from "../../OpenModalButton";
 import EditIngredientModal from "../edit_ingredient_modal";
-
+import NotFound from "../../PageNotFound";
 
 function OneIngredient() {
     const dispatch = useDispatch()
@@ -18,8 +18,7 @@ function OneIngredient() {
         dispatch(getOneIngredientThunk(id))
     }, [dispatch, id])
 
-    if (!user) return <Redirect to={"/login"} />
-    if (!ingredient) return null
+    if (!ingredient) return <NotFound />
     if (!ingredientOwner) return null
     return (
         <div className="single-item-container">

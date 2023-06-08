@@ -13,6 +13,7 @@ import UserRecipes from "./components/Recipes/RecipesByUser";
 import UserIngredients from "./components/Ingredients/IngredientsByUser";
 import { getAllCategoriesThunk } from "./store/category";
 import NotFound from "./components/PageNotFound";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,16 +29,24 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path={"/recipes/current"}>
-            <UserRecipes />
+            <ProtectedRoute>
+              <UserRecipes />
+            </ProtectedRoute>
           </Route>
           <Route exact path={"/recipes/:id"}>
-            <OneRecipe />
+            <ProtectedRoute>
+              <OneRecipe />
+            </ProtectedRoute>
           </Route>
           <Route exact path={"/ingredients/current"}>
-            <UserIngredients />
+            <ProtectedRoute>
+              <UserIngredients />
+            </ProtectedRoute>
           </Route>
           <Route exact path={"/ingredients/:id"}>
-            <OneIngredient />
+            <ProtectedRoute>
+              <OneIngredient />
+            </ProtectedRoute>
           </Route>
           <Route exact path={"/categories/:id"}>
             <OneCategory />

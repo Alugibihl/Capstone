@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { addLikeThunk, deleteLikeThunk, getLikes, getOneRecipeThunk, getRecipeLikesThunk } from "../../../store/recipes";
 import { getAllCategoriesThunk } from "../../../store/category";
@@ -7,6 +7,7 @@ import OpenModalButton from "../../OpenModalButton";
 import DeleteRecipeModal from "../deleteRecipeModal";
 import EditRecipeModal from "../editRecipeModal";
 import CommentsByRecipe from "../../Comments/getComments";
+import NotFound from "../../PageNotFound";
 
 function OneRecipe() {
     const dispatch = useDispatch()
@@ -18,16 +19,14 @@ function OneRecipe() {
     const recipeOwner = useSelector(state => state.recipes.recipes.users)
     const [liked, setLiked] = useState(false)
     const [numLikes, setNumLikes] = useState(recipe?.likes ? recipe.likes : null)
-    console.log("track recipes", recipe, "likes", recipe?.likes);
+    // console.log("track recipes", recipe, "likes", recipe?.likes);
 
     useEffect(() => {
         dispatch(getOneRecipeThunk(id))
         dispatch(getAllCategoriesThunk())
     }, [dispatch, id])
 
-
-    if (!user) return <Redirect to={"/login"} />
-    if (!recipe) return null
+    if (!recipe) return <NotFound />
     if (!recipeOwner) return null
     if (!category) return null
 
