@@ -34,10 +34,12 @@ def get_all_recipes():
 def get_one_recipe(id):
     """Query for one recipe"""
     recipe = Recipe.query.get(id)
-    users = User.query.filter(User.id == recipe.user_id)
+    users = User.query.filter(User.id == recipe.user_id).all()
+    print("______________users____________-----", users)
     user = [user.to_dict() for user in users]
+    print("______________user____________-----", user)
     response = recipe.to_dict()
-    response["likes"] = len(recipe.recipe_likes)
+    response["likes"] = recipe.recipe_likes
     return {"recipe": response, "users": user}
 
 @recipe_routes.route("/new", methods=["POST"])
@@ -134,7 +136,7 @@ def add_like(id):
         db.session.commit()
 
     # Return the updated number of likes for the recipe
-    likes = len(recipe.recipe_likes)
+    likes = recipe.recipe_likes
     return {"likes": likes}
 
 
@@ -151,12 +153,12 @@ def remove_like(id):
         db.session.commit()
 
     # Return the updated number of likes for the recipe
-    likes = len(recipe.recipe_likes)
+    likes = recipe.recipe_likes
     return {"likes": likes}
 
 @recipe_routes.route("/<int:id>/likes")
 @login_required
 def get_likes(id):
     recipe = Recipe.query.get(id)
-    likes = len(recipe.recipe_likes)
+    likes = recipe.recipe_likes
     return {"likes": likes}

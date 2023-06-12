@@ -177,16 +177,19 @@ export const getRecipeLikesThunk = (id) => async (dispatch) => {
     }
 };
 
-export const addLikeThunk = (recipeId) => async (dispatch) => {
+export const addLikeThunk = (data) => async (dispatch) => {
+    const { recipeId } = data
+    console.log("in add like thunk", recipeId);
     const response = await fetch(`/api/recipes/${recipeId}/likes`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
+
     });
     if (response.ok) {
-        // dispatch(addLike(recipeId));
-        getRecipeLikesThunk(recipeId)
+        dispatch(addLike(recipeId));
+        // getRecipeLikesThunk(recipeId)
         return response;
     } else {
         return ["An error occurred. Please try again."];
@@ -201,8 +204,8 @@ export const deleteLikeThunk = (recipeId) => async (dispatch) => {
         },
     });
     if (response.ok) {
-        // dispatch(deleteLike(recipeId));
-        getRecipeLikesThunk(recipeId)
+        dispatch(deleteLike(recipeId));
+        // getRecipeLikesThunk(recipeId)
         return response;
     } else {
         return ["An error occurred. Please try again."];
@@ -264,7 +267,7 @@ const RecipeReducer = (state = initialState, action) => {
                 ...state.recipes, ...state.recipes.recipes,
                 [action.recipeId]: {
                     ...state.recipes[action.recipeId],
-                    likes: state.recipes[action.recipeId].likes + 1,
+                    likes: state.recipes[action.recipeId].likes,
                 },
             };
             return newState;
@@ -275,7 +278,7 @@ const RecipeReducer = (state = initialState, action) => {
                 ...state.recipes, ...state.recipes.recipes,
                 [action.recipeId]: {
                     ...state.recipes[action.recipeId],
-                    likes: state.recipes[action.recipeId].likes - 1,
+                    likes: state.recipes[action.recipeId].likes,
                 },
             };
             return newState;
