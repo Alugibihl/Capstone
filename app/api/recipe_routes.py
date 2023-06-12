@@ -39,7 +39,7 @@ def get_one_recipe(id):
     user = [user.to_dict() for user in users]
     print("______________user____________-----", user)
     response = recipe.to_dict()
-    response["likes"] = recipe.recipe_likes
+    response["likes"] = [recipe_likes.to_dict() for recipe_likes in recipe.recipe_likes]
     return {"recipe": response, "users": user}
 
 @recipe_routes.route("/new", methods=["POST"])
