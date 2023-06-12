@@ -137,7 +137,6 @@ export const editOneRecipeThunk = (info) => async (dispatch) => {
     });
     if (response.ok) {
         const data = await response.json();
-        console.log("----- data in edit thunk---", data);
         dispatch(editRecipe(data));
         return data
     } else if (response.status < 500) {
