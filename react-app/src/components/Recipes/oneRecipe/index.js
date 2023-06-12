@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { addLikeThunk, deleteLikeThunk, getLikes, getOneRecipeThunk, getRecipeLikesThunk } from "../../../store/recipes";
+import { addLikeThunk, deleteLikeThunk, getOneRecipeThunk, getRecipeLikesThunk } from "../../../store/recipes";
 import { getAllCategoriesThunk } from "../../../store/category";
 import OpenModalButton from "../../OpenModalButton";
 import DeleteRecipeModal from "../deleteRecipeModal";
@@ -19,7 +19,7 @@ function OneRecipe() {
     const recipeOwner = useSelector(state => state.recipes.recipes.users)
     const [liked, setLiked] = useState(false)
     const [numLikes, setNumLikes] = useState(recipe?.likes ? recipe.likes : null)
-    // console.log("track recipes", recipe, "likes", recipe?.likes);
+    console.log("track recipes", recipe, "likes", recipe?.likes);
 
     useEffect(() => {
         dispatch(getOneRecipeThunk(id))
@@ -49,13 +49,13 @@ function OneRecipe() {
             <img style={{ objectFit: "cover" }} src={recipe.image} alt={recipe.name}></img>
             <div className="name-holder wrap-break"><h2 >{recipe.name}</h2><div className="wrap-break poster">Cuisine Category: {myCategory.name}</div>
                 <div>
-                    {/* <div>{numLikes} Likes</div>
+                    <div>{numLikes} Likes</div>
                     <div className="post-box">
                         {liked ?
                             <button className="nav-icon" style={{ color: 'red' }} onClick={removeLike}><i class="fas fa-regular fa-thumbs-down"></i></button> :
                             <button className="nav-icon" onClick={addLike}><i class="fas fa-regular fa-thumbs-up"></i></button>
                         }
-                    </div> */}
+                    </div>
                     <div>
                         <OpenModalButton
                             buttonText={<i class="fa fa-regular fa-comment"></i>}

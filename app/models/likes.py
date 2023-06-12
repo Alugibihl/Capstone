@@ -1,4 +1,6 @@
 from .db import db
+
+
 likes = db.Table(
     "likes",
     db.Model.metadata,
