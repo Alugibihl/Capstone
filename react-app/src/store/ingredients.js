@@ -71,7 +71,7 @@ export const getOneIngredientThunk = (id) => async (dispatch) => {
 }
 
 export const createIngredientThunk = (details) => async (dispatch) => {
-    console.log("create thunk details", details);
+    // console.log("create thunk details", details);
     const response = await fetch("/api/ingredients/new", {
         method: "POST",
         // headers: {
@@ -110,14 +110,14 @@ export const getIngredientsByUser = () => async (dispatch) => {
 
 export const editOneIngredientThunk = (info) => async (dispatch) => {
     const { formData, ingredient } = info
-    console.log('details in Edit Thunk', ingredient);
+    // console.log('details in Edit Thunk', ingredient);
     const response = await fetch(`/api/ingredients/${ingredient.id}`, {
         method: "PUT",
         body: formData
     });
     if (response.ok) {
         const data = await response.json();
-        console.log("----- data in edit thunk---", data);
+        // console.log("----- data in edit thunk---", data);
         dispatch(editIngredient(data));
         // dispatch(getOneIngredient(data.id))
         return data
@@ -133,7 +133,7 @@ export const editOneIngredientThunk = (info) => async (dispatch) => {
     }
 }
 export const deleteIngredientThunk = (ingredientId) => async (dispatch) => {
-    console.log("delete thunk", ingredientId);
+    // console.log("delete thunk", ingredientId);
     const response = await fetch(`/api/ingredients/${ingredientId}`, {
         method: "DELETE",
         headers: {
@@ -169,7 +169,7 @@ const IngredientReducer = (state = initialState, action) => {
             return newState
         }
         case CREATE_INGREDIENT: {
-            console.log("this is to be looked at", action.payload);
+            // console.log("this is to be looked at", action.payload);
             newState = { ...state, ingredients: { ...state.ingredients } }
             newState.ingredients[action.payload.id] = action.payload
             return newState
@@ -185,7 +185,7 @@ const IngredientReducer = (state = initialState, action) => {
                 ...newState.ingredients[action.details.id],
                 ...action.details,
             };
-            console.log("this is new state", newState);
+            // console.log("this is new state", newState);
             return newState;
         }
         case GET_USER_INGREDIENTS: {

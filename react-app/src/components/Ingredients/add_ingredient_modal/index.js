@@ -32,7 +32,7 @@ const CreateIngredientModal = () => {
 
                 const data = await dispatch(createIngredientThunk(formData));
                 if (data) {
-                    console.log("data", data);
+                    // console.log("data", data);
                     closeModal();
                     history.push(`/ingredients/${data.ingredient.id}`)
                 }

@@ -32,7 +32,7 @@ const CommentsByRecipe = ({ recipe }) => {
         setEditFormStatus(currentStatus);
         setSelectedCommentId(commentId);
         setDeleteVisible(false);
-        console.log("statuses", editFormStatus, deleteVisible);
+        // console.log("statuses", editFormStatus, deleteVisible);
     };
 
     if (!recipeComments) return null

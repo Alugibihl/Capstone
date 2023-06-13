@@ -17,7 +17,7 @@ const CreateRecipeModal = () => {
     const [name, setName] = useState("")
     const currentUser = useSelector((state) => state.session.user)
     const { closeModal } = useModal()
-    console.log("choices list", choicesArr);
+    // console.log("choices list", choicesArr);
 
     useEffect(() => {
         dispatch(getAllCategoriesThunk())
@@ -40,7 +40,7 @@ const CreateRecipeModal = () => {
                 const data = await dispatch(createRecipeThunk(formData));
                 if (data) {
                     closeModal();
-                    console.log("---- data---", data);
+                    // console.log("---- data---", data);
                     history.push(`/recipes/${data.recipe.id}`)
                 }
             }

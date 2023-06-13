@@ -19,17 +19,17 @@ def get_all_recipes_by_user():
 def get_all_recipes():
     """Query for all recipes"""
     all_recipes = Recipe.query.all()
-    print("all-----------", all_recipes)
+    # print("all-----------", all_recipes)
     all_ingredients = Ingredient.query.all()
-    print("all ingredients", all_ingredients)
+    # print("all ingredients", all_ingredients)
     all_categories = Category.query.all()
-    print("all_categories", all_categories)
+    # print("all_categories", all_categories)
     cats = [category.to_dict() for category in all_categories]
-    print("cats", cats)
+    # print("cats", cats)
     ing_res = [ingredient.to_dict() for ingredient in all_ingredients]
-    print("ing_res", ing_res)
+    # print("ing_res", ing_res)
     response = [recipe.to_dict() for recipe in all_recipes]
-    print("response", response)
+    # print("response", response)
     return {"recipes": response,
             "ingredients": ing_res,
             "categories": cats}
@@ -39,15 +39,15 @@ def get_all_recipes():
 def get_one_recipe(id):
     """Query for one recipe"""
     recipe = Recipe.query.get(id)
-    print("recipe", recipe)
+    # print("recipe", recipe)
     users = User.query.filter(User.id == recipe.user_id).all()
-    print("______________users____________-----", users)
+    # print("______________users____________-----", users)
     user = [users[0].to_dict()]
-    print("______________user____________-----", user)
+    # print("______________user____________-----", user)
     response = recipe.to_dict()
-    print("response", response)
+    # print("response", response)
     response["likes"] = [recipe_likes.to_dict() for recipe_likes in recipe.recipe_likes]
-    print("likes", response, "other", response["likes"])
+    # print("likes", response, "other", response["likes"])
     return {"recipe": response, "users": user}
 
 @recipe_routes.route("/new", methods=["POST"])

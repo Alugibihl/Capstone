@@ -15,7 +15,7 @@ const EditRecipeModal = ({ recipe }) => {
     const [categoryId, setCategoryId] = useState(recipe.categoryId)
     const [name, setName] = useState(recipe.name)
     const { closeModal } = useModal()
-    console.log("this is recipe", recipe.image);
+    // console.log("this is recipe", recipe.image);
 
     useEffect(() => {
         dispatch(getAllCategoriesThunk())

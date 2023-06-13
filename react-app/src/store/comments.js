@@ -70,7 +70,7 @@ export const createaCommentThunk = (details) => async (dispatch) => {
 }
 
 export const editOneCommentThunk = (commentId, data) => async (dispatch) => {
-    console.log("comment", commentId);
+    // console.log("comment", commentId);
     const response = await fetch(`/api/comments/${commentId}`, {
         method: "PUT",
         headers: {
@@ -145,7 +145,7 @@ const CommentReducer = (state = initialState, action) => {
                 ...newState.comments[action.details.id],
                 ...action.details,
             };
-            console.log("this is new state", newState);
+            // console.log("this is new state", newState);
             return newState;
         }
         default:
