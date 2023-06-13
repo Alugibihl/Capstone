@@ -2,7 +2,7 @@ from app.models import db, Recipe_comment, environment, SCHEMA
 from sqlalchemy.sql import text
 import random
 
-# Adds a demo user, you can add other users here if you want
+
 def seed_recipe_comments():
     for i in range(1, 56):
         user_id = (i % 4) + 1

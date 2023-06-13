@@ -18,11 +18,11 @@ class User(db.Model, UserMixin):
     ingredients = db.relationship("Ingredient", back_populates="user")
     recipe_comments = db.relationship("Recipe_comment", back_populates="user", cascade="all, delete")
 
-    # user_likes = db.relationship(
-    #     "Recipe",
-    #     secondary=likes,
-    #     back_populates="recipe_likes",
-    # )
+    user_likes = db.relationship(
+        "Recipe",
+        secondary=likes,
+        back_populates="recipe_likes",
+    )
 
     @property
     def password(self):

@@ -4,9 +4,8 @@ const CREATE_RECIPE = "recipes/CREATE"
 const EDIT_RECIPE = "recipes/EDIT"
 const DELETE_RECIPE = "recipes/DELETE"
 const GET_USER_RECIPES = "recipes/CURRENT_USER"
-const GET_LIKES = "recipes/GET_LIKES"
-const ADD_LIKE = "recipes/ADD_LIKES"
-const DELETE_LIKE = "recipes/DELETE_LIKES"
+// const ADD_LIKE = "recipes/ADD_LIKES"
+// const DELETE_LIKE = "recipes/DELETE_LIKES"
 
 export const getAllRecipes = (recipes) => {
     return {
@@ -46,26 +45,19 @@ export const deleteRecipe = (recipeId) => {
     }
 }
 
-export const getLikes = (likes) => {
-    return {
-        type: GET_LIKES,
-        payload: likes,
-    };
-};
+// export const addLike = (recipeId) => {
+//     return {
+//         type: ADD_LIKE,
+//         recipeId,
+//     };
+// };
 
-export const addLike = (recipeId) => {
-    return {
-        type: ADD_LIKE,
-        recipeId,
-    };
-};
-
-export const deleteLike = (recipeId) => {
-    return {
-        type: DELETE_LIKE,
-        recipeId,
-    };
-};
+// export const deleteLike = (recipeId) => {
+//     return {
+//         type: DELETE_LIKE,
+//         recipeId,
+//     };
+// };
 
 export const getAllRecipesThunk = () => async (dispatch) => {
     const response = await fetch("/api/recipes")
@@ -137,7 +129,6 @@ export const editOneRecipeThunk = (info) => async (dispatch) => {
     });
     if (response.ok) {
         const data = await response.json();
-        console.log("----- data in edit thunk---", data);
         dispatch(editRecipe(data));
         return data
     } else if (response.status < 500) {
@@ -167,27 +158,20 @@ export const deleteRecipeThunk = (recipeId) => async (dispatch) => {
         ];
     }
 }
-export const getRecipeLikesThunk = (id) => async (dispatch) => {
-    const response = await fetch(`/api/recipes/${id}/likes`);
-    if (response.ok) {
-        const data = await response.json();
-        dispatch(getLikes(data.likes));
-        return response;
-    } else {
-        return ["An error occurred. Please try again."];
-    }
-};
 
-export const addLikeThunk = (recipeId) => async (dispatch) => {
+export const addLikeThunk = (data) => async (dispatch) => {
+    const { recipeId, current } = data
+    console.log("in add like thunk", recipeId);
     const response = await fetch(`/api/recipes/${recipeId}/likes`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
+        body:
+            current.id
     });
     if (response.ok) {
-        // dispatch(addLike(recipeId));
-        getRecipeLikesThunk(recipeId)
+        dispatch(getOneRecipe(recipeId))
         return response;
     } else {
         return ["An error occurred. Please try again."];
@@ -202,8 +186,7 @@ export const deleteLikeThunk = (recipeId) => async (dispatch) => {
         },
     });
     if (response.ok) {
-        // dispatch(deleteLike(recipeId));
-        getRecipeLikesThunk(recipeId)
+        dispatch(getOneRecipe(recipeId))
         return response;
     } else {
         return ["An error occurred. Please try again."];
@@ -248,38 +231,27 @@ const RecipeReducer = (state = initialState, action) => {
             newState.recipes = { ...action.payload };
             return newState;
 
-        case GET_LIKES:
-            newState = { ...state };
-            newState.recipes = {
-                ...state.recipes, ...state.recipes.recipes,
-                [action.payload.recipeId]: {
-                    ...state.recipes[action.payload.recipeId],
-                    likes: action.payload.likes,
-                },
-            };
-            return newState;
+        // case ADD_LIKE:
+        //     newState = { ...state };
+        //     newState.recipes = {
+        //         ...state.recipes, ...state.recipes.recipes,
+        //         [action.recipeId]: {
+        //             ...state.recipes[action.recipeId],
+        //             likes: state.recipes[action.recipeId].likes,
+        //         },
+        //     };
+        //     return newState;
 
-        case ADD_LIKE:
-            newState = { ...state };
-            newState.recipes = {
-                ...state.recipes, ...state.recipes.recipes,
-                [action.recipeId]: {
-                    ...state.recipes[action.recipeId],
-                    likes: state.recipes[action.recipeId].likes + 1,
-                },
-            };
-            return newState;
-
-        case DELETE_LIKE:
-            newState = { ...state };
-            newState.recipes = {
-                ...state.recipes, ...state.recipes.recipes,
-                [action.recipeId]: {
-                    ...state.recipes[action.recipeId],
-                    likes: state.recipes[action.recipeId].likes - 1,
-                },
-            };
-            return newState;
+        // case DELETE_LIKE:
+        //     newState = { ...state };
+        //     newState.recipes = {
+        //         ...state.recipes, ...state.recipes.recipes,
+        //         [action.recipeId]: {
+        //             ...state.recipes[action.recipeId],
+        //             likes: state.recipes[action.recipeId].likes,
+        //         },
+        //     };
+        //     return newState;
 
         default:
             return state;

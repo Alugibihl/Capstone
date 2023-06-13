@@ -1,4 +1,4 @@
-.recipe-display{
+.recipe-display {
     font-size: large;
     font-weight: bold;
     display: flex;
@@ -10,28 +10,39 @@
     width: 100%;
     border-bottom: 1px black solid
 }
-.recipe-display img{
+
+.recipe-display img {
     width: 20vw;
     height: 20vh;
 }
-.homepage-outer{
+
+.homepage-outer {
     display: flex;
     justify-content: center;
     margin: 0px 5% 0px 5%;
 }
 
-.recipe-displayment{
+.recipe-displayment {
     display: flex;
     justify-content: space-between;
     gap: 15px;
 }
-.home-recipe{
+
+.home-recipe {
     width: 70%;
     /* border: solid blue 3px; */
 }
-.home-ingredients{
+
+.home-ingredients {
     width: 30%;
     display: flex;
     border-left: 1px black solid;
     flex-direction: column;
+}
+
+.icon-org {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 15px;
 }

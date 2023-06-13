@@ -8,9 +8,7 @@ import NotFound from "../../PageNotFound"
 
 const UserRecipes = () => {
     const dispatch = useDispatch()
-    // const sessionUser = useSelector((state) => state.session.user);
     const recipes = useSelector(state => state.recipes.recipes.recipes)
-    // console.log("___recipes___", recipes);
 
     useEffect(() => {
         dispatch(getRecipeByUser())
