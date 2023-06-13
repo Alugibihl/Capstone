@@ -334,3 +334,12 @@ img {
     margin: 10vh 0px 20vh 0px;
     padding: 0px 10vh 0px 10vh;
 }
+
+.placement {
+    border: orange solid 2px;
+    display: flex;
+    flex-direction: row;
+    width: 50vw;
+    position: relative;
+    right: 15vw;
+}

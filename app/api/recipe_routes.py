@@ -1,8 +1,7 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
+from app.models import User, db, Recipe, Ingredient, Category
 from app.forms import LoginForm
 from app.forms import SignUpForm, RecipeForm, EditRecipeForm
-from ..models import Recipe, Ingredient, Category
 from flask_login import current_user, login_user, logout_user, login_required
 from ..api.aws_helpers import get_unique_filename, upload_file_to_s3
 
@@ -16,15 +15,21 @@ def get_all_recipes_by_user():
     return {"recipes": response}
 
 #Get all recipes
-@recipe_routes.route("/")
+@recipe_routes.route("")
 def get_all_recipes():
     """Query for all recipes"""
     all_recipes = Recipe.query.all()
+    print("all-----------", all_recipes)
     all_ingredients = Ingredient.query.all()
+    print("all ingredients", all_ingredients)
     all_categories = Category.query.all()
+    print("all_categories", all_categories)
     cats = [category.to_dict() for category in all_categories]
+    print("cats", cats)
     ing_res = [ingredient.to_dict() for ingredient in all_ingredients]
+    print("ing_res", ing_res)
     response = [recipe.to_dict() for recipe in all_recipes]
+    print("response", response)
     return {"recipes": response,
             "ingredients": ing_res,
             "categories": cats}
@@ -34,12 +39,15 @@ def get_all_recipes():
 def get_one_recipe(id):
     """Query for one recipe"""
     recipe = Recipe.query.get(id)
+    print("recipe", recipe)
     users = User.query.filter(User.id == recipe.user_id).all()
     print("______________users____________-----", users)
-    user = [user.to_dict() for user in users]
+    user = [users[0].to_dict()]
     print("______________user____________-----", user)
     response = recipe.to_dict()
+    print("response", response)
     response["likes"] = [recipe_likes.to_dict() for recipe_likes in recipe.recipe_likes]
+    print("likes", response, "other", response["likes"])
     return {"recipe": response, "users": user}
 
 @recipe_routes.route("/new", methods=["POST"])
@@ -54,10 +62,8 @@ def create_one_recipe():
         image = data["image"]
         image.filename = get_unique_filename(image.filename)
         upload = upload_file_to_s3(image)
-
         if "url" not in upload:
             return {"errors": upload["errors"]}
-
         new_recipe = Recipe(
             name = data["name"],
             details = data["details"],
@@ -67,11 +73,9 @@ def create_one_recipe():
         )
         db.session.add(new_recipe)
         db.session.commit()
-
         return {
             "recipe": new_recipe.to_dict()
         }
-
     return {
         "errors": form.errors
     }
@@ -107,7 +111,6 @@ def edit_one_recipe(id):
                 if "url" not in upload:
                     return {"errors": upload["errors"]}
                 recipe.image = upload["url"]
-
             recipe.details = data["details"]
             recipe.user_id = int(data["user_id"])
             recipe.category_id = data["category_id"]
@@ -131,27 +134,24 @@ def add_like(id):
     likes = recipe.likes
     # Check if the user has already liked the recipe
     if recipe and user_id not in [user.id for user in recipe.recipe_likes]:
+        print("in add userlikes backend route", likes, "&&&&&&&&&&&&&&&&&&&&&&&&", recipe, "$%%%%%%%%%%%%%%%%%%%%%%%%%%%%%", recipe.recipe_likes)
         # Add the like to the recipe
         recipe.recipe_likes.append(current_user)
         db.session.commit()
-
     # Return the updated number of likes for the recipe
     likes = recipe.recipe_likes
     return {"likes": likes}
-
 
 @recipe_routes.route("/<int:id>/likes", methods=["DELETE"])
 @login_required
 def remove_like(id):
     recipe = Recipe.query.get(id)
     user_id = current_user.id
-
     # Check if the user has liked the recipe
     if recipe and user_id in [user.id for user in recipe.recipe_likes]:
         # Remove the like from the recipe
         recipe.recipe_likes.remove(current_user)
         db.session.commit()
-
     # Return the updated number of likes for the recipe
     likes = recipe.recipe_likes
     return {"likes": likes}

@@ -36,7 +36,7 @@ class Recipe(db.Model):
             "userId": self.user_id,
             "image": self.image,
             "categoryId": self.category_id,
-            "likes": self.recipe_likes,
+            "likes": len(self.recipe_likes),
             "createdAt": str(self.created_at),
             "updatedAt": str(self.updated_at)
         }

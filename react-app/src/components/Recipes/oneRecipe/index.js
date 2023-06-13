@@ -16,8 +16,9 @@ function OneRecipe() {
     const myCategory = category?.find(cat => cat.id === recipe?.categoryId)
     const user = useSelector(state => state.session.user)
     const recipeOwner = useSelector(state => state.recipes.recipes.users)
+    const [numLikes, setNumLikes] = useState(recipe?.likes ? recipe?.likes?.length : null)
     const [liked, setLiked] = useState(false)
-    const [numLikes, setNumLikes] = useState(recipe?.likes ? recipe?.likes : null)
+    const [editVisible, setEditVisible] = useState(false)
     console.log("track recipes", recipe, "likes", recipe?.likes, numLikes);
 
     useEffect(() => {
@@ -27,6 +28,8 @@ function OneRecipe() {
     if (!recipe) return <NotFound />
     if (!recipeOwner) return null
     if (!category) return null
+
+    const visibility = () => setEditVisible(!editVisible)
 
     const addLike = async () => {
         setLiked(!liked);
@@ -60,20 +63,25 @@ function OneRecipe() {
                             buttonText={<i class="fa fa-regular fa-comment"></i>}
                             modalComponent={<CommentsByRecipe recipe={recipe} />} />
                     </div>
+                    {user && user.id === recipe.userId && <div>
+                        <button onClick={visibility}><i className="fas fa-ellipsis-h"></i></button>
+                        <div className={editVisible ? "placement" : "hidden"}>
+                            <div className="modal-button">
+                                <div> <OpenModalButton
+                                    className="red-button"
+                                    buttonText={"Delete this recipe"}
+                                    modalComponent={<DeleteRecipeModal recipe={recipe} />} /></div>
+                                <div> <OpenModalButton
+                                    className="green-button"
+                                    buttonText={"Edit this recipe"}
+                                    modalComponent={<EditRecipeModal recipe={recipe} />} /></div>
+                            </div>
+                        </div>
+                    </div>}
                 </div>
             </div>
             <div className="poster">Recipe By: {recipeOwner[0].username}</div>
             <div className="single-details wrap-break">{recipe.details}</div>
-            <div className="modal-buttons">
-                {user && user.id === recipe.userId && <div> <OpenModalButton
-                    className="red-button"
-                    buttonText={"Delete this recipe"}
-                    modalComponent={<DeleteRecipeModal recipe={recipe} />} /></div>}
-                {user && user.id === recipe.userId && <div> <OpenModalButton
-                    className="green-button"
-                    buttonText={"Edit this recipe"}
-                    modalComponent={<EditRecipeModal recipe={recipe} />} /></div>}
-            </div>
 
         </div >
     )

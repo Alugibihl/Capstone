@@ -16,7 +16,6 @@ function ProfileButton({ user }) {
 
   useEffect(() => {
     if (!showMenu) return;
-
     const closeMenu = (e) => {
       if (ulRef.current === null || !ulRef.current.contains(e.target)) {
         setShowMenu(false);
