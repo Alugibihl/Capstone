@@ -27,8 +27,8 @@ function OneIngredient() {
     return (
         <div className="single-item-container">
             <img style={{ objectFit: "cover" }} src={ingredient.image} alt={ingredient.name}></img>
-            <div className="name-holder wrap-break orgs"><h2>{ingredient.name}</h2>    <button onClick={visibility}><i className="fas fa-ellipsis-h"></i></button></div>
-            {user && user.id === ingredient.userId && <div >
+            <div className="name-holder wrap-break orgs"><h2>{ingredient.name}</h2> {user && user.id === ingredient.userId && <button onClick={visibility}><i className="fas fa-ellipsis-h"></i></button>}</div>
+            {user && user.id === ingredient.userId && <div>
                 <div className={editVisible ? "placement" : "hidden"}>
                     <div className="icon-org">
                         <div>

@@ -16,14 +16,25 @@ function OneRecipe() {
     const myCategory = category?.find(cat => cat.id === recipe?.categoryId)
     const user = useSelector(state => state.session.user)
     const recipeOwner = useSelector(state => state.recipes.recipes.users)
-    const [numLikes, setNumLikes] = useState(recipe?.likes ? recipe?.likes?.length : null)
+    const [numLikes, setNumLikes] = useState(recipe?.likes ? recipe?.likes?.length : "fish")
     const [liked, setLiked] = useState(false)
     const [editVisible, setEditVisible] = useState(false)
+    const [hasLiked, setHasLiked] = useState(false)
     console.log("track recipes", recipe, "likes", recipe?.likes, numLikes);
 
     useEffect(() => {
         dispatch(getOneRecipeThunk(id))
     }, [dispatch, id])
+
+    useEffect(() => {
+        setNumLikes(recipe?.likes.length)
+        if (recipe?.likes) {
+            for (let like of recipe.likes) {
+                if (like.id === user.id) { setLiked(true) }
+            }
+        }
+    }, [recipe, user])
+
 
     if (!recipe) return <NotFound />
     if (!recipeOwner) return null
