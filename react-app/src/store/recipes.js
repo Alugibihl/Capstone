@@ -122,7 +122,6 @@ export const createRecipeThunk = (details) => async (dispatch) => {
 
 export const editOneRecipeThunk = (info) => async (dispatch) => {
     const { formData, recipe } = info
-    // console.log('details in Edit Thunk', formData.entries, recipe);
     const response = await fetch(`/api/recipes/${recipe.id}`, {
         method: "PUT",
         body: formData,
