@@ -66,7 +66,7 @@ function OneRecipe() {
                     {user && user.id === recipe.userId && <div>
                         <button onClick={visibility}><i className="fas fa-ellipsis-h"></i></button>
                         <div className={editVisible ? "placement" : "hidden"}>
-                            <div className="modal-button">
+                            <div className="icon-org">
                                 <div> <OpenModalButton
                                     className="red-button"
                                     buttonText={"Delete this recipe"}

@@ -336,10 +336,20 @@ img {
 }
 
 .placement {
-    border: orange solid 2px;
     display: flex;
     flex-direction: row;
-    width: 50vw;
+    width: 30vw;
     position: relative;
-    right: 15vw;
+    right: 20%;
+}
+
+.orgs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.orgs button {
+    margin-left: 20px;
+    height: 25px;
 }

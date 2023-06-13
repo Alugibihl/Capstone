@@ -4,7 +4,7 @@ from .category import seed_categories, undo_categories
 from .ingredient import seed_ingredients, undo_ingredients
 from .recipe import seed_recipes, undo_recipes
 from .recipe_comment import seed_recipe_comments, undo_recipe_comments
-from .reciipe_likes import seed_likes, undo_likes
+from .recipe_likes import seed_likes, undo_likes
 
 from app.models.db import db, environment, SCHEMA
 

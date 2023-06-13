@@ -42,5 +42,7 @@
 
 .icon-org {
     display: flex;
+    flex-direction: row;
+    width: 100%;
     gap: 15px;
 }
