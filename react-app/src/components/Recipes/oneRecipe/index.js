@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { addLikeThunk, deleteLikeThunk, getOneRecipeThunk, getRecipeLikesThunk } from "../../../store/recipes";
+import { addLikeThunk, deleteLikeThunk, getOneRecipeThunk } from "../../../store/recipes";
 import OpenModalButton from "../../OpenModalButton";
 import DeleteRecipeModal from "../deleteRecipeModal";
 import EditRecipeModal from "../editRecipeModal";
@@ -19,7 +19,6 @@ function OneRecipe() {
     const [numLikes, setNumLikes] = useState(recipe?.likes ? recipe?.likes?.length : "fish")
     const [liked, setLiked] = useState(false)
     const [editVisible, setEditVisible] = useState(false)
-    const [hasLiked, setHasLiked] = useState(false)
     console.log("track recipes", recipe, "likes", recipe?.likes, numLikes);
 
     useEffect(() => {
@@ -45,16 +44,14 @@ function OneRecipe() {
     const addLike = async () => {
         setLiked(!liked);
         setNumLikes(numLikes + 1);
-        const val = { recipeId: recipe.id };
+        const val = { recipeId: recipe.id, current: user };
         await dispatch(addLikeThunk(val));
-        await dispatch(getRecipeLikesThunk(recipe.id));
     };
 
     const removeLike = async () => {
         setLiked(!liked);
         setNumLikes(numLikes - 1);
         await dispatch(deleteLikeThunk(recipe.id));
-        await dispatch(getRecipeLikesThunk(recipe.id));
     };
 
     return (
