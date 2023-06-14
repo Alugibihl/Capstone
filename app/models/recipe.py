@@ -44,6 +44,7 @@ class Recipe(db.Model):
             "image": self.image,
             "categoryId": self.category_id,
             "likes": len(self.recipe_likes),
+            "relations": len(self.recipe_ingredients),
             "createdAt": str(self.created_at),
             "updatedAt": str(self.updated_at)
         }

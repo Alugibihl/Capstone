@@ -353,3 +353,17 @@ img {
     margin-left: 20px;
     height: 25px;
 }
+
+.alignment {
+    display: flex;
+    max-width: 50vw;
+    min-height: 10vh;
+}
+
+.relate-box {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 35%;
+    overflow-y: scroll;
+}

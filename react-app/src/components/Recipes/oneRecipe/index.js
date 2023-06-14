@@ -7,6 +7,7 @@ import DeleteRecipeModal from "../deleteRecipeModal";
 import EditRecipeModal from "../editRecipeModal";
 import CommentsByRecipe from "../../Comments/getComments";
 import NotFound from "../../PageNotFound";
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 function OneRecipe() {
     const dispatch = useDispatch()
@@ -89,7 +90,14 @@ function OneRecipe() {
                 </div>
             </div>
             <div className="poster">Recipe By: {recipeOwner[0].username}</div>
-            <div className="single-details wrap-break">{recipe.details}</div>
+            <div className="alignment wrap-break">
+                <div className="single-details wrap-break">{recipe.details}</div>
+                <div className="relate-box"><h4>Ingredients: </h4>{recipe.relations.length ? (
+                    recipe.relations.map((ingred) => {
+                        return <div key={ingred.id}><NavLink to={`/ingredients/${ingred.id}`} >{ingred.name}</NavLink></div>
+                    })
+                ) : "Ingredients not provided"}</div>
+            </div>
 
         </div >
     )
