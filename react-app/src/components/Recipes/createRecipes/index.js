@@ -30,7 +30,13 @@ const CreateRecipeModal = () => {
                 setErrors([
                     "Recipe name must be between 3 and 40 characters.",
                 ]);
-            } else {
+            }
+            else if (!categoryId) {
+                setErrors([
+                    "Recipe Genre must be provided.",
+                ]);
+            }
+            else {
                 const formData = new FormData()
                 formData.append("details", details)
                 formData.append("name", name)
