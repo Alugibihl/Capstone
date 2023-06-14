@@ -1,5 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
+from .relates import relates
 
 class Ingredient(db.Model):
     __tablename__ = "ingredients"
@@ -17,6 +18,12 @@ class Ingredient(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
     user = db.relationship("User", back_populates="ingredients")
+
+    ingredient_recipes = db.relationship(
+        "Recipe",
+        secondary=relates,
+        back_populates="recipe_ingredients"
+    )
 
 
     def to_dict(self):

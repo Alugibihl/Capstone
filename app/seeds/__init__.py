@@ -5,6 +5,7 @@ from .ingredient import seed_ingredients, undo_ingredients
 from .recipe import seed_recipes, undo_recipes
 from .recipe_comment import seed_recipe_comments, undo_recipe_comments
 from .recipe_likes import seed_likes, undo_likes
+from.relations import seed_relations, undo_relations
 
 from app.models.db import db, environment, SCHEMA
 
@@ -21,6 +22,7 @@ def seed():
         # command, which will  truncate all tables prefixed with
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
+        undo_relations()
         undo_ingredients()
         undo_recipe_comments()
         undo_likes()
@@ -33,6 +35,7 @@ def seed():
     seed_likes()
     seed_recipe_comments()
     seed_ingredients()
+    seed_relations()
 
     # Add other seed functions here
 
@@ -40,6 +43,7 @@ def seed():
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
+        undo_relations()
         undo_ingredients()
         undo_recipe_comments()
         undo_likes()

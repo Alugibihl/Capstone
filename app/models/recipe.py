@@ -1,6 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 from .likes import likes
+from.relates import relates
 
 class Recipe(db.Model):
     __tablename__ = "recipes"
@@ -22,10 +23,16 @@ class Recipe(db.Model):
     user = db.relationship("User", back_populates="recipes")
     recipe_comments = db.relationship("Recipe_comment", back_populates="recipe", cascade="all, delete-orphan")
 
+
     recipe_likes = db.relationship(
         "User",
         secondary=likes,
         back_populates="user_likes"
+    )
+    recipe_ingredients = db.relationship(
+        "Ingredient",
+        secondary=relates,
+        back_populates="ingredient_recipes"
     )
 
     def to_dict(self):
