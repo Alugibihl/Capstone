@@ -71,7 +71,6 @@ export const getOneIngredientThunk = (id) => async (dispatch) => {
 }
 
 export const createIngredientThunk = (details) => async (dispatch) => {
-    // console.log("create thunk details", details);
     const response = await fetch("/api/ingredients/new", {
         method: "POST",
         // headers: {
@@ -169,7 +168,6 @@ const IngredientReducer = (state = initialState, action) => {
             return newState
         }
         case CREATE_INGREDIENT: {
-            // console.log("this is to be looked at", action.payload);
             newState = { ...state, ingredients: { ...state.ingredients } }
             newState.ingredients[action.payload.id] = action.payload
             return newState

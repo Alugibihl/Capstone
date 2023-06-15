@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import { editOneRecipeThunk, getOneRecipeThunk } from "../../../store/recipes";
 import { getAllCategoriesThunk } from "../../../store/category";
+import { getAllIngredientsThunk } from "../../../store/ingredients";
 
 const EditRecipeModal = ({ recipe }) => {
     const dispatch = useDispatch()
@@ -10,16 +11,18 @@ const EditRecipeModal = ({ recipe }) => {
     const currentUser = useSelector((state) => state.session.user)
     const [details, setDetails] = useState(recipe.details)
     const [image, setImage] = useState(recipe.image)
-    // const [imageLoading, setImageLoading] = useState(false)
+    const ingredients = useSelector(state => state.ingredients.ingredients.ingredient)
     const [errors, setErrors] = useState([])
     const [categoryId, setCategoryId] = useState(recipe.categoryId)
     const [name, setName] = useState(recipe.name)
     const { closeModal } = useModal()
-    // console.log("this is recipe", recipe.image);
+    const [selectedIngredients, setSelectedIngredients] = useState(recipe.relations);
+    console.log("this is recipe", recipe.image, ingredients, selectedIngredients);
 
     useEffect(() => {
         dispatch(getAllCategoriesThunk())
         dispatch(getOneRecipeThunk(recipe.id))
+        dispatch(getAllIngredientsThunk())
     }, [dispatch, recipe])
 
     const handleSubmit = async (e) => {
@@ -42,6 +45,7 @@ const EditRecipeModal = ({ recipe }) => {
                 formData.append("user_id", currentUser.id)
                 formData.append("image", image)
                 formData.append("category_id", categoryId)
+                formData.append("ingredients", JSON.stringify(selectedIngredients));
                 const info = { formData, recipe }
                 const data = await dispatch(editOneRecipeThunk(info));
                 if (data) {
@@ -121,6 +125,23 @@ const EditRecipeModal = ({ recipe }) => {
                             ))}
                         </select>
 
+                    </div>
+                    <div>
+                        <label>Select ingredients:</label>
+                        <br />
+                        <select
+                            multiple
+                            value={selectedIngredients}
+                            onChange={(e) =>
+                                setSelectedIngredients(Array.from(e.target.selectedOptions, (option) => option.value))
+                            }
+                        >
+                            {ingredients?.map((ingredient) => (
+                                <option key={ingredient.id} value={ingredient.id}>
+                                    {ingredient.name}
+                                </option>
+                            ))}
+                        </select>
                     </div>
                     <div className="modal-buttons">
                         <button className="red-button" onClick={closeModal}>Cancel</button>
