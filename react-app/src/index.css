@@ -387,7 +387,7 @@ select {
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-y: hidden;
+    overflow-y: visible;
     width: 110%;
     font-size: smaller;
 }

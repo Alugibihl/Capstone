@@ -27,7 +27,7 @@ function OneRecipe() {
     }, [dispatch, id])
 
     useEffect(() => {
-        setNumLikes(recipe?.likes.length)
+        setNumLikes(recipe?.likes?.length)
         if (recipe?.likes) {
             for (let like of recipe.likes) {
                 if (like.id === user.id) { setLiked(true) }

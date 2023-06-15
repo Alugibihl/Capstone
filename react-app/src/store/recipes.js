@@ -4,8 +4,6 @@ const CREATE_RECIPE = "recipes/CREATE"
 const EDIT_RECIPE = "recipes/EDIT"
 const DELETE_RECIPE = "recipes/DELETE"
 const GET_USER_RECIPES = "recipes/CURRENT_USER"
-// const ADD_LIKE = "recipes/ADD_LIKES"
-// const DELETE_LIKE = "recipes/DELETE_LIKES"
 
 export const getAllRecipes = (recipes) => {
     return {
@@ -45,19 +43,6 @@ export const deleteRecipe = (recipeId) => {
     }
 }
 
-// export const addLike = (recipeId) => {
-//     return {
-//         type: ADD_LIKE,
-//         recipeId,
-//     };
-// };
-
-// export const deleteLike = (recipeId) => {
-//     return {
-//         type: DELETE_LIKE,
-//         recipeId,
-//     };
-// };
 
 export const getAllRecipesThunk = () => async (dispatch) => {
     const response = await fetch("/api/recipes")
@@ -99,6 +84,7 @@ export const getRecipeByUser = () => async (dispatch) => {
 }
 
 export const createRecipeThunk = (details) => async (dispatch) => {
+    console.log("details", details);
     const response = await fetch("/api/recipes/new", {
         method: "POST",
         body:
@@ -128,6 +114,7 @@ export const editOneRecipeThunk = (info) => async (dispatch) => {
     });
     if (response.ok) {
         const data = await response.json();
+        console.log("data", data);
         dispatch(editRecipe(data));
         return data
     } else if (response.status < 500) {
@@ -229,29 +216,6 @@ const RecipeReducer = (state = initialState, action) => {
             newState = { ...state };
             newState.recipes = { ...action.payload };
             return newState;
-
-        // case ADD_LIKE:
-        //     newState = { ...state };
-        //     newState.recipes = {
-        //         ...state.recipes, ...state.recipes.recipes,
-        //         [action.recipeId]: {
-        //             ...state.recipes[action.recipeId],
-        //             likes: state.recipes[action.recipeId].likes,
-        //         },
-        //     };
-        //     return newState;
-
-        // case DELETE_LIKE:
-        //     newState = { ...state };
-        //     newState.recipes = {
-        //         ...state.recipes, ...state.recipes.recipes,
-        //         [action.recipeId]: {
-        //             ...state.recipes[action.recipeId],
-        //             likes: state.recipes[action.recipeId].likes,
-        //         },
-        //     };
-        //     return newState;
-
         default:
             return state;
     }

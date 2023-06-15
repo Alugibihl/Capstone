@@ -53,8 +53,10 @@ const CreateRecipeModal = () => {
                 formData.append("image", image)
                 formData.append("category_id", categoryId)
                 formData.append("relates", selectedIngredients);
+                console.log("form data", formData);
                 const data = await dispatch(createRecipeThunk(formData));
                 if (data) {
+                    console.log("___------------- data ------_________", data);
                     closeModal();
                     history.push(`/recipes/${data.recipe.id}`)
                 }
@@ -150,7 +152,6 @@ const CreateRecipeModal = () => {
                                 hasSelectAll={false}
                                 multiple
                             />
-
                         </div>
                     </div>
                     <div className="modal-buttons">

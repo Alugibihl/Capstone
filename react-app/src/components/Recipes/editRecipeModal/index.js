@@ -4,6 +4,7 @@ import { useModal } from "../../../context/Modal";
 import { editOneRecipeThunk, getOneRecipeThunk } from "../../../store/recipes";
 import { getAllCategoriesThunk } from "../../../store/category";
 import { getAllIngredientsThunk } from "../../../store/ingredients";
+import { MultiSelect } from "react-multi-select-component"
 
 const EditRecipeModal = ({ recipe }) => {
     const dispatch = useDispatch()
@@ -16,7 +17,7 @@ const EditRecipeModal = ({ recipe }) => {
     const [categoryId, setCategoryId] = useState(recipe.categoryId)
     const [name, setName] = useState(recipe.name)
     const { closeModal } = useModal()
-    const [selectedIngredients, setSelectedIngredients] = useState(recipe.relations);
+    const [selectedIngredients, setSelectedIngredients] = useState(recipe?.relations);
     console.log("this is recipe", recipe.image, ingredients, selectedIngredients);
 
     useEffect(() => {
@@ -24,6 +25,12 @@ const EditRecipeModal = ({ recipe }) => {
         dispatch(getOneRecipeThunk(recipe.id))
         dispatch(getAllIngredientsThunk())
     }, [dispatch, recipe])
+
+    const options = ingredients?.map((ingredient) => ({
+        value: ingredient,
+        label: ingredient.name,
+    }));
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -45,7 +52,7 @@ const EditRecipeModal = ({ recipe }) => {
                 formData.append("user_id", currentUser.id)
                 formData.append("image", image)
                 formData.append("category_id", categoryId)
-                formData.append("ingredients", JSON.stringify(selectedIngredients));
+                formData.append("relates", JSON.stringify(selectedIngredients));
                 const info = { formData, recipe }
                 const data = await dispatch(editOneRecipeThunk(info));
                 if (data) {
@@ -59,6 +66,11 @@ const EditRecipeModal = ({ recipe }) => {
             ]);
         }
     };
+
+    const handleChange = (selected) => {
+        setSelectedIngredients(selected);
+    };
+
     return (
         <div className="modal-background">
             <div className="modal-form">
@@ -83,65 +95,65 @@ const EditRecipeModal = ({ recipe }) => {
                             >{error}</div>
                         ))}
                     </div>
-                    <div className="form-data">
-                        <label>
-                            Edit your recipe or its description
-                            <textarea
-                                value={details}
-                                onChange={(e) => setDetails(e.target.value)}
-                                placeholder={`Please share a recipe you love.`}
+                    <div className="modal-org">
+                        <div className="form-data">
+                            <label>
+                                Edit your recipe or its description
+                                <textarea
+                                    value={details}
+                                    onChange={(e) => setDetails(e.target.value)}
+                                    placeholder={`Please share a recipe you love.`}
+                                    required
+                                />
+                            </label>
+                            <label>
+                                Place a picture of your recipe here!
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={(e) => setImage(e.target.files[0])}
+                                />
+                            </label>
+                            <label>
+                                Edit the name of your dish.
+                                <input
+                                    type="text"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    required
+                                    placeholder="Bone Soup"
+                                />
+                            </label>
+                            <label className="category">Update your cuisine classification</label>
+                            <br />
+                            <select
+                                id="cuisine"
+                                value={categoryId}
+                                onChange={(e) => setCategoryId(e.target.value)}
                                 required
-                            />
-                        </label>
-                        <label>
-                            Place a picture of your recipe here!
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={(e) => setImage(e.target.files[0])}
-                            />
-                        </label>
-                        <label>
-                            Edit the name of your dish.
-                            <input
-                                type="text"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                required
-                                placeholder="Bone Soup"
-                            />
-                        </label>
-                        <label className="category">Update your cuisine classification</label>
-                        <br />
-                        <select
-                            id="cuisine"
-                            value={categoryId}
-                            onChange={(e) => setCategoryId(e.target.value)}
-                            required
-                        >
-                            <option>Select One</option>
-                            {choices?.map((choice) => (
-                                <option key={choice.id} value={choice.id}>{choice.name}</option>
-                            ))}
-                        </select>
+                            >
+                                <option>Select One</option>
+                                {choices?.map((choice) => (
+                                    <option key={choice.id} value={choice.id}>{choice.name}</option>
+                                ))}
+                            </select>
 
-                    </div>
-                    <div>
-                        <label>Select ingredients:</label>
-                        <br />
-                        <select
-                            multiple
-                            value={selectedIngredients}
-                            onChange={(e) =>
-                                setSelectedIngredients(Array.from(e.target.selectedOptions, (option) => option.value))
-                            }
-                        >
-                            {ingredients?.map((ingredient) => (
-                                <option key={ingredient.id} value={ingredient.id}>
-                                    {ingredient.name}
-                                </option>
-                            ))}
-                        </select>
+                        </div>
+                        <div className="selector-ingreds">
+                            <label>Select ingredients:</label>
+                            <br />
+                            <MultiSelect
+                                selectionLimit={0}
+                                options={options}
+                                value={selectedIngredients}
+                                onChange={handleChange}
+                                labelledBy="Select"
+                                hasSelectAll={false}
+                                multiple
+                            />
+
+                        </div>
+
                     </div>
                     <div className="modal-buttons">
                         <button className="red-button" onClick={closeModal}>Cancel</button>
