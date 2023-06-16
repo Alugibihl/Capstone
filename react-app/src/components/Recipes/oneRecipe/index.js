@@ -39,6 +39,7 @@ function OneRecipe() {
     if (!recipe) return <NotFound />
     if (!recipeOwner) return null
     if (!category) return null
+    if (!recipe.relations) return null
 
     const visibility = () => setEditVisible(!editVisible)
 
@@ -92,7 +93,7 @@ function OneRecipe() {
             <div className="poster">Recipe By: {recipeOwner[0].username}</div>
             <div className="alignment wrap-break">
                 <div className="single-details wrap-break">{recipe.details}</div>
-                <div className="relate-box"><h4>Ingredients: </h4>{recipe.relations.length ? (
+                <div className="relate-box"><h4>Ingredients: </h4>{recipe?.relations.length ? (
                     recipe.relations.map((ingred) => {
                         return <div key={ingred.id}><NavLink to={`/ingredients/${ingred.id}`} >{ingred.name}</NavLink></div>
                     })

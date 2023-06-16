@@ -63,13 +63,13 @@ def create_one_recipe():
             category_id = data["category_id"],
             image = upload["url"]
         )
-        # Retrieve the selected ingredient IDs from the form
         ingredient_ids = data["ingredient_ids"]
-        print("hello", ingredient_ids)
+        res = ingredient_ids[0].split(",")
         # Associate the selected ingredients with the recipe
-        for ingredient_id in ingredient_ids:
+        for ingredient_id in res:
             ingredient = Ingredient.query.get(ingredient_id)
             if ingredient:
+
                 new_recipe.recipe_ingredients.append(ingredient)
         db.session.add(new_recipe)
         db.session.commit()
@@ -99,8 +99,7 @@ def edit_one_recipe(id):
     """Edit a recipe"""
     form = EditRecipeForm()
     form.category_id.choices = [(category.id, category.name) for category in Category.query.all()]
-    # Add IngredientForm to the form
-    form.ingredient_ids.choices = [(ingredient.id, ingredient.name) for ingredient in Ingredient.query.all()]
+    # form.ingredient_ids.choices = [(ingredient.id, ingredient.name) for ingredient in Ingredient.query.all()]
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
@@ -117,15 +116,18 @@ def edit_one_recipe(id):
             recipe.user_id = int(data["user_id"])
             recipe.category_id = data["category_id"]
             recipe.name = data["name"]
-            # Retrieve the selected ingredient IDs from the form
-            ingredient_ids = data.getlist("ingredient_ids")
-            # Clear the existing ingredients associated with the recipe
-            recipe.ingredients.clear()
-            # Associate the selected ingredients with the recipe
+
+            ingredient_ids = data["ingredient_ids"]
+            print("-------------------         - ---------ids",ingredient_ids)
+            # res = ingredient_ids.split(",")
+            recipe.recipe_ingredients.clear()
+
             for ingredient_id in ingredient_ids:
+                print("--------------------------ingredient", ingredient)
                 ingredient = Ingredient.query.get(ingredient_id)
                 if ingredient:
-                    recipe.ingredients.append(ingredient)
+                    recipe.recipe_ingredients.append(ingredient)
+                    print("                    yooooooo~!!!#@@@!!!!!  ", recipe)
             db.session.commit()
             return {
                 "recipe": recipe.to_dict()
@@ -135,7 +137,7 @@ def edit_one_recipe(id):
 
     return {
         "errors": form.errors
-    }
+    }, 422
 
 @recipe_routes.route("/<int:id>/likes", methods=["POST"])
 @login_required

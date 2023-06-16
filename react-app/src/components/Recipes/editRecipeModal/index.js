@@ -17,19 +17,17 @@ const EditRecipeModal = ({ recipe }) => {
     const [categoryId, setCategoryId] = useState(recipe.categoryId)
     const [name, setName] = useState(recipe.name)
     const { closeModal } = useModal()
-    const [selectedIngredients, setSelectedIngredients] = useState(recipe?.relations ? recipe?.relations : []);
-    console.log("this is recipe", recipe.image, ingredients, selectedIngredients);
+    const starter = recipe?.relations.map((ingred) => {
+        return { value: ingred.id, label: ingred.name }
+    })
+    const [selectedIngredients, setSelectedIngredients] = useState(recipe?.relations ? starter : []);
+    console.log("this is recipe", recipe, selectedIngredients);
 
     useEffect(() => {
         dispatch(getAllCategoriesThunk())
         dispatch(getOneRecipeThunk(recipe.id))
         dispatch(getAllIngredientsThunk())
     }, [dispatch, recipe])
-
-    const options = ingredients?.map((ingredient) => ({
-        value: ingredient,
-        label: ingredient.name,
-    }));
 
 
     const handleSubmit = async (e) => {
@@ -46,16 +44,24 @@ const EditRecipeModal = ({ recipe }) => {
                 ]);
             }
             else {
+                let vals = selectedIngredients?.map((ingreds) => ingreds.value)
+                console.log("vals", vals);
                 const formData = new FormData()
                 formData.append("details", details)
                 formData.append("name", name)
                 formData.append("user_id", currentUser.id)
                 formData.append("image", image)
                 formData.append("category_id", categoryId)
-                formData.append("relates", JSON.stringify(selectedIngredients));
+                formData.append("relates", vals);
                 const info = { formData, recipe }
                 const data = await dispatch(editOneRecipeThunk(info));
-                if (data) {
+                if (data.errors) {
+                    console.log("error", data);
+                    setErrors([
+                        data.errors
+                    ]);
+                }
+                else if (data) {
                     closeModal();
                     dispatch(getOneRecipeThunk(recipe.id))
                 }
@@ -67,9 +73,19 @@ const EditRecipeModal = ({ recipe }) => {
         }
     };
 
+    if (!ingredients) return null
+    if (!recipe) return null
+
     const handleChange = (selected) => {
+        console.log("selected", selected);
         setSelectedIngredients(selected);
     };
+
+    const options = ingredients?.map((ingredient) => ({
+        value: ingredient.id,
+        label: ingredient.name,
+    }));
+
 
     return (
         <div className="modal-background">
@@ -143,7 +159,7 @@ const EditRecipeModal = ({ recipe }) => {
                             <label>Select ingredients:</label>
                             <br />
                             <MultiSelect
-                                selectionLimit={0}
+                                selectionLimit={1}
                                 options={options}
                                 value={selectedIngredients}
                                 onChange={handleChange}
@@ -151,7 +167,6 @@ const EditRecipeModal = ({ recipe }) => {
                                 hasSelectAll={false}
                                 multiple
                             />
-
                         </div>
 
                     </div>

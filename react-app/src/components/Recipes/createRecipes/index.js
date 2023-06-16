@@ -46,7 +46,7 @@ const CreateRecipeModal = () => {
                 ]);
             }
             else {
-                let vals = selectedIngredients.map((ingreds) => ingreds.value)
+                let vals = selectedIngredients?.map((ingreds) => ingreds.value)
                 console.log("look here ----------", selectedIngredients, vals)
                 const formData = new FormData()
                 formData.append("details", details)
@@ -153,7 +153,7 @@ const CreateRecipeModal = () => {
                             <label>Select ingredients:</label>
                             <br />
                             <MultiSelect
-                                selectionLimit={1}
+                                selectionLimit={20}
                                 options={options}
                                 value={selectedIngredients}
                                 onChange={handleChange}
