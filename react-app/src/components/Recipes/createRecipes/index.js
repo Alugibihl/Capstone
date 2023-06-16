@@ -28,7 +28,7 @@ const CreateRecipeModal = () => {
     }, [dispatch])
 
     const options = ingredients?.map((ingredient) => ({
-        value: ingredient,
+        value: ingredient.id,
         label: ingredient.name,
     }));
 
@@ -46,16 +46,24 @@ const CreateRecipeModal = () => {
                 ]);
             }
             else {
+                let vals = selectedIngredients.map((ingreds) => ingreds.value)
+                console.log("look here ----------", selectedIngredients, vals)
                 const formData = new FormData()
                 formData.append("details", details)
                 formData.append("name", name)
                 formData.append("user_id", currentUser.id)
                 formData.append("image", image)
                 formData.append("category_id", categoryId)
-                formData.append("relates", selectedIngredients);
+                formData.append("ingredient_ids", vals);
                 console.log("form data", formData);
                 const data = await dispatch(createRecipeThunk(formData));
-                if (data) {
+                if (data.errors) {
+                    console.log("error", data);
+                    setErrors([
+                        data.errors
+                    ]);
+                }
+                else if (data) {
                     console.log("___------------- data ------_________", data);
                     closeModal();
                     history.push(`/recipes/${data.recipe.id}`)
@@ -69,6 +77,7 @@ const CreateRecipeModal = () => {
     };
 
     const handleChange = (selected) => {
+        console.log("selected", selected);
         setSelectedIngredients(selected);
     };
 
@@ -144,7 +153,7 @@ const CreateRecipeModal = () => {
                             <label>Select ingredients:</label>
                             <br />
                             <MultiSelect
-                                selectionLimit={0}
+                                selectionLimit={1}
                                 options={options}
                                 value={selectedIngredients}
                                 onChange={handleChange}

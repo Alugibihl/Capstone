@@ -1,9 +1,10 @@
-from flask import Blueprint, jsonify, session, request
+from flask import Blueprint, jsonify, session, request, json
 from app.models import User, db, Recipe, Ingredient, Category
 from app.forms import LoginForm
-from app.forms import SignUpForm, RecipeForm, EditRecipeForm
+from app.forms import SignUpForm, RecipeForm, EditRecipeForm, IngredientForm
 from flask_login import current_user, login_user, logout_user, login_required
 from ..api.aws_helpers import get_unique_filename, upload_file_to_s3
+
 
 recipe_routes = Blueprint('recipe', __name__)
 
@@ -47,6 +48,7 @@ def create_one_recipe():
     form = RecipeForm()
     form.category_id.choices = [(category.id, category.name) for category in Category.query.all()]
     form['csrf_token'].data = request.cookies["csrf_token"]
+
     if form.validate_on_submit():
         data = form.data
         image = data["image"]
@@ -57,18 +59,27 @@ def create_one_recipe():
         new_recipe = Recipe(
             name = data["name"],
             details = data["details"],
-            user_id = data["user_id"],
+            user_id = int(data["user_id"]),
             category_id = data["category_id"],
-            image= upload["url"]
+            image = upload["url"]
         )
+        # Retrieve the selected ingredient IDs from the form
+        ingredient_ids = data["ingredient_ids"]
+        print("hello", ingredient_ids)
+        # Associate the selected ingredients with the recipe
+        for ingredient_id in ingredient_ids:
+            ingredient = Ingredient.query.get(ingredient_id)
+            if ingredient:
+                new_recipe.recipe_ingredients.append(ingredient)
         db.session.add(new_recipe)
         db.session.commit()
         return {
             "recipe": new_recipe.to_dict()
         }
+    print(form.errors)
     return {
         "errors": form.errors
-    }
+    }, 422
 
 @recipe_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
@@ -82,17 +93,18 @@ def delete_recipe(id):
     else:
         return {"errors": "Only the recipe poster can remove their recipe."}
 
-@recipe_routes.route("/<int:id>", methods=["GET","PUT"])
+@recipe_routes.route("/<int:id>", methods=["GET", "PUT"])
 @login_required
 def edit_one_recipe(id):
     """Edit a recipe"""
     form = EditRecipeForm()
     form.category_id.choices = [(category.id, category.name) for category in Category.query.all()]
+    # Add IngredientForm to the form
+    form.ingredient_ids.choices = [(ingredient.id, ingredient.name) for ingredient in Ingredient.query.all()]
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
         image = data["image"]
-            # Can only edit an ingredient if the current user id == question user id
         recipe = Recipe.query.get(id)
         if current_user.id == recipe.user_id:
             if image:
@@ -105,6 +117,15 @@ def edit_one_recipe(id):
             recipe.user_id = int(data["user_id"])
             recipe.category_id = data["category_id"]
             recipe.name = data["name"]
+            # Retrieve the selected ingredient IDs from the form
+            ingredient_ids = data.getlist("ingredient_ids")
+            # Clear the existing ingredients associated with the recipe
+            recipe.ingredients.clear()
+            # Associate the selected ingredients with the recipe
+            for ingredient_id in ingredient_ids:
+                ingredient = Ingredient.query.get(ingredient_id)
+                if ingredient:
+                    recipe.ingredients.append(ingredient)
             db.session.commit()
             return {
                 "recipe": recipe.to_dict()

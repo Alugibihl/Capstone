@@ -17,7 +17,7 @@ const EditRecipeModal = ({ recipe }) => {
     const [categoryId, setCategoryId] = useState(recipe.categoryId)
     const [name, setName] = useState(recipe.name)
     const { closeModal } = useModal()
-    const [selectedIngredients, setSelectedIngredients] = useState(recipe?.relations);
+    const [selectedIngredients, setSelectedIngredients] = useState(recipe?.relations ? recipe?.relations : []);
     console.log("this is recipe", recipe.image, ingredients, selectedIngredients);
 
     useEffect(() => {

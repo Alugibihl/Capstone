@@ -20,7 +20,7 @@ function OneRecipe() {
     const [numLikes, setNumLikes] = useState(recipe?.likes ? recipe?.likes?.length : "fish")
     const [liked, setLiked] = useState(false)
     const [editVisible, setEditVisible] = useState(false)
-    // console.log("track recipes", recipe, "likes", recipe?.likes, numLikes);
+    console.log("track recipes", recipe, "likes", recipe?.likes, numLikes);
 
     useEffect(() => {
         dispatch(getOneRecipeThunk(id))
