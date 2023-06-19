@@ -73,9 +73,6 @@ const EditRecipeModal = ({ recipe }) => {
         }
     };
 
-    if (!ingredients) return null
-    if (!recipe) return null
-
     const handleChange = (selected) => {
         console.log("selected", selected);
         setSelectedIngredients(selected);
@@ -86,6 +83,8 @@ const EditRecipeModal = ({ recipe }) => {
         label: ingredient.name,
     }));
 
+    if (!ingredients) return null
+    if (!choices) return null
 
     return (
         <div className="modal-background">

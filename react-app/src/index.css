@@ -368,6 +368,7 @@ img {
     text-align: center;
     width: 35%;
     overflow-y: scroll;
+    overflow: auto;
 }
 
 
@@ -391,6 +392,7 @@ select {
     overflow-y: visible;
     width: 110%;
     font-size: smaller;
+    max-width: 15vw;
 }
 
 
