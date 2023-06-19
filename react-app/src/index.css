@@ -64,7 +64,8 @@ button {
     justify-content: center;
     margin-bottom: 15vh;
     margin-top: 15vh;
-    width: 60%;
+    margin-right: 5%;
+    width: 70%;
     height: 45vh;
 }
 
@@ -159,7 +160,8 @@ a:hover {
 }
 
 .single-details {
-    width: 50vw;
+    max-width: 50vw;
+    width: 70%;
     margin-top: 15px;
     margin-bottom: 15px;
     font-size: large;
@@ -352,4 +354,46 @@ img {
 .orgs button {
     margin-left: 20px;
     height: 25px;
+}
+
+.alignment {
+    display: flex;
+    max-width: 50vw;
+    min-height: 10vh;
+}
+
+.relate-box {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 35%;
+    overflow-y: scroll;
+}
+
+
+.modal-org {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 10px;
+    /* border: red 2px solid; */
+}
+
+select {
+    margin-bottom: 10px;
+}
+
+.selector-ingreds {
+    border-left: 1px rgba(0, 0, 0, 0.2) solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: visible;
+    width: 110%;
+    font-size: smaller;
+}
+
+
+.rmsc.multi-select {
+    width: 100%;
 }

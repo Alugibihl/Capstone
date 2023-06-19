@@ -7,6 +7,7 @@ import DeleteRecipeModal from "../deleteRecipeModal";
 import EditRecipeModal from "../editRecipeModal";
 import CommentsByRecipe from "../../Comments/getComments";
 import NotFound from "../../PageNotFound";
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 function OneRecipe() {
     const dispatch = useDispatch()
@@ -19,14 +20,14 @@ function OneRecipe() {
     const [numLikes, setNumLikes] = useState(recipe?.likes ? recipe?.likes?.length : "fish")
     const [liked, setLiked] = useState(false)
     const [editVisible, setEditVisible] = useState(false)
-    // console.log("track recipes", recipe, "likes", recipe?.likes, numLikes);
+    console.log("track recipes", recipe, "likes", recipe?.likes, numLikes);
 
     useEffect(() => {
         dispatch(getOneRecipeThunk(id))
     }, [dispatch, id])
 
     useEffect(() => {
-        setNumLikes(recipe?.likes.length)
+        setNumLikes(recipe?.likes?.length)
         if (recipe?.likes) {
             for (let like of recipe.likes) {
                 if (like.id === user.id) { setLiked(true) }
@@ -38,6 +39,7 @@ function OneRecipe() {
     if (!recipe) return <NotFound />
     if (!recipeOwner) return null
     if (!category) return null
+    if (!recipe.relations) return null
 
     const visibility = () => setEditVisible(!editVisible)
 
@@ -89,7 +91,14 @@ function OneRecipe() {
                 </div>
             </div>
             <div className="poster">Recipe By: {recipeOwner[0].username}</div>
-            <div className="single-details wrap-break">{recipe.details}</div>
+            <div className="alignment wrap-break">
+                <div className="single-details wrap-break">{recipe.details}</div>
+                <div className="relate-box"><h4>Ingredients: </h4>{recipe?.relations.length ? (
+                    recipe.relations.map((ingred) => {
+                        return <div key={ingred.id}><NavLink to={`/ingredients/${ingred.id}`} >{ingred.name}</NavLink></div>
+                    })
+                ) : "Ingredients not provided"}</div>
+            </div>
 
         </div >
     )

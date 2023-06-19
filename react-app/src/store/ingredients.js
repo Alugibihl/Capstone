@@ -71,7 +71,6 @@ export const getOneIngredientThunk = (id) => async (dispatch) => {
 }
 
 export const createIngredientThunk = (details) => async (dispatch) => {
-    // console.log("create thunk details", details);
     const response = await fetch("/api/ingredients/new", {
         method: "POST",
         // headers: {
@@ -117,7 +116,6 @@ export const editOneIngredientThunk = (info) => async (dispatch) => {
     });
     if (response.ok) {
         const data = await response.json();
-        // console.log("----- data in edit thunk---", data);
         dispatch(editIngredient(data));
         // dispatch(getOneIngredient(data.id))
         return data
@@ -133,7 +131,6 @@ export const editOneIngredientThunk = (info) => async (dispatch) => {
     }
 }
 export const deleteIngredientThunk = (ingredientId) => async (dispatch) => {
-    // console.log("delete thunk", ingredientId);
     const response = await fetch(`/api/ingredients/${ingredientId}`, {
         method: "DELETE",
         headers: {
@@ -169,7 +166,6 @@ const IngredientReducer = (state = initialState, action) => {
             return newState
         }
         case CREATE_INGREDIENT: {
-            // console.log("this is to be looked at", action.payload);
             newState = { ...state, ingredients: { ...state.ingredients } }
             newState.ingredients[action.payload.id] = action.payload
             return newState
