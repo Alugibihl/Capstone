@@ -20,7 +20,7 @@ function SignupFormPage() {
     if (password === confirmPassword) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
-        console.log("data", data.email);
+        // console.log("data", data.email);
       }
       if (data) {
         let errars = []
@@ -28,7 +28,7 @@ function SignupFormPage() {
           let res = error.split(":")
           errars.push(res[1])
         });
-        console.log(errars);
+        // console.log(errars);
         setErrors(errars)
       }
     } else {
