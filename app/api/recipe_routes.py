@@ -118,16 +118,16 @@ def edit_one_recipe(id):
             recipe.name = data["name"]
 
             ingredient_ids = data["ingredient_ids"]
-            print("-------------------         - ---------ids",ingredient_ids)
-            # res = ingredient_ids.split(",")
+            print("----------------------------ids",ingredient_ids, data["ingredient_ids"])
+            res = ingredient_ids[0].split(",")
             recipe.recipe_ingredients.clear()
 
-            for ingredient_id in ingredient_ids:
-                print("--------------------------ingredient", ingredient)
+            for ingredient_id in res:
                 ingredient = Ingredient.query.get(ingredient_id)
+                print("--------------------------ingredient", ingredient)
                 if ingredient:
                     recipe.recipe_ingredients.append(ingredient)
-                    print("                    yooooooo~!!!#@@@!!!!!  ", recipe)
+                    print("------ yooooooo~!!!#@@@!!!!!  ", recipe)
             db.session.commit()
             return {
                 "recipe": recipe.to_dict()
@@ -135,9 +135,7 @@ def edit_one_recipe(id):
         else:
             return {"errors": "You must be the owner of a recipe to edit that recipe."}
 
-    return {
-        "errors": form.errors
-    }, 422
+    return { "errors": form.errors}
 
 @recipe_routes.route("/<int:id>/likes", methods=["POST"])
 @login_required

@@ -45,14 +45,14 @@ const EditRecipeModal = ({ recipe }) => {
             }
             else {
                 let vals = selectedIngredients?.map((ingreds) => ingreds.value)
-                console.log("vals", vals);
+                console.log("look here ----------", selectedIngredients, vals)
                 const formData = new FormData()
                 formData.append("details", details)
                 formData.append("name", name)
                 formData.append("user_id", currentUser.id)
                 formData.append("image", image)
                 formData.append("category_id", categoryId)
-                formData.append("relates", vals);
+                formData.append("ingredient_ids", vals)
                 const info = { formData, recipe }
                 const data = await dispatch(editOneRecipeThunk(info));
                 if (data.errors) {

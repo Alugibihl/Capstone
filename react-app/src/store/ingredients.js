@@ -116,7 +116,6 @@ export const editOneIngredientThunk = (info) => async (dispatch) => {
     });
     if (response.ok) {
         const data = await response.json();
-        // console.log("----- data in edit thunk---", data);
         dispatch(editIngredient(data));
         // dispatch(getOneIngredient(data.id))
         return data
@@ -132,7 +131,6 @@ export const editOneIngredientThunk = (info) => async (dispatch) => {
     }
 }
 export const deleteIngredientThunk = (ingredientId) => async (dispatch) => {
-    // console.log("delete thunk", ingredientId);
     const response = await fetch(`/api/ingredients/${ingredientId}`, {
         method: "DELETE",
         headers: {
