@@ -41,6 +41,10 @@ function ProfileButton({ user }) {
     let path = "/ingredients/current"
     history.push(path)
   }
+  const yourRecipeRoute = () => {
+    let path = "/recipes/likes/current"
+    history.push(path)
+  }
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
@@ -74,6 +78,7 @@ function ProfileButton({ user }) {
                   <p className="styling-line">Recipes</p>
                   <div>
                     <button onClick={recipeRoute} className="green-button">Your Recipes</button>
+                    <button onClick={yourRecipeRoute} className="green-button">Liked Recipes</button>
                   </div>
                   <p className="styling-line">Ingredients</p>
                   <div>

@@ -20,7 +20,6 @@ const CreateRecipeModal = () => {
     const currentUser = useSelector((state) => state.session.user)
     const { closeModal } = useModal()
     const [selectedIngredients, setSelectedIngredients] = useState([]);
-    // console.log("choices list", choicesArr);
 
     useEffect(() => {
         dispatch(getAllCategoriesThunk())
@@ -47,7 +46,7 @@ const CreateRecipeModal = () => {
             }
             else {
                 let vals = selectedIngredients?.map((ingreds) => ingreds.value)
-                console.log("look here ----------", selectedIngredients, vals)
+                // console.log("look here ----------", selectedIngredients, vals)
                 const formData = new FormData()
                 formData.append("details", details)
                 formData.append("name", name)

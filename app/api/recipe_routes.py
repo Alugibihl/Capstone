@@ -118,16 +118,16 @@ def edit_one_recipe(id):
             recipe.name = data["name"]
 
             ingredient_ids = data["ingredient_ids"]
-            print("----------------------------ids",ingredient_ids, data["ingredient_ids"])
+            # print("----------------------------ids",ingredient_ids, data["ingredient_ids"])
             res = ingredient_ids[0].split(",")
             recipe.recipe_ingredients.clear()
 
             for ingredient_id in res:
                 ingredient = Ingredient.query.get(ingredient_id)
-                print("--------------------------ingredient", ingredient)
+                # print("--------------------------ingredient", ingredient)
                 if ingredient:
                     recipe.recipe_ingredients.append(ingredient)
-                    print("------ yooooooo~!!!#@@@!!!!!  ", recipe)
+                    # print("------ yooooooo~!!!#@@@!!!!!  ", recipe)
             db.session.commit()
             return {
                 "recipe": recipe.to_dict()
@@ -162,3 +162,18 @@ def remove_like(id):
         db.session.commit()
     # Return the updated number of likes for the recipe
     return {"likes": recipe.recipe_likes}
+
+@recipe_routes.route("/likes/current")
+@login_required
+def user_liked_recipes():
+    # Retrieve all recipes from the database
+    recipes = Recipe.query.all()
+
+    # Filter recipes to include only the ones liked by the current user
+    liked_recipes = [recipe for recipe in recipes if current_user in recipe.recipe_likes]
+    print("---------------------------------------------------", liked_recipes)
+    # Create a list of dictionaries representing the liked recipes
+    response = [recipe.to_dict() for recipe in liked_recipes]
+    print("--------response-------------", response)
+
+    return {"liked_recipes": response}

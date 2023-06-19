@@ -129,8 +129,8 @@ The New Fork Dines is currently in development and does not have is does not inc
 | POST | /api/comments/new | To create a new comment | { id: #, details: '...', recipe_id: #, user_id: # } as JSON |
 | GET | /api/recipes/:id | To retrieve one recipe |  { id: #, details: '...', name: '...', user_id: #, category_id: #, image: '...' } as JSON |
 | GET | /api/recipes | To retrieve all questions | { id: #, details: '...', name: '...', user_id: #, category_id: #, image: '...' } as a list as JSON |
-| GET | /api/recipes/current | To retrieve all of the current users recipes |  { id: #, details: '...', name: '...', user_id: #, category_id: #, image: '...' } as a list as JSON |
-| GET | /api/ingredients/current | To retrieve all of the current users ingredients |
+| GET | /api/recipes/current | To retrieve all of the current users recipes | [{ id: #, details: '...', name: '...', user_id: #, category_id: #, image: '...' }, {}] as a list as JSON |
+| GET | /api/ingredients/current | To retrieve all of the current users ingredients |   { id: #, details: '...', name: '...', user_id: #, category_id: #, image: '...' } as a list as JSON |
 | GET | /api/ingredients | To retrieve all ingredients | { id: #, details: '...', name: '...', user_id: #, image: '...' } as a list of JSON objects |
 | GET | /api/ingredients/:id | To retrieve one ingredient | { id: #, details: '...', name: '...', user_id: #, image: '...' } as JSON |
 | GET | /api/comments/:id | To retrieve one comment | { id: #, details: '...', recipe_id: #, user_id: # } as JSON |

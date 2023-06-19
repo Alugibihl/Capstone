@@ -4,6 +4,7 @@ const CREATE_RECIPE = "recipes/CREATE"
 const EDIT_RECIPE = "recipes/EDIT"
 const DELETE_RECIPE = "recipes/DELETE"
 const GET_USER_RECIPES = "recipes/CURRENT_USER"
+const GET_USER_LIKED_RECIPES = "recipes/CURRENT_USER_LIKES"
 
 export const getAllRecipes = (recipes) => {
     return {
@@ -32,6 +33,12 @@ export const editRecipe = (details) => {
 export const getRecipes = (details) => {
     return {
         type: GET_USER_RECIPES,
+        payload: details
+    }
+}
+export const getLikedRecipes = (details) => {
+    return {
+        type: GET_USER_LIKED_RECIPES,
         payload: details
     }
 }
@@ -82,6 +89,20 @@ export const getRecipeByUser = () => async (dispatch) => {
         ];
     }
 }
+
+export const getLikedRecipeByUser = () => async (dispatch) => {
+    const response = await fetch("/api/recipes/likes/current")
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(getRecipes(data))
+        return response
+    } else {
+        return [
+            "An error occurred. Please try again."
+        ];
+    }
+}
+
 
 export const createRecipeThunk = (details) => async (dispatch) => {
     console.log("details", details);
@@ -214,6 +235,11 @@ const RecipeReducer = (state = initialState, action) => {
             return newState;
 
         case GET_USER_RECIPES:
+            newState = { ...state };
+            newState.recipes = { ...action.payload };
+            return newState;
+
+        case GET_USER_LIKED_RECIPES:
             newState = { ...state };
             newState.recipes = { ...action.payload };
             return newState;
