@@ -76,7 +76,7 @@ function ProfileButton({ user }) {
                   </div>
 
                   <p className="styling-line">Recipes</p>
-                  <div>
+                  <div className="buttons-recipes">
                     <button onClick={recipeRoute} className="green-button">Your Recipes</button>
                     <button onClick={yourRecipeRoute} className="green-button">Liked Recipes</button>
                   </div>
