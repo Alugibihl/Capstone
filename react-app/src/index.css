@@ -395,7 +395,11 @@ select {
     max-width: 15vw;
 }
 
-
 .rmsc.multi-select {
     width: 100%;
+}
+
+.buttons-recipes {
+    display: flex;
+    gap: 10px;
 }
