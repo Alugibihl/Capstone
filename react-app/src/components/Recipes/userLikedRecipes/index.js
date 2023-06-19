@@ -2,8 +2,6 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getLikedRecipeByUser } from "../../../store/recipes"
 import RecipeDisplay from "../allrecipes"
-import OpenModalButton from "../../OpenModalButton"
-import CreateRecipeModal from "../createRecipes"
 import NotFound from "../../PageNotFound"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 
@@ -11,7 +9,7 @@ const UserLikedRecipes = () => {
     const dispatch = useDispatch()
     const recipes = useSelector(state => state.recipes.recipes.liked_recipes)
     const history = useHistory()
-    console.log("hello", recipes);
+    // console.log("hello", recipes);
 
     useEffect(() => {
         dispatch(getLikedRecipeByUser())

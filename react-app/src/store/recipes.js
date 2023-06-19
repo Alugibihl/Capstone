@@ -105,7 +105,7 @@ export const getLikedRecipeByUser = () => async (dispatch) => {
 
 
 export const createRecipeThunk = (details) => async (dispatch) => {
-    console.log("details", details);
+    // console.log("details", details);
     const response = await fetch("/api/recipes/new", {
         method: "POST",
         body:
@@ -136,7 +136,7 @@ export const editOneRecipeThunk = (info) => async (dispatch) => {
     });
     if (response.ok) {
         const data = await response.json();
-        console.log("data", data);
+        // console.log("data", data);
         dispatch(editRecipe(data));
         return data
     } else if (response.status < 500) {

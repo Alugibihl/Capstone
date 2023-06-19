@@ -14,7 +14,7 @@ const EditRecipeModal = ({ recipe }) => {
     const [image, setImage] = useState(recipe.image)
     const ingredients = useSelector(state => state.ingredients?.ingredients?.ingredient)
 
-    console.log("look at me", ingredients)
+    // console.log("look at me", ingredients)
     const [errors, setErrors] = useState([])
     const [categoryId, setCategoryId] = useState(recipe.categoryId)
     const [name, setName] = useState(recipe.name)
@@ -47,7 +47,7 @@ const EditRecipeModal = ({ recipe }) => {
             }
             else {
                 let vals = selectedIngredients?.map((ingreds) => ingreds.value)
-                console.log("look here ----------", selectedIngredients, vals)
+                // console.log("look here ----------", selectedIngredients, vals)
                 const formData = new FormData()
                 formData.append("details", details)
                 formData.append("name", name)
@@ -58,7 +58,7 @@ const EditRecipeModal = ({ recipe }) => {
                 const info = { formData, recipe }
                 const data = await dispatch(editOneRecipeThunk(info));
                 if (data.errors) {
-                    console.log("error", data);
+                    // console.log("error", data);
                     setErrors([
                         data.errors
                     ]);
@@ -76,7 +76,7 @@ const EditRecipeModal = ({ recipe }) => {
     };
 
     const handleChange = (selected) => {
-        console.log("selected", selected);
+        // console.log("selected", selected);
         setSelectedIngredients(selected);
     };
 
