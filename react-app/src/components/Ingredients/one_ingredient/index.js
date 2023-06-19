@@ -11,9 +11,11 @@ function OneIngredient() {
     const dispatch = useDispatch()
     const { id } = useParams()
     const ingredient = useSelector(state => state.ingredients.ingredients.ingredient)
+    const alls = useSelector(state => state.ingredients.ingredients)
     const user = useSelector(state => state.session.user)
     const ingredientOwner = useSelector(state => state.ingredients.ingredients.users)
     const [editVisible, setEditVisible] = useState(false)
+    console.log("here", ingredient, "all", alls);
 
     useEffect(() => {
         dispatch(getOneIngredientThunk(id))

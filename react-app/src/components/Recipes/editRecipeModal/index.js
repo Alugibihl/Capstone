@@ -12,7 +12,9 @@ const EditRecipeModal = ({ recipe }) => {
     const currentUser = useSelector((state) => state.session.user)
     const [details, setDetails] = useState(recipe.details)
     const [image, setImage] = useState(recipe.image)
-    const ingredients = useSelector(state => state.ingredients.ingredients.ingredient)
+    const ingredients = useSelector(state => state.ingredients?.ingredients?.ingredient)
+
+    console.log("look at me", ingredients)
     const [errors, setErrors] = useState([])
     const [categoryId, setCategoryId] = useState(recipe.categoryId)
     const [name, setName] = useState(recipe.name)
@@ -21,7 +23,7 @@ const EditRecipeModal = ({ recipe }) => {
         return { value: ingred.id, label: ingred.name }
     })
     const [selectedIngredients, setSelectedIngredients] = useState(recipe?.relations ? starter : []);
-    console.log("this is recipe", recipe, selectedIngredients);
+    // console.log("this is recipe", recipe, selectedIngredients);
 
     useEffect(() => {
         dispatch(getAllCategoriesThunk())

@@ -14,6 +14,7 @@ import UserIngredients from "./components/Ingredients/IngredientsByUser";
 import { getAllCategoriesThunk } from "./store/category";
 import NotFound from "./components/PageNotFound";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import UserLikedRecipes from "./components/Recipes/userLikedRecipes";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,11 @@ function App() {
           <Route exact path={"/recipes/:id"}>
             <ProtectedRoute>
               <OneRecipe />
+            </ProtectedRoute>
+          </Route>
+          <Route exact path={"/recipes/likes/current"}>
+            <ProtectedRoute>
+              <UserLikedRecipes />
             </ProtectedRoute>
           </Route>
           <Route exact path={"/ingredients/current"}>
