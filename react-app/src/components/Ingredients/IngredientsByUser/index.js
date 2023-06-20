@@ -10,8 +10,6 @@ import UserIngredientDisplay from "../user_ingredient_display/userIngredientDisp
 const UserIngredients = () => {
     const dispatch = useDispatch()
     const ingredients = useSelector(state => state.ingredients.ingredients.ingredients)
-    // console.log("___ingredients___", ingredients);
-
 
     useEffect(() => {
         dispatch(getIngredientsByUser())

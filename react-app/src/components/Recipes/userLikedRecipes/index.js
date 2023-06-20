@@ -9,7 +9,6 @@ const UserLikedRecipes = () => {
     const dispatch = useDispatch()
     const recipes = useSelector(state => state.recipes.recipes.liked_recipes)
     const history = useHistory()
-    // console.log("hello", recipes);
 
     useEffect(() => {
         dispatch(getLikedRecipeByUser())

@@ -11,25 +11,27 @@ export const getAllIngredients = (ingredients) => {
         payload: ingredients
     }
 }
+
 export const getOneIngredient = (ingredient) => {
     return {
         type: GET_ONE,
-        payload: ingredient
-    }
-}
+        payload: ingredient,
+    };
+};
+
+export const editIngredient = (details) => {
+    return {
+        type: EDIT_INGREDIENT,
+        details,
+    };
+};
+
 export const createIngredient = (details) => {
     return {
         type: CREATE_INGREDIENT,
         payload: details
     }
 }
-export const editIngredient = (details) => {
-    return {
-        type: EDIT_INGREDIENT,
-        details
-    }
-}
-
 export const getIngredients = (details) => {
     return {
         type: GET_USER_INGREDIENTS,
@@ -109,7 +111,6 @@ export const getIngredientsByUser = () => async (dispatch) => {
 
 export const editOneIngredientThunk = (info) => async (dispatch) => {
     const { formData, ingredient } = info
-    // console.log('details in Edit Thunk', ingredient);
     const response = await fetch(`/api/ingredients/${ingredient.id}`, {
         method: "PUT",
         body: formData
@@ -117,7 +118,6 @@ export const editOneIngredientThunk = (info) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json();
         dispatch(editIngredient(data));
-        // dispatch(getOneIngredient(data.id))
         return data
     } else if (response.status < 500) {
         const data = await response.json();
@@ -156,42 +156,47 @@ const IngredientReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case GET_INGREDIENT: {
-            newState = { ...state }
-            newState.ingredients = { ...action.payload }
-            return newState
-        }
-        case GET_ONE: {
-            newState = { ...state }
-            newState.ingredients = { ...action.payload }
-            return newState
-        }
-        case CREATE_INGREDIENT: {
-            newState = { ...state, ingredients: { ...state.ingredients } }
-            newState.ingredients[action.payload.id] = action.payload
-            return newState
-        }
-        case DELETE_INGREDIENT: {
-            newState = { ...state, ingredients: { ...state.ingredients } }
-            delete newState.ingredients[action.ingredientId]
-            return newState
-        }
-        case EDIT_INGREDIENT: {
-            newState = { ...state };
-            newState.ingredients[action.details.id] = {
-                ...newState.ingredients[action.details.id],
-                ...action.details,
-            };
-            // console.log("this is new state", newState);
+            newState = { ...state, ingredients: { ...action.payload } };
             return newState;
         }
+        case GET_ONE: {
+            newState = { ...state, ingredient: { ...action.payload } };
+            return newState;
+        }
+        case CREATE_INGREDIENT: {
+            newState = {
+                ...state,
+                ingredients: { ...state.ingredients, [action.payload.id]: action.payload },
+            };
+            return newState;
+        }
+        case DELETE_INGREDIENT: {
+            newState = { ...state, ingredients: { ...state.ingredients } };
+            delete newState.ingredients[action.ingredientId];
+            return newState;
+        }
+        case EDIT_INGREDIENT: {
+            const { id, ...ingredientData } = action.details;
+            const updatedIngredient = {
+                ...state.ingredients[id],
+                ...ingredientData,
+            };
+            const updatedState = {
+                ...state,
+                ingredients: {
+                    ...state.ingredients,
+                    [id]: updatedIngredient,
+                },
+            };
+            return updatedState;
+        }
         case GET_USER_INGREDIENTS: {
-            newState = { ...state }
-            newState.ingredients = { ...action.payload }
-            return newState
+            newState = { ...state, ingredients: { ...action.payload } };
+            return newState;
         }
         default:
-            return state
+            return state;
     }
-}
+};
 
 export default IngredientReducer

@@ -13,7 +13,7 @@ const CreateRecipeModal = () => {
     const choicesArr = useSelector(state => state.categories.categories.category)
     const [details, setDetails] = useState("")
     const [image, setImage] = useState(null)
-    const ingredients = useSelector(state => state.ingredients.ingredients.ingredient)
+    const ingredients = useSelector(state => state.ingredients.ingredients.ingredients)
     const [errors, setErrors] = useState([])
     const [categoryId, setCategoryId] = useState("")
     const [name, setName] = useState("")
@@ -24,7 +24,7 @@ const CreateRecipeModal = () => {
     useEffect(() => {
         dispatch(getAllCategoriesThunk())
         dispatch(getAllIngredientsThunk())
-    }, [dispatch])
+    }, [dispatch, ingredients])
 
     const options = ingredients?.map((ingredient) => ({
         value: ingredient.id,
@@ -46,7 +46,6 @@ const CreateRecipeModal = () => {
             }
             else {
                 let vals = selectedIngredients?.map((ingreds) => ingreds.value)
-                // console.log("look here ----------", selectedIngredients, vals)
                 const formData = new FormData()
                 formData.append("details", details)
                 formData.append("name", name)
@@ -54,16 +53,13 @@ const CreateRecipeModal = () => {
                 formData.append("image", image)
                 formData.append("category_id", categoryId)
                 formData.append("ingredient_ids", vals);
-                // console.log("form data", formData);
                 const data = await dispatch(createRecipeThunk(formData));
                 if (data.errors) {
-                    // console.log("error", data);
                     setErrors([
                         data.errors
                     ]);
                 }
                 else if (data) {
-                    // console.log("___------------- data ------_________", data);
                     closeModal();
                     history.push(`/recipes/${data.recipe.id}`)
                 }
@@ -76,7 +72,6 @@ const CreateRecipeModal = () => {
     };
 
     const handleChange = (selected) => {
-        // console.log("selected", selected);
         setSelectedIngredients(selected);
     };
 

@@ -75,7 +75,7 @@ def create_one_recipe():
         return {
             "recipe": new_recipe.to_dict()
         }
-    print(form.errors)
+    # print(form.errors)
     return {
         "errors": form.errors
     }, 422

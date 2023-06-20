@@ -9,7 +9,6 @@ const CreateIngredientModal = () => {
     const history = useHistory()
     const [details, setDetails] = useState("")
     const [image, setImage] = useState(null)
-    // const [imageLoading, setImageLoading] = useState(false)
     const [errors, setErrors] = useState([])
     const [name, setName] = useState("")
     const currentUser = useSelector((state) => state.session.user)
@@ -32,7 +31,6 @@ const CreateIngredientModal = () => {
 
                 const data = await dispatch(createIngredientThunk(formData));
                 if (data) {
-                    // console.log("data", data);
                     closeModal();
                     history.push(`/ingredients/${data.ingredient.id}`)
                 }
@@ -43,21 +41,7 @@ const CreateIngredientModal = () => {
             ]);
 
         }
-        // const res = await fetch('/api/images', {
-        //     method: "POST",
-        //     body: formData,
-        // });
-        // if (res.ok) {
-        //     await res.json();
-        //     setImageLoading(false);
-        //     history.push("/images");
-        // }
-        // else {
-        //     setImageLoading(false);
-        //     // a real app would probably use more advanced
-        //     // error handling
-        //     console.log("error");
-        // }
+
     };
     return (
         <div className="modal-background">
@@ -116,10 +100,9 @@ const CreateIngredientModal = () => {
                         <button className="red-button" onClick={closeModal}>Cancel</button>
                         <button className="green-button" type="submit">Create Ingredient</button>
                     </div>
-                    {/* {(imageLoading) && <p>Loading...</p>} */}
-                </form >
+                </form>
             </div>
-        </div >
+        </div>
     )
 }
 
