@@ -33,7 +33,6 @@ const EditIngredientModal = ({ ingredient }) => {
                 const info = { formData, ingredient }
                 const data = await dispatch(editOneIngredientThunk(info));
                 if (data) {
-                    // console.log("data---", data);
                     closeModal();
                     dispatch(getOneIngredientThunk(ingredient.id))
                 }

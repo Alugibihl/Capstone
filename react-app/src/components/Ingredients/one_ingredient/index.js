@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getOneIngredientThunk } from "../../../store/ingredients";
+import { getAllIngredientsThunk, getOneIngredientThunk } from "../../../store/ingredients";
 import DeleteIngredientModal from "../delete_ingredient_modal";
 import OpenModalButton from "../../OpenModalButton";
 import EditIngredientModal from "../edit_ingredient_modal";
@@ -10,15 +10,14 @@ import NotFound from "../../PageNotFound";
 function OneIngredient() {
     const dispatch = useDispatch()
     const { id } = useParams()
-    const ingredient = useSelector(state => state.ingredients.ingredients.ingredient)
-    const alls = useSelector(state => state.ingredients.ingredients)
-    const user = useSelector(state => state.session.user)
-    const ingredientOwner = useSelector(state => state.ingredients.ingredients.users)
+    const ingredients = useSelector(state => state.ingredients.ingredients.ingredients)
+    const ingredient = ingredients?.find(ingredient => +ingredient.id === +id)
+    const ingredientOwner = ingredient?.user
+    const currentUser = useSelector(state => state.session.user)
     const [editVisible, setEditVisible] = useState(false)
-    console.log("here", ingredient, "all", alls);
 
     useEffect(() => {
-        dispatch(getOneIngredientThunk(id))
+        dispatch(getAllIngredientsThunk())
     }, [dispatch, id])
 
     if (!ingredient) return <NotFound />
@@ -29,8 +28,8 @@ function OneIngredient() {
     return (
         <div className="single-item-container">
             <img style={{ objectFit: "cover" }} src={ingredient.image} alt={ingredient.name}></img>
-            <div className="name-holder wrap-break orgs"><h2>{ingredient.name}</h2> {user && user.id === ingredient.userId && <button onClick={visibility}><i className="fas fa-ellipsis-h"></i></button>}</div>
-            {user && user.id === ingredient.userId && <div>
+            <div className="name-holder wrap-break orgs"><h2>{ingredient.name}</h2> {currentUser && currentUser.id === ingredient.userId && <button onClick={visibility}><i className="fas fa-ellipsis-h"></i></button>}</div>
+            {currentUser && currentUser.id === ingredient.userId && <div>
                 <div className={editVisible ? "placement" : "hidden"}>
                     <div className="icon-org">
                         <div>
@@ -46,7 +45,7 @@ function OneIngredient() {
                     </div>
                 </div>
             </div>}
-            <div className="poster wrap-break">Ingredient By: {ingredientOwner[0].username}</div>
+            <div className="poster wrap-break">Ingredient By: {ingredientOwner.username}</div>
             <div className="single-details wrap-break">{ingredient.details}</div>
         </div >
     )

@@ -11,8 +11,14 @@ ingredient_routes = Blueprint('ingredient', __name__)
 @ingredient_routes.route("/")
 def get_all_ingredients():
     ingredients = Ingredient.query.all()
-    response = [ingredient.to_dict() for ingredient in ingredients]
-    return {"ingredient": response}
+    response = []
+    for ingredient in ingredients:
+        ingredient_data = ingredient.to_dict()
+        user = User.query.get(ingredient.user_id)
+        user_data = user.to_dict()
+        ingredient_data['user'] = user_data
+        response.append(ingredient_data)
+    return {"ingredients": response}
 
 @ingredient_routes.route("/current")
 @login_required

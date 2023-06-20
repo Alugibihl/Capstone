@@ -105,7 +105,6 @@ export const getLikedRecipeByUser = () => async (dispatch) => {
 
 
 export const createRecipeThunk = (details) => async (dispatch) => {
-    // console.log("details", details);
     const response = await fetch("/api/recipes/new", {
         method: "POST",
         body:
@@ -136,7 +135,6 @@ export const editOneRecipeThunk = (info) => async (dispatch) => {
     });
     if (response.ok) {
         const data = await response.json();
-        // console.log("data", data);
         dispatch(editRecipe(data));
         return data
     } else if (response.status < 500) {
@@ -169,7 +167,6 @@ export const deleteRecipeThunk = (recipeId) => async (dispatch) => {
 
 export const addLikeThunk = (data) => async (dispatch) => {
     const { recipeId, current } = data
-    // console.log("in add like thunk", recipeId);
     const response = await fetch(`/api/recipes/${recipeId}/likes`, {
         method: "POST",
         headers: {
@@ -203,7 +200,7 @@ export const deleteLikeThunk = (recipeId) => async (dispatch) => {
 
 
 const initialState = {
-    recipes: {},
+    recipes: {}
 };
 
 const RecipeReducer = (state = initialState, action) => {
