@@ -178,7 +178,7 @@ def seed_recipes():
         details="Margherita Pizza is a classic Italian pizza that showcases the flavors of fresh tomatoes, mozzarella cheese, and basil leaves. This simple yet delicious pizza is a favorite for many pizza lovers. To make Margherita Pizza, spread tomato sauce over the pizza dough, top it with slices of fresh mozzarella cheese, and place basil leaves on top. Drizzle with olive oil and season with salt and pepper. Bake the pizza in a hot oven until the crust is crispy and the cheese is melted and bubbly. Slice and serve this timeless Italian pizza for a satisfying meal that captures the essence of Italian cuisine.",
         category_id=3,
         user_id=4,
-        image="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fpoormansgourmetkitchen.com%2Fwp-content%2Fuploads%2F2014%2F06%2FIMG_0861.jpg&f=1&nofb=1&ipt=04ed3fa0e1e87b571c2a85d365b74f9d15eb93144ac37a531986b6a6484b9456&ipo=images"
+        image="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fchefdbrown.com%2Fwp-content%2Fuploads%2F2013%2F03%2Fpizza-margherita-1.jpg&f=1&nofb=1&ipt=11fb818d277e7f367cf824987dedb6690e28f9673a3fda39161cc65cfee7d4c0&ipo=images"
     )
 
     cuisine24 = Recipe(
@@ -426,7 +426,7 @@ def seed_recipes():
         details="Okonomiyaki is a savory pancake-like dish that is a popular street food in Japan. It is made with a batter of flour, grated yam, water, and shredded cabbage, along with various fillings like pork belly, shrimp, or octopus. The ingredients are mixed together and cooked on a griddle or hot plate. Okonomiyaki is often topped with a sweet and tangy sauce, mayonnaise, bonito flakes, and dried seaweed. It is a versatile dish that can be customized to individual preferences and is enjoyed by people of all ages.",
         category_id=7,
         user_id=4,
-        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.sbs.com.au%2Ffood%2Fsites%2Fsbs.com.au.food%2Ffiles%2Fasia-unplated_ep03_okonomiyaki_mg_5646.jpg&f=1&nofb=1&ipt=a2df9742fb380225670e302d120149075c5a7a86502609a402b7ec6b4aab0be3&ipo=images"
+        image="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.bhg.com.au%2Fmedia%2F3389%2F160818_okonomiyaki.jpg&f=1&nofb=1&ipt=a76bcbb5c305c923c8950a4bf9dca714582f5401a08b47f515823d15158c7446&ipo=images"
     )
 
     all_recipes = [
