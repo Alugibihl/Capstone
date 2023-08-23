@@ -127,7 +127,7 @@ def seed_ingredients():
         name="Paneer",
         details="Paneer is a type of fresh cheese commonly used in Indian cuisine...",
         user_id=2,
-        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.gourmetwala.net%2Fwp-content%2Fuploads%2F2018%2F08%2Fpaneer-314.jpg&f=1&nofb=1&ipt=842551d4ef32ded02dba2e97c4b9ec0382f30f0814908f473064833cb3238f61&ipo=images"
+        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F4.bp.blogspot.com%2F-ne0SBRSv-M8%2FWNQ-pUA6NrI%2FAAAAAAAADCE%2FCHsD8u7amZ4VgVc1ytkW7agXG1XAYQOOwCLcB%2Fs1600%2Fhow%252Bto%252Bmake%252Bpaneer.JPG&f=1&nofb=1&ipt=3f5f16ae5ad2ee0c3f0c57fd5524a37038ddb3daa671c21e03a4338435f63342&ipo=images"
     )
 
     ingredient19 = Ingredient(
