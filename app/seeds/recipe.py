@@ -224,7 +224,7 @@ def seed_recipes():
         details="Palak paneer is a popular vegetarian dish from North India made with spinach and paneer (Indian cottage cheese). The spinach is blanched and pureed into a smooth paste, which is then cooked with onions, garlic, ginger, and a blend of spices like cumin, coriander, and garam masala. The paneer is cubed and added to the spinach mixture, where it absorbs the flavors and becomes tender. Palak paneer is typically served with naan bread or steamed rice.",
         category_id=4,
         user_id=2,
-        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.thechaipress.com%2Fwp-content%2Fuploads%2F2017%2F08%2FPalak-Paneer.jpg&f=1&nofb=1&ipt=854901938cf8ed0f20d515e87f2c9cd34e9107997df98b5e9477da86e70b0e4a&ipo=images"
+        image="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.thebengalirecipe.com%2Fimages%2FVegetarian_recipes%2FV003_palak_paneer%2Fpalak_paneer_s8.jpg&f=1&nofb=1&ipt=edb5adde9131b4e5de4b878375f34402d4d3a8f3a55fc092900e9533e8272480&ipo=images"
     )
 
     cuisine30 = Recipe(
