@@ -178,7 +178,7 @@ def seed_recipes():
         details="Margherita Pizza is a classic Italian pizza that showcases the flavors of fresh tomatoes, mozzarella cheese, and basil leaves. This simple yet delicious pizza is a favorite for many pizza lovers. To make Margherita Pizza, spread tomato sauce over the pizza dough, top it with slices of fresh mozzarella cheese, and place basil leaves on top. Drizzle with olive oil and season with salt and pepper. Bake the pizza in a hot oven until the crust is crispy and the cheese is melted and bubbly. Slice and serve this timeless Italian pizza for a satisfying meal that captures the essence of Italian cuisine.",
         category_id=3,
         user_id=4,
-        image="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fchefdbrown.com%2Fwp-content%2Fuploads%2F2013%2F03%2Fpizza-margherita-1.jpg&f=1&nofb=1&ipt=11fb818d277e7f367cf824987dedb6690e28f9673a3fda39161cc65cfee7d4c0&ipo=images"
+        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcookieandkate.com%2Fimages%2F2021%2F07%2Fhomemade-margherita-pizza-1097x1650.jpg&f=1&nofb=1&ipt=765ed2a83d283fa0baff046fbee97038a7efa2f1f1e73ef21c9a52ad7423adbf&ipo=images"
     )
 
     cuisine24 = Recipe(

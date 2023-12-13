@@ -15,7 +15,7 @@ def seed_ingredients():
         name="Rice",
         details="Rice is a staple ingredient in many cuisines, including Japanese, Chinese, Indian, and Mexican...",
         user_id=2,
-        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fsavannahlounge.co.uk%2Fwp-content%2Fuploads%2F2018%2F10%2Forganic-dry-long-grain-white-rice-P5MHT7H.jpg&f=1&nofb=1&ipt=f8e7c248d5cc8106de5189e1abe2a459c5e2977835ed640bfd3520395b830453&ipo=images"
+        image="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F4%2F4b%2FThai_jasmine_rice_uncooked.jpg&f=1&nofb=1&ipt=faf922e058a24a193a6eb37e82231b76429e76a3f916feb7a68238da3c79f65b&ipo=images"
     )
 
     ingredient3 = Ingredient(
