@@ -1,5 +1,6 @@
 .profile-dropdown {
   background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.wisc-online.com%2Fasset-repository%2Fgetfile%3Fid%3D932%26getType%3Dview&f=1&nofb=1&ipt=adc0c45d3856771c82139be0c1a78273e4e181e458ac3d34140b5058102e60a1&ipo=images");
+  /* Replace with your actual image URL */
   background-position: bottom;
   background-size: cover;
   position: fixed;
@@ -7,55 +8,111 @@
   top: 0%;
   width: 30vw;
   background-color: white;
-  height: 101vh;
+  height: 100vh;
+  /* Use 100vh for full viewport height */
+  overflow-y: auto;
+  /* Add scroll if needed */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.borders {
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .hidden {
   display: none;
 }
 
-.button-sort {
+.navbar {
   display: flex;
-  flex-direction: row;
-  gap: 10px;
-}
-
-.create-buttons {
-  display: flex;
-  gap: 4px;
-  flex-direction: column;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  /* Adjust border color as needed */
+  margin: 0 5%;
   align-items: center;
-  /* width: 20vw; */
-  box-sizing: border-box;
-  /* border: red solid 1px; */
 }
 
 .title {
   display: flex;
   justify-content: center;
-  width: 100%;
+  align-items: center;
+  /* Center vertically */
+  padding: 1rem;
+  /* Bulma uses rem for padding */
 }
 
 .today {
   display: flex;
   width: 150px;
+  padding: 1rem;
+  /* Bulma uses rem for padding */
 }
 
-.borders {
-  margin-left: 15px;
-  margin-right: 15px;
+.button-sort {
+  display: flex;
+  gap: 1rem;
+  /* Bulma uses rem for spacing */
+}
+
+.create-buttons {
+  display: flex;
+  gap: 1rem;
+  /* Bulma uses rem for spacing */
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 .exit-button {
-  font-size: larger;
-  font-weight: bolder;
-  position: relative;
+  font-size: 1rem;
+  /* Bulma uses rem for font size */
+  font-weight: bold;
   background: none;
   border: none;
+  cursor: pointer;
 }
 
 .demo-exit {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  /* Center vertically */
+  padding: 1rem;
+  /* Bulma uses rem for padding */
+}
 
+/* Mobile styles using Bulma classes */
+@media screen and (max-width: 768px) {
+  .title {
+    background-color: #fff;
+    /* Adjust background color as needed */
+  }
+
+  .today {
+    display: flex;
+    /* Show on mobile */
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .button-sort {
+    flex-direction: column;
+    /* Stack buttons on mobile */
+  }
+
+  .create-buttons {
+    width: 100%;
+    /* Full width on mobile */
+  }
+
+  .demo-exit {
+    display: flex;
+    /* Show on mobile */
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
 }
