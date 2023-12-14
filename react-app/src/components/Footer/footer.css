@@ -1,4 +1,4 @@
-.footer {
+/* .footer {
     margin: 10px 5% 0px 5%;
     border-top: 1px solid rgba(0, 0, 0, .3);
     padding-top: 20px;
@@ -7,4 +7,31 @@
 .footer-row {
     display: flex;
     justify-content: space-evenly;
+} */
+.footer {
+    margin: 10px 5%;
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    padding-top: 20px;
+}
+
+.footer-row {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* Mobile styles using Bulma classes */
+@media screen and (max-width: 768px) {
+    .footer {
+        text-align: center;
+        /* Center text on mobile */
+        padding: 10px;
+        /* Increase padding */
+        border-top: 1px solid #ddd;
+        /* Light border at the top */
+    }
+
+    .footer-row {
+        flex-direction: column;
+        /* Stack items on mobile */
+    }
 }

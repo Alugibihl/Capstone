@@ -1,4 +1,4 @@
-.ingredient-display {
+/* .ingredient-display {
     font-size: medium;
     font-weight: bold;
     display: flex;
@@ -6,11 +6,40 @@
     padding: 2px 10px 2px 10px;
     align-items: center;
     width: 100%;
-    /* box-sizing: border-box; */
     border-bottom: 1px black solid;
-    /* border-left: 1px black solid; */
 }
 .ingredient-display img{
     width: 10vw;
     height: 10vh;
+} */
+.ingredient-display {
+    font-size: medium;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 10px;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px black solid;
+}
+
+.ingredient-display img {
+    width: 10vw;
+    height: 10vh;
+}
+
+/* Mobile styles using Bulma classes */
+@media screen and (max-width: 768px) {
+    .ingredient-display {
+        flex-direction: column;
+        padding: 10px;
+        /* Increase padding */
+        border-bottom: 1px solid #ddd;
+        /* Light border between ingredients */
+    }
+
+    .ingredient-display img {
+        width: 100%;
+        height: auto;
+    }
 }

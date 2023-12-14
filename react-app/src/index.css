@@ -1,24 +1,41 @@
 /* TODO Add site wide styles */
-.title {
+/* .title {
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: bolder;
     font-size: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
+} */
+.title {
+    font-weight: bold;
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar {
+    border-bottom: 1px solid black;
+    margin: 0 5%;
+    align-items: center;
+}
+
+.button {
+    background-color: antiquewhite;
 }
 
 .title img {
     height: 2rem;
 }
 
-.navbar {
+/* .navbar {
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid black;
     margin: 0px 5% 0px 5%;
     align-items: center;
-}
+} */
 
 .login-icon {
     display: flex;
@@ -26,9 +43,9 @@
     align-items: center;
 }
 
-button {
+/* button {
     background-color: antiquewhite;
-}
+} */
 
 .today {
     font-size: small;
