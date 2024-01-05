@@ -201,7 +201,7 @@ def seed_recipes():
         details="Gnocchi with Pesto is a delightful Italian dish that features tender potato dumplings tossed in a vibrant and aromatic pesto sauce. This flavorful combination is perfect for pasta lovers. To make Gnocchi with Pesto, cook the gnocchi until they float to the surface of boiling water, then drain. In a separate bowl, blend fresh basil leaves, pine nuts, garlic, Parmesan cheese, and olive oil to create a smooth pesto sauce. Toss the cooked gnocchi in the pesto sauce until well coated. Garnish with additional grated Parmesan cheese and a sprinkle of toasted pine nuts. Serve this delicious and comforting dish as a main course or as a side dish.",
         category_id=3,
         user_id=3,
-        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.mumslounge.com.au%2Fwp-content%2Fuploads%2F2016%2F10%2FPesto-Chicken-Gnochhi-01.jpg&f=1&nofb=1&ipt=b679f38063c06ad111a836f341e8ca2a15d18befdc4384fbe514495ec8a17129&ipo=images"
+        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.redd.it%2Fzbu5u2iu6fq41.jpg&f=1&nofb=1&ipt=60e232dc8d54a19a759e95171b92fcb64eac400f003e7169a4ed89b9cb96040f&ipo=images"
     )
 
     cuisine27 = Recipe(
