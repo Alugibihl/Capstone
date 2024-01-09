@@ -3,6 +3,7 @@ import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import './LoginForm.css';
+import 'bulma/css/bulma.css';
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -48,7 +49,7 @@ function LoginFormPage() {
           placeholder="Password"
           required
         />
-        <button className="green-button" type="submit">Log In</button>
+        <button className="button is-success is-rounded is-small" type="submit">Log In</button>
       </form>
     </>
   );

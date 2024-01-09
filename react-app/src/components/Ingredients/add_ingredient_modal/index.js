@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../../context/Modal";
 import { createIngredientThunk } from "../../../store/ingredients";
+import 'bulma/css/bulma.css';
 
 const CreateIngredientModal = () => {
     const dispatch = useDispatch()
@@ -97,8 +98,8 @@ const CreateIngredientModal = () => {
                         </label>
                     </div>
                     <div className="modal-buttons">
-                        <button className="red-button" onClick={closeModal}>Cancel</button>
-                        <button className="green-button" type="submit">Create Ingredient</button>
+                        <button className="button is-danger is-rounded is-small" onClick={closeModal}>Cancel</button>
+                        <button className="button is-success is-rounded is-small" type="submit">Create Ingredient</button>
                     </div>
                 </form>
             </div>

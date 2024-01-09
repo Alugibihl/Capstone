@@ -4,7 +4,7 @@ import { getIngredientsByUser } from "../../../store/ingredients"
 import OpenModalButton from "../../OpenModalButton"
 import CreateIngredientModal from "../add_ingredient_modal"
 import UserIngredientDisplay from "../user_ingredient_display/userIngredientDisplay"
-
+import 'bulma/css/bulma.css';
 
 
 const UserIngredients = () => {
@@ -23,7 +23,7 @@ const UserIngredients = () => {
                 <h1>Your Ingredients</h1>
                 <div>{ingredients?.length === 0 ? <div><div>No Ingredients Yet. Make one Now!</div>
                     <div className="modal-buttons"><OpenModalButton
-                        className="green-button"
+                        className="button is-success is-rounded is-medium"
                         buttonText={"Create your First Ingredient!"}
                         modalComponent={<CreateIngredientModal />} /></div></div> : null}</div>
                 <div>

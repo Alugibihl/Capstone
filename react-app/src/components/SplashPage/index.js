@@ -4,6 +4,7 @@ import SignupFormPage from "../SignupFormPage";
 import LoginFormPage from "../LoginFormPage";
 import { login } from "../../store/session";
 import "./splash.css"
+import 'bulma/css/bulma.css';
 
 function SplashPage() {
     const dispatch = useDispatch();
@@ -31,7 +32,7 @@ function SplashPage() {
                         <div className="login-container" >
                             <div>
                                 <LoginFormPage />
-                                <button className="blue-button" onClick={handleClick}>Demo User</button>
+                                <button className="button is-info is-rounded is-small" onClick={handleClick}>Demo User</button>
                             </div>
                         </div>
                     </div>

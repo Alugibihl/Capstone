@@ -5,6 +5,7 @@ import RecipeDisplay from "../allrecipes"
 import OpenModalButton from "../../OpenModalButton"
 import CreateRecipeModal from "../createRecipes"
 import NotFound from "../../PageNotFound"
+import 'bulma/css/bulma.css';
 
 const UserRecipes = () => {
     const dispatch = useDispatch()
@@ -22,7 +23,7 @@ const UserRecipes = () => {
                 <div>
                     {recipes?.length === 0 ? <div><div>No Recipes Yet. Make one now!</div>
                         <div className="modal-buttons"><OpenModalButton
-                            className="green-button"
+                            className="button is-success is-rounded is-medium"
                             buttonText={"Create your first Recipe!"}
                             modalComponent={<CreateRecipeModal />} /></div></div> : null}
                 </div>

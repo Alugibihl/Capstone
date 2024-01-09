@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getAllIngredientsThunk, getOneIngredientThunk } from "../../../store/ingredients";
+import { getAllIngredientsThunk } from "../../../store/ingredients";
 import DeleteIngredientModal from "../delete_ingredient_modal";
 import OpenModalButton from "../../OpenModalButton";
 import EditIngredientModal from "../edit_ingredient_modal";
 import NotFound from "../../PageNotFound";
+import 'bulma/css/bulma.css';
 
 function OneIngredient() {
     const dispatch = useDispatch()
@@ -28,18 +29,19 @@ function OneIngredient() {
     return (
         <div className="single-item-container">
             <img style={{ objectFit: "cover" }} src={ingredient.image} alt={ingredient.name}></img>
-            <div className="name-holder wrap-break orgs"><h2>{ingredient.name}</h2> {currentUser && currentUser.id === ingredient.userId && <button onClick={visibility}><i className="fas fa-ellipsis-h"></i></button>}</div>
+            <div className="name-holder wrap-break orgs"><h2>{ingredient.name}</h2> {currentUser && currentUser.id === ingredient.userId && <button
+                onClick={visibility}><i className="fas fa-ellipsis-h"></i></button>}</div>
             {currentUser && currentUser.id === ingredient.userId && <div>
                 <div className={editVisible ? "placement" : "hidden"}>
                     <div className="icon-org">
                         <div>
                             <OpenModalButton
-                                className="red-button"
+                                className="button is-danger is-rounded is-small"
                                 buttonText={"Delete this ingredient"}
                                 modalComponent={<DeleteIngredientModal ingredient={ingredient} />} /></div>
                         <div>
                             <OpenModalButton
-                                className="green-button"
+                                className="button is-success is-rounded is-small"
                                 buttonText={"Edit this ingredient"}
                                 modalComponent={<EditIngredientModal ingredient={ingredient} />} /></div>
                     </div>

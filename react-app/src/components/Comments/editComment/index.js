@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { editOneCommentThunk, getAllCommentsThunk } from "../../../store/comments"
+import 'bulma/css/bulma.css';
 
 const EditCommentForm = ({ comment, recipe, setEditFormStatus, editFormStatus }) => {
     const dispatch = useDispatch()
@@ -63,8 +64,8 @@ const EditCommentForm = ({ comment, recipe, setEditFormStatus, editFormStatus })
                         </label>
                     </div>
                     <div className="modal-buttons">
-                        <button className="red-button" onClick={canceler}>Cancel</button>
-                        <button className="green-button" type="submit">Edit Comment</button>
+                        <button className="button is-danger is-rounded is-small" onClick={canceler}>Cancel</button>
+                        <button className="button is-success is-rounded is-small" type="submit">Edit Comment</button>
                     </div>
                 </form >
             </div>

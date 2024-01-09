@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import { useHistory } from "react-router-dom";
-
+import 'bulma/css/bulma.css';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -65,7 +65,7 @@ function ProfileButton({ user }) {
                   <div className="demo-exit"><h1>
                     {user.email}
                   </h1>
-                    <button className="exit-button" onClick={closeMenu}>X</button>
+                    <button className="delete" onClick={closeMenu}></button>
                   </div>
                   <div>
                     <h2>Hello {user.username}</h2>
@@ -77,12 +77,12 @@ function ProfileButton({ user }) {
 
                   <p className="styling-line">Recipes</p>
                   <div className="buttons-recipes">
-                    <button onClick={recipeRoute} className="green-button">Your Recipes</button>
-                    <button onClick={yourRecipeRoute} className="green-button">Liked Recipes</button>
+                    <button onClick={recipeRoute} className="button is-success is-rounded is-small">Your Recipes</button>
+                    <button onClick={yourRecipeRoute} className="button is-success is-rounded is-small">Liked Recipes</button>
                   </div>
                   <p className="styling-line">Ingredients</p>
                   <div>
-                    <button onClick={ingredientRoute} className="green-button">Your Ingredients</button>
+                    <button onClick={ingredientRoute} className="button is-success is-rounded is-small">Your Ingredients</button>
                   </div>
                 </div>
                 <p className="styling-line">
@@ -90,7 +90,7 @@ function ProfileButton({ user }) {
                 </p>
                 <div >
                   <button
-                    className="red-button"
+                    className="button is-danger is-rounded is-small"
                     onClick={handleLogout}
                     id="profile-dropdown-logout-button"
                   >

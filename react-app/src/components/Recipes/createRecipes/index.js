@@ -6,6 +6,7 @@ import { createRecipeThunk } from "../../../store/recipes";
 import { getAllCategoriesThunk } from "../../../store/category";
 import { getAllIngredientsThunk } from "../../../store/ingredients";
 import { MultiSelect } from "react-multi-select-component"
+import 'bulma/css/bulma.css';
 
 const CreateRecipeModal = () => {
     const dispatch = useDispatch()
@@ -158,8 +159,8 @@ const CreateRecipeModal = () => {
                         </div>
                     </div>
                     <div className="modal-buttons">
-                        <button className="red-button" onClick={closeModal}>Cancel</button>
-                        <button className="green-button" type="submit">Create Recipe</button>
+                        <button className="button is-danger is-rounded is-small" onClick={closeModal}>Cancel</button>
+                        <button className="button is-success is-rounded is-small" type="submit">Create Recipe</button>
                     </div>
                 </form >
             </div >

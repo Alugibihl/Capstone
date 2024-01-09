@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import { editOneIngredientThunk, getOneIngredientThunk } from "../../../store/ingredients";
+import 'bulma/css/bulma.css';
 
 const EditIngredientModal = ({ ingredient }) => {
     const dispatch = useDispatch()
@@ -96,8 +97,8 @@ const EditIngredientModal = ({ ingredient }) => {
                         </label>
                     </div>
                     <div className="modal-buttons">
-                        <button className="red-button" onClick={closeModal}>Cancel</button>
-                        <button className="green-button" type="submit">Edit Ingredient</button>
+                        <button className="button is-danger is-rounded is-small" onClick={closeModal}>Cancel</button>
+                        <button className="button is-success is-rounded is-small" type="submit">Edit Ingredient</button>
                     </div>
                 </form >
             </div>

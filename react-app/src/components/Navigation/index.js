@@ -10,6 +10,7 @@ import OpenModalButton from '../OpenModalButton';
 import CreateIngredientModal from '../Ingredients/add_ingredient_modal';
 import { getAllCategoriesThunk } from '../../store/category';
 import CategoryDisplay from "../Categories/category_display"
+import 'bulma/css/bulma.css';
 
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector(state => state.session.user);

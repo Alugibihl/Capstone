@@ -8,6 +8,7 @@ import EditRecipeModal from "../editRecipeModal";
 import CommentsByRecipe from "../../Comments/getComments";
 import NotFound from "../../PageNotFound";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import 'bulma/css/bulma.css';
 
 function OneRecipe() {
     const dispatch = useDispatch()
@@ -77,11 +78,11 @@ function OneRecipe() {
                         <div className={editVisible ? "placement" : "hidden"}>
                             <div className="icon-org">
                                 <div> <OpenModalButton
-                                    className="red-button"
+                                    className="button is-danger is-rounded is-small"
                                     buttonText={"Delete this recipe"}
                                     modalComponent={<DeleteRecipeModal recipe={recipe} />} /></div>
                                 <div> <OpenModalButton
-                                    className="green-button"
+                                    className="button is-success is-rounded is-small"
                                     buttonText={"Edit this recipe"}
                                     modalComponent={<EditRecipeModal recipe={recipe} />} /></div>
                             </div>

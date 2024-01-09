@@ -60,7 +60,7 @@ const CreateCommentForm = ({ recipe }) => {
                     </div>
                     <div className="modal-buttons">
                         <button className="button is-danger is-rounded is-small" onClick={() => setDetails("")}>Clear</button>
-                        <button className="button is success is-rounded is-small" type="submit">Add Comment</button>
+                        <button className="button is-success is-rounded is-small" type="submit">Add Comment</button>
                     </div>
                 </form >
             </div>

@@ -4,6 +4,7 @@ import { getLikedRecipeByUser } from "../../../store/recipes"
 import RecipeDisplay from "../allrecipes"
 import NotFound from "../../PageNotFound"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
+import 'bulma/css/bulma.css';
 
 const UserLikedRecipes = () => {
     const dispatch = useDispatch()
@@ -28,7 +29,7 @@ const UserLikedRecipes = () => {
                 <div>
                     {recipes?.length === 0 ? <div><div>No Recipes Liked, Try some out now!</div>
                         <div className="modal-buttons">
-                            <button className="green-button" onClick={home}>Back to Recipes</button>
+                            <button className="button is-danger is-rounded is-small" onClick={home}>Back to Recipes</button>
                         </div></div> : null}
                 </div>
                 <div>{recipes.map((recipe) => {

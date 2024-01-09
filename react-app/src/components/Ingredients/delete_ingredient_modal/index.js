@@ -2,6 +2,8 @@ import { useDispatch } from "react-redux"
 import { useModal } from "../../../context/Modal"
 import { useHistory } from "react-router-dom"
 import { deleteIngredientThunk } from "../../../store/ingredients"
+import 'bulma/css/bulma.css';
+
 
 const DeleteIngredientModal = ({ ingredient }) => {
     const dispatch = useDispatch()
@@ -24,8 +26,8 @@ const DeleteIngredientModal = ({ ingredient }) => {
                     <div className="wrap-break">Are you sure you want to delete your Ingredient {ingredient.name}?</div>
                 </div>
                 <div className="modal-buttons">
-                    <button className="green-button" onClick={closeModal}>Cancel</button>
-                    <button className="red-button" onClick={deleter} type="submit">Delete Ingredient</button>
+                    <button className="button is-success is-rounded is-small" onClick={closeModal}>Cancel</button>
+                    <button className="button is-danger is-rounded is-small" onClick={deleter} type="submit">Delete Ingredient</button>
                 </div>
             </div>
         </div >
