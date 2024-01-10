@@ -59,7 +59,7 @@ function OneRecipe() {
     return (
         <div className="single-item-container wrap-break">
             <img style={{ objectFit: "cover" }} src={recipe.image} alt={recipe.name}></img>
-            <div className="name-holder wrap-break"><h2 >{recipe.name}</h2><div className="wrap-break poster">Cuisine Category: {myCategory.name}</div>
+            <div className="name-holder wrap-break"><h2 className="name-size">{recipe.name}</h2><div className="wrap-break poster">Cuisine Category: {myCategory.name}</div>
                 <div className="icon-org">
                     <div>{numLikes} Likes</div>
                     <div className="post-box">

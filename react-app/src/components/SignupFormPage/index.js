@@ -37,7 +37,7 @@ function SignupFormPage() {
 
   return (
     <>
-      <h1 className="form-title" >Sign Up</h1>
+      <h1 className="subtitle" >Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => <div className="modal-errors" key={idx}>{error}</div>)}

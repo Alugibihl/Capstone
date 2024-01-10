@@ -30,7 +30,7 @@ const CreateCommentForm = ({ recipe }) => {
     };
 
     return (
-        <div >
+        <div>
             <div>
                 <form
                     onSubmit={handleSubmit}

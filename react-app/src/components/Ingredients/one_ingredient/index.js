@@ -27,29 +27,33 @@ function OneIngredient() {
     const visibility = () => setEditVisible(!editVisible)
 
     return (
-        <div className="single-item-container">
-            <img style={{ objectFit: "cover" }} src={ingredient.image} alt={ingredient.name}></img>
-            <div className="name-holder wrap-break orgs"><h2>{ingredient.name}</h2> {currentUser && currentUser.id === ingredient.userId && <button
-                onClick={visibility}><i className="fas fa-ellipsis-h"></i></button>}</div>
-            {currentUser && currentUser.id === ingredient.userId && <div>
-                <div className={editVisible ? "placement" : "hidden"}>
-                    <div className="icon-org">
-                        <div>
-                            <OpenModalButton
-                                className="button is-danger is-rounded is-small"
-                                buttonText={"Delete this ingredient"}
-                                modalComponent={<DeleteIngredientModal ingredient={ingredient} />} /></div>
-                        <div>
-                            <OpenModalButton
-                                className="button is-success is-rounded is-small"
-                                buttonText={"Edit this ingredient"}
-                                modalComponent={<EditIngredientModal ingredient={ingredient} />} /></div>
-                    </div>
+        <div className="container">
+            <div className="single-item-container">
+                <img style={{ objectFit: "cover" }} src={ingredient.image} alt={ingredient.name}></img>
+                <div className="container">
+                    <div className="name-holder wrap-break orgs"><h2 className="name-size">{ingredient.name}</h2> {currentUser && currentUser.id === ingredient.userId && <button
+                        onClick={visibility}><i className="fas fa-ellipsis-h"></i></button>}</div>
                 </div>
-            </div>}
-            <div className="poster wrap-break">Ingredient By: {ingredientOwner.username}</div>
-            <div className="single-details wrap-break">{ingredient.details}</div>
-        </div >
+                {currentUser && currentUser.id === ingredient.userId && <div>
+                    <div className={editVisible ? "placement" : "hidden"}>
+                        <div className="icon-org">
+                            <div>
+                                <OpenModalButton
+                                    className="button is-danger is-rounded is-small"
+                                    buttonText={"Delete this ingredient"}
+                                    modalComponent={<DeleteIngredientModal ingredient={ingredient} />} /></div>
+                            <div>
+                                <OpenModalButton
+                                    className="button is-success is-rounded is-small"
+                                    buttonText={"Edit this ingredient"}
+                                    modalComponent={<EditIngredientModal ingredient={ingredient} />} /></div>
+                        </div>
+                    </div>
+                </div>}
+                <div className="poster wrap-break">Ingredient By: {ingredientOwner.username}</div>
+                <div className="single-details wrap-break">{ingredient.details}</div>
+            </div >
+        </div>
     )
 }
 

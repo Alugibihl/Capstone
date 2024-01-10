@@ -1,82 +1,94 @@
-// Import Bulma styles
-import 'bulma/css/bulma.css';
-import React, { useEffect } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import CreateRecipeModal from '../Recipes/createRecipes';
 import OpenModalButton from '../OpenModalButton';
 import CreateIngredientModal from '../Ingredients/add_ingredient_modal';
 import { getAllCategoriesThunk } from '../../store/category';
-import CategoryDisplay from "../Categories/category_display"
+import CategoryDisplay from '../Categories/category_display';
+import fork from '../../Assets/fork.jpg';
 import 'bulma/css/bulma.css';
 
 function Navigation({ isLoaded }) {
-	const sessionUser = useSelector(state => state.session.user);
-	let date = new Date().toDateString()
-	const history = useHistory()
-	const categories = useSelector(state => state.categories.categories.category)
-	const dispatch = useDispatch()
+	const sessionUser = useSelector((state) => state.session.user);
+	const [showMobileMenu, setShowMobileMenu] = useState(false);
+	const categories = useSelector((state) => state.categories.categories.category);
 
 	useEffect(() => {
-		dispatch(getAllCategoriesThunk())
-	}, [dispatch])
+		getAllCategoriesThunk();
+	}, []);
 
-	const loginRoute = () => {
-		let path = "/login"
-		history.push(path)
-	}
-	const signupRoute = () => {
-		let path = "/signup"
-		history.push(path)
-	}
+	const toggleMobileMenu = () => {
+		setShowMobileMenu(!showMobileMenu);
+	};
 
 	return (
-		<div>
-			<div className='nav-background'>
-				<div className='container'>
-					<div className='today'>{date}
+		<div className='container'>
+			<nav className='navbar is-transparent' role='navigation'>
+				<div className='navbar-brand'>
+					<NavLink className='navbar-item' to='/'>
+						<img className='image is-24x24' src={fork} alt='knife and fork' />
+						The New Fork Dines
+						<img className='image is-24x24' src={fork} alt='knife and fork' />
+					</NavLink>
+					<div className={`navbar-burger ${showMobileMenu ? 'is-active' : ''}`} onClick={toggleMobileMenu}>
+						<span></span>
+						<span></span>
+						<span></span>
 					</div>
-					<h1 className='title'><NavLink to="/"><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwebstockreview.net%2Fimages%2Ffork-clipart-fork-knife-12.png&f=1&nofb=1&ipt=a18a60daf24bbd79dd6ed07f3c7f8e3e931cc014b3ef3dea3f671be28d2050ed&ipo=images" alt="knife and fork">
-					</img>  The New Fork Dines  <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwebstockreview.net%2Fimages%2Ffork-clipart-fork-knife-12.png&f=1&nofb=1&ipt=a18a60daf24bbd79dd6ed07f3c7f8e3e931cc014b3ef3dea3f671be28d2050ed&ipo=images" alt="knife and fork"></img></NavLink></h1>
-					{sessionUser === null ? <div className='title-buttons'>  <button onClick={loginRoute} className='button is-info is-rounded is-small'>Login</button>
-						<button onClick={signupRoute} className='button is-info is-rounded is-small'>Sign Up</button></div> : null}
+				</div>
 
-					{isLoaded && (
+				{sessionUser === null ? (
+					<div className='navbar-end'>
+						<div className='nav-item'>
+							<div className='buttons'>
+								<NavLink to='/login' className='button is-primary is-rounded is-small'>
+									Login
+								</NavLink>
+								<NavLink to='/signup' className='button is-light is-rounded is-small'>
+									Sign Up
+								</NavLink>
+							</div>
+						</div>
+					</div>
+				) : null}
 
-						<div className='button-sort'>
-							{sessionUser && <div className='create-buttons'>
-								<div>
+				{isLoaded && (
+					<div className={`navbar-menu ${showMobileMenu ? 'is-active' : ''}`}>
+						{sessionUser && (
+							<div className='navbar-start'>
+								<div className='navbar-item has-dropdown is-hoverable'>
+									<div className='navbar-link'>Cuisine Categories</div>
+									<div className='navbar-dropdown'>
+										{categories?.map((category) => (
+											<CategoryDisplay className='navbar-item' key={category.id} category={category} />
+										))}
+									</div>
+								</div>
+								<div className='navbar-item'>
 									<OpenModalButton
-										className="button is-success is-rounded is-small" // Apply Bulma success class for a green button
-										buttonText={"Create a New Recipe!"}
+										className='button is-success is-rounded is-small'
+										buttonText='Create a New Recipe!'
 										modalComponent={<CreateRecipeModal />}
 									/>
 								</div>
-								<div>
+								<div className='navbar-item'>
 									<OpenModalButton
-										className="button is-success is-rounded is-small" // Apply Bulma success class for a green button
-										buttonText={"Create a New Ingredient!"}
+										className='button is-success is-rounded is-small'
+										buttonText='Create a New Ingredient!'
 										modalComponent={<CreateIngredientModal />}
 									/>
 								</div>
 							</div>
-							}
-							<div className='login-icon'>
-								<ProfileButton user={sessionUser} />
-							</div>
+						)}
+						<div className='navbar-item'>
+							<ProfileButton user={sessionUser} />
 						</div>
-					)}
-				</div>
-			</div>
-			<div>
-				<div className="category-bar">
-					{categories?.map((category) => {
-						return <CategoryDisplay key={category.id} category={category} />
-					})}
-				</div>
-			</div>
+					</div>
+				)}
+			</nav>
 		</div>
 	);
 }

@@ -1,9 +1,10 @@
 import { NavLink } from "react-router-dom"
+import 'bulma/css/bulma.css';
 
 const CategoryDisplay = ({ category }) => {
     return (
-        <NavLink to={`/categories/${category.id}`}
-            category={category} className="recipe-display">{category.name}
+        <NavLink className="navbar-item" to={`/categories/${category.id}`}
+            category={category} >{category.name}
         </NavLink>
     )
 }

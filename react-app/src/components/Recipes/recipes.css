@@ -15,7 +15,7 @@
     width: 20vw;
     height: 20vh;
 } */
-.recipe-display {
+/* .recipe-display {
     font-size: large;
     font-weight: bold;
     display: flex;
@@ -47,11 +47,11 @@
 }
 
 .home-recipe {
-    width: 70%;
-    /* border: solid blue 3px; */
-}
+    width: 70%; */
+/* border: solid blue 3px; */
+/* } */
 
-.home-ingredients {
+/* .home-ingredients {
     width: 30%;
     display: flex;
     border-left: 1px black solid;
@@ -63,16 +63,15 @@
     flex-direction: row;
     width: 100%;
     gap: 15px;
-}
+    margin-top: 3px;
+} */
 
-/* Mobile styles using Bulma classes */
-@media screen and (max-width: 768px) {
+
+/* @media screen and (max-width: 768px) {
     .recipe-display {
         flex-direction: column;
         padding: 10px;
-        /* Increase padding */
         border-bottom: 1px solid #ddd;
-        /* Light border between recipes */
     }
 
     .recipe-display img {
@@ -87,4 +86,4 @@
     .icon-org {
         width: 100%;
     }
-}
+} */

@@ -1,11 +1,12 @@
 // import { useSelector } from "react-redux";
 import "./footer.css"
+import 'bulma/css/bulma.css';
 // import { NavLink } from "react-router-dom";
 
 function Footer({ isLoaded }) {
     // const sessionUser = useSelector(state => state.session.user);
     return (
-        <div className='footer'>
+        <div className='container'>
             {isLoaded && (
                 <div className="footer-row">
                     <div>

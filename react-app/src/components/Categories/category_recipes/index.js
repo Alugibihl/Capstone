@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getAllCategoriesThunk, getOneCategoryThunk } from "../../../store/category";
 import { useParams } from "react-router-dom";
 import RecipeDisplay from "../../Recipes/allrecipes";
 import { getAllRecipesThunk } from "../../../store/recipes";

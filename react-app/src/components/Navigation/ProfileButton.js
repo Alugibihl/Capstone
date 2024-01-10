@@ -1,94 +1,72 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
-import { useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import 'bulma/css/bulma.css';
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
-  const [showMenu, setShowMenu] = useState(false);
-  const ulRef = useRef();
+  const [isActive, setIsActive] = useState(false);
   const history = useHistory()
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
-  };
-
-  useEffect(() => {
-    if (!showMenu) return;
-    const closeMenu = (e) => {
-      if (ulRef.current === null || !ulRef.current.contains(e.target)) {
-        setShowMenu(false);
-      }
-    };
-
-    document.addEventListener("click", closeMenu);
-
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
 
   const handleLogout = (e) => {
     e.preventDefault();
+    setIsActive(false);
     dispatch(logout());
-    history.push("/login")
+    history.push("/login");
   };
 
-  const recipeRoute = () => {
-    let path = "/recipes/current"
-    history.push(path)
-  }
-  const ingredientRoute = () => {
-    let path = "/ingredients/current"
-    history.push(path)
-  }
-  const yourRecipeRoute = () => {
-    let path = "/recipes/likes/current"
-    history.push(path)
-  }
-
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-  const closeMenu = () => setShowMenu(false);
+  const closeMenu = () => {
+    setIsActive(false);
+  };
 
   return (
     <>
-      {user && <div>
-        <div className="navbar-profile-button">
-          <button onClick={openMenu}>
-            <i className="fas fa-user-circle" />
-          </button>
-        </div>
-        <div className="navbar-profile-dropdown-container">
-          {user && (
-            <div className={ulClassName} ref={ulRef}>
-              <div className="borders">
-                <div className="profile-dropdown-user-link">
-                  <div className="demo-exit"><h1>
-                    {user.email}
-                  </h1>
-                    <button className="delete" onClick={closeMenu}></button>
+      {user && (
+        <div>
+          <div>
+            <button
+              className="button is-small"
+              onClick={() => setIsActive(!isActive)}
+            >
+              <i className="fas fa-bars" />
+            </button>
+          </div>
+          <div className={`modal ${isActive ? 'is-active' : ''}`}>
+            <div className="modal-background" onClick={closeMenu}></div>
+            <div className="modal-content has-background-white">
+              <div className="box">
+                <div className="columns is-mobile">
+                  <div className="column">
+                    <h1 className="subtitle">{user.email}</h1>
                   </div>
-                  <div>
-                    <h2>Hello {user.username}</h2>
-                    <h3>
-                      To view the content created by your account
-                      Click on a category below
-                    </h3>
-                  </div>
-
-                  <p className="styling-line">Recipes</p>
-                  <div className="buttons-recipes">
-                    <button onClick={recipeRoute} className="button is-success is-rounded is-small">Your Recipes</button>
-                    <button onClick={yourRecipeRoute} className="button is-success is-rounded is-small">Liked Recipes</button>
-                  </div>
-                  <p className="styling-line">Ingredients</p>
-                  <div>
-                    <button onClick={ingredientRoute} className="button is-success is-rounded is-small">Your Ingredients</button>
+                  <div className="column is-narrow">
+                    <button
+                      className="delete is-medium"
+                      aria-label="close"
+                      onClick={closeMenu}
+                    ></button>
                   </div>
                 </div>
-                <p className="styling-line">
-
-                </p>
-                <div >
+                <div className="container">
+                  <h2 className="subtitle">Hello {user.username}</h2>
+                  <h3>
+                    To view the content created by your account, click on a
+                    category below
+                  </h3>
+                </div>
+                <hr className="navbar-divider" />
+                <div className="buttons">
+                  <NavLink to="/recipes/current" className="button is-success is-rounded is-small" onClick={closeMenu}>Your Recipes</NavLink>
+                  <NavLink to="/recipes/likes/current" className="button is-success is-rounded is-small" onClick={closeMenu}>Liked Recipes</NavLink>
+                </div>
+                <hr className="navbar-divider" />
+                <div className="buttons">
+                  <NavLink to="/ingredients/current" className="button is-success is-rounded is-small" onClick={closeMenu}>Your Ingredients</NavLink>
+                </div>
+                <hr className="navbar-divider" />
+                <div className="buttons">
                   <button
                     className="button is-danger is-rounded is-small"
                     onClick={handleLogout}
@@ -97,13 +75,13 @@ function ProfileButton({ user }) {
                     Log Out
                   </button>
                 </div>
-              </div >
+              </div>
             </div>
-          )
-          }
-        </div >
-      </div >}
+          </div>
+        </div>
+      )}
     </>
   )
-};
+}
+
 export default ProfileButton;

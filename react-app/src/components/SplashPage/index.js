@@ -18,23 +18,17 @@ function SplashPage() {
     }
 
     return (
-        <div className="splash-background">
-            <div className="splash-page-container">
-                <h1 className="splash-title">The New Fork Dines</h1>
-                <h2 className="splash-message">The Worlds Premier Recipe Lineup</h2>
-                <div className="form-holder">
-                    <div className="half-split">
-                        <div className="signup-container" >
-                            <SignupFormPage />
-                        </div>
-                    </div>
-                    <div className="half-split">
-                        <div className="login-container" >
-                            <div>
-                                <LoginFormPage />
-                                <button className="button is-info is-rounded is-small" onClick={handleClick}>Demo User</button>
-                            </div>
-                        </div>
+        <div className="container">
+            <h1 className="title">The New Fork Dines</h1>
+            <h2 className="subtitle">The Worlds Premier Recipe Lineup</h2>
+            <div className="box">
+                <div className="container" >
+                    <SignupFormPage />
+                </div>
+                <div className="container">
+                    <div className="container">
+                        <LoginFormPage />
+                        <button className="button is-info is-rounded is-small" onClick={handleClick}>Demo User</button>
                     </div>
                 </div>
             </div>
