@@ -35,7 +35,7 @@ function ProfileButton({ user }) {
           </div>
           <div className={`modal ${isActive ? 'is-active' : ''}`}>
             <div className="modal-background" onClick={closeMenu}></div>
-            <div className="modal-content has-background-white">
+            <div className="modal-content has-background-white" style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)', maxWidth: '500px' }}>
               <div className="box">
                 <div className="columns is-mobile">
                   <div className="column">

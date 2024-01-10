@@ -30,7 +30,7 @@ function Navigation({ isLoaded }) {
 				<div className='navbar-brand'>
 					<NavLink className='navbar-item' to='/'>
 						<img className='image is-24x24' src={fork} alt='knife and fork' />
-						The New Fork Dines
+						<div >The New Fork Dines</div>
 						<img className='image is-24x24' src={fork} alt='knife and fork' />
 					</NavLink>
 					<div className={`navbar-burger ${showMobileMenu ? 'is-active' : ''}`} onClick={toggleMobileMenu}>
