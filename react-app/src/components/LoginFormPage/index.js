@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import './LoginForm.css';
 import 'bulma/css/bulma.css';
 
 function LoginFormPage() {
@@ -32,6 +31,7 @@ function LoginFormPage() {
           ))}
         </ul>
         <label for="email">Email</label>
+        <br />
         <input
           id="email"
           type="email"
@@ -40,7 +40,9 @@ function LoginFormPage() {
           placeholder="email@email.com"
           required
         />
+        <br />
         <label for="pwrd">Password</label>
+        <br />
         <input
           id="pwrd"
           type="password"
@@ -49,6 +51,8 @@ function LoginFormPage() {
           placeholder="Password"
           required
         />
+        <br />
+        <br />
         <button className="button is-success is-rounded is-small" type="submit">Log In</button>
       </form>
     </>

@@ -43,6 +43,7 @@ function SignupFormPage() {
           {errors.map((error, idx) => <div className="modal-errors" key={idx}>{error}</div>)}
         </ul>
         <label for="email">Email</label>
+        <br />
         <input
           id="email"
           type="email"
@@ -51,7 +52,9 @@ function SignupFormPage() {
           placeholder="email@email.com"
           required
         />
+        <br />
         <label for="uname">Username</label>
+        <br />
         <input
           id="uname"
           type="text"
@@ -60,7 +63,9 @@ function SignupFormPage() {
           placeholder="Username"
           required
         />
+        <br />
         <label for="pwrd">Password</label>
+        <br />
         <input
           id="pwrd"
           type="password"
@@ -69,7 +74,9 @@ function SignupFormPage() {
           placeholder="Password"
           required
         />
+        <br />
         <label for="cpwrd">Confirm Password</label>
+        <br />
         <input
           id="cpwrd"
           type="password"
@@ -78,6 +85,8 @@ function SignupFormPage() {
           placeholder="Confirm Password"
           required
         />
+        <br />
+        <br />
         <button className="button is-success is-rounded is-small" type="submit">Sign Up</button>
       </form>
     </>
