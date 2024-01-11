@@ -12,7 +12,6 @@ function OneCategory() {
     const categories = useSelector(state => state.recipes.recipes.categories);
     const category = categories?.find(category => category.id === Number(id));
     const recipes = useSelector(state => state.recipes.recipes.recipes);
-    const recArr = [];
 
     useEffect(() => {
         dispatch(getAllRecipesThunk());
