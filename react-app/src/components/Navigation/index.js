@@ -25,8 +25,8 @@ function Navigation({ isLoaded }) {
 	};
 
 	return (
-		<div className='container'>
-			<nav className='navbar is-transparent' role='navigation'>
+		<div>
+			<nav className='navbar is-info' role='navigation'>
 				<div className='navbar-brand'>
 					<NavLink className='navbar-item' to='/'>
 						<img className='image is-24x24' src={fork} alt='knife and fork' />
@@ -42,7 +42,7 @@ function Navigation({ isLoaded }) {
 
 				{sessionUser === null ? (
 					<div className='navbar-end'>
-						<div className='nav-item'>
+						<div className='navbar-item'>
 							<div className='buttons'>
 								<NavLink to='/login' className='button is-primary is-rounded is-small'>
 									Login
