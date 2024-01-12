@@ -51,7 +51,7 @@ function OneIngredient() {
                             </div>
                             {currentUser && currentUser.id === ingredient.userId && (
                                 <div>
-                                    <div className={editVisible ? "buttons" : ""}>
+                                    <div className={editVisible ? "buttons" : "hidden"}>
                                         <div style={{ display: "flex", gap: "10px" }}>
                                             <div>
                                                 <DeleteIngredientModal ingredient={ingredient} />
