@@ -104,6 +104,7 @@ const CreateRecipeModal = () => {
                             <label>
                                 Describe or fill out your recipe
                                 <textarea
+                                    className="container"
                                     value={details}
                                     onChange={(e) => setDetails(e.target.value)}
                                     placeholder={`Please share a recipe you love.`}

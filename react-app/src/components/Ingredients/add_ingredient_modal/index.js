@@ -71,6 +71,7 @@ const CreateIngredientModal = () => {
                         <label>
                             Describe your Ingredient and its uses
                             <textarea
+                                className="container"
                                 value={details}
                                 onChange={(e) => setDetails(e.target.value)}
                                 placeholder={`Please share an Ingredient you love.`}

@@ -14,7 +14,7 @@ function ProfileButton({ user }) {
     e.preventDefault();
     setIsActive(false);
     dispatch(logout());
-    history.push("/login");
+    history.push("/");
   };
 
   const closeMenu = () => {

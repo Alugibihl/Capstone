@@ -35,9 +35,7 @@ function App() {
             </ProtectedRoute>
           </Route>
           <Route exact path="/recipes/:id">
-            <ProtectedRoute>
-              <OneRecipe />
-            </ProtectedRoute>
+            <OneRecipe />
           </Route>
           <Route exact path="/recipes/likes/current">
             <ProtectedRoute>
@@ -50,9 +48,7 @@ function App() {
             </ProtectedRoute>
           </Route>
           <Route exact path="/ingredients/:id">
-            <ProtectedRoute>
-              <OneIngredient />
-            </ProtectedRoute>
+            <OneIngredient />
           </Route>
           <Route exact path="/categories/:id">
             <OneCategory />

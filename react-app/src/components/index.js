@@ -51,6 +51,7 @@ const CreateCommentForm = ({ recipe }) => {
                         <label>
                             Leave your comment Below
                             <textarea
+                                className="container"
                                 value={details}
                                 onChange={(e) => setDetails(e.target.value)}
                                 placeholder={"Add Comment..."}

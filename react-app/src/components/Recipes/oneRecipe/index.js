@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addLikeThunk, deleteLikeThunk, getOneRecipeThunk } from "../../../store/recipes";
-import OpenModalButton from "../../OpenModalButton";
 import DeleteRecipeModal from "../deleteRecipeModal";
 import EditRecipeModal from "../editRecipeModal";
 import CommentsByRecipe from "../../Comments/getComments";
-import NotFound from "../../PageNotFound";
 import { NavLink } from "react-router-dom";
 import 'bulma/css/bulma.css';
 
@@ -18,26 +16,22 @@ function OneRecipe() {
     const myCategory = category?.find(cat => cat.id === recipe?.categoryId);
     const user = useSelector(state => state.session.user);
     const recipeOwner = useSelector(state => state.recipes.recipes.users);
-    const [numLikes, setNumLikes] = useState(recipe?.likes ? recipe?.likes?.length : "fish");
+    const [numLikes, setNumLikes] = useState(0);
     const [liked, setLiked] = useState(false);
     const [editVisible, setEditVisible] = useState(false);
+    const [showComments, setShowComments] = useState(false);
 
     useEffect(() => {
         dispatch(getOneRecipeThunk(id));
     }, [dispatch, id]);
 
     useEffect(() => {
-        setNumLikes(recipe?.likes?.length);
-        if (recipe?.likes) {
-            for (let like of recipe.likes) {
-                if (like.id === user.id) {
-                    setLiked(true);
-                }
-            }
-        }
+        setNumLikes(recipe?.likes ? recipe?.likes?.length : 0);
+        setLiked(!!recipe?.likes?.find(like => like.id === user?.id));
     }, [recipe, user]);
 
     const visibility = () => setEditVisible(!editVisible);
+    const toggleComments = () => setShowComments(!showComments);
 
     const addLike = async () => {
         setLiked(!liked);
@@ -71,42 +65,35 @@ function OneRecipe() {
                             <div style={{ display: "flex", alignItems: "center" }}>
                                 <div style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
                                     {numLikes} Likes{" "}
-                                    {liked ? (
-                                        <button style={{ color: "red" }} onClick={removeLike}>
+                                    {user && (liked ? (
+                                        <button className="button is-danger is-small" onClick={removeLike}>
                                             <i className="fas fa-regular fa-thumbs-down"></i>
                                         </button>
                                     ) : (
-                                        <button onClick={addLike}>
+                                        <button className="button is-small" onClick={addLike}>
                                             <i className="fas fa-regular fa-thumbs-up"></i>
                                         </button>
+                                    ))}
+                                    {user && (
+                                        <div>
+                                            <CommentsByRecipe recipe={recipe} />
+                                        </div>
                                     )}
-                                    <OpenModalButton
-                                        buttonText={<i className="fa fa-regular fa-comment"></i>}
-                                        modalComponent={<CommentsByRecipe recipe={recipe} />}
-                                    />
                                     {user && user.id === recipe.userId && (
                                         <div style={{ marginLeft: "auto" }}>
-                                            <button onClick={visibility}>
+                                            <button className="button is-small" onClick={visibility}>
                                                 <i className="fas fa-ellipsis-h"></i>
                                             </button>
                                             <div className={editVisible ? "buttons" : "hidden"}>
                                                 <div style={{ display: "flex", gap: "10px" }}>
                                                     <div>
-                                                        {" "}
-                                                        <OpenModalButton
-                                                            className="button is-danger is-rounded is-small"
-                                                            buttonText={"Delete this recipe"}
-                                                            modalComponent={<DeleteRecipeModal recipe={recipe} />}
-                                                        />
+                                                        <DeleteRecipeModal recipe={recipe} />
                                                     </div>
+
                                                     <div>
-                                                        {" "}
-                                                        <OpenModalButton
-                                                            className="button is-success is-rounded is-small"
-                                                            buttonText={"Edit this recipe"}
-                                                            modalComponent={<EditRecipeModal recipe={recipe} />}
-                                                        />
+                                                        <EditRecipeModal recipe={recipe} />
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -118,26 +105,7 @@ function OneRecipe() {
                     )}
                 </div>
             </div>
-            <div className="columns is-centered">
-                <div className="column is-half">
-                    {recipe && <p>{recipe.details}</p>}
-                </div>
-                <div className="column is-one-fifth">
-                    <h4>Ingredients: </h4>
-                    {recipe && recipe.relations.length ? (
-                        recipe.relations.map(ingred => (
-                            <div key={ingred.id}>
-                                <NavLink to={`/ingredients/${ingred.id}`}>
-                                    {ingred.name}
-                                </NavLink>
-                            </div>
-                        ))
-                    ) : (
-                        "Ingredients not provided"
-                    )}
-                </div>
-            </div>
-        </div>
+        </div >
     );
 }
 

@@ -240,24 +240,24 @@ a:hover {
 /* } */
 
 html {
-    background-color: rgb(231, 196, 151);
+    /* background-color: rgb(231, 196, 151); */
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 /* img {
     border-radius: 10px;
 } */
-/*
-.category-recipe-styling {
+/* .category-recipe-styling {
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
+} */
 
 .wrap-break {
     word-wrap: break-word;
 }
 
+/*
 .name-holder {
     width: 50vw;
 }

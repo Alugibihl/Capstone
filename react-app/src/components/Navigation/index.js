@@ -70,12 +70,12 @@ function Navigation({ isLoaded }) {
 					<div className='navbar-end'>
 						<div className='navbar-item'>
 							<div className="container">
-								<button className="button is-info is-rounded is-small" onClick={handleSignupModalOpen}>Sign Up</button>
-								<SignupFormModal show={showSignupModal} onClose={handleSignupModalClose} />
+								<LoginFormModal show={showLoginModal} onClose={handleLoginModalClose} />
+								<button className="button is-primary is-rounded is-small" onClick={handleLoginModalOpen}>Log In</button>
 							</div>
 							<div className="container">
-								<LoginFormModal show={showLoginModal} onClose={handleLoginModalClose} />
-								<button className="button is-info is-rounded is-small" onClick={handleLoginModalOpen}>Log In</button>
+								<button className="button is-primary is-rounded is-small" onClick={handleSignupModalOpen}>Sign Up</button>
+								<SignupFormModal show={showSignupModal} onClose={handleSignupModalClose} />
 							</div>
 						</div>
 					</div>
