@@ -30,7 +30,7 @@ def get_all_recipes():
             "categories": cats}
 
 @recipe_routes.route('/<int:id>')
-@login_required
+# @login_required
 def get_one_recipe(id):
     """Query for one recipe"""
     recipe = Recipe.query.get(id)

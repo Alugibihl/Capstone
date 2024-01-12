@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import './LoginForm.css';
+import 'bulma/css/bulma.css';
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ function LoginFormPage() {
 
   return (
     <>
-      <h1 className="form-title">Log In</h1>
+      <h1 className="subtitle">Log In</h1>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
@@ -31,6 +31,7 @@ function LoginFormPage() {
           ))}
         </ul>
         <label for="email">Email</label>
+        <br />
         <input
           id="email"
           type="email"
@@ -39,7 +40,9 @@ function LoginFormPage() {
           placeholder="email@email.com"
           required
         />
+        <br />
         <label for="pwrd">Password</label>
+        <br />
         <input
           id="pwrd"
           type="password"
@@ -48,7 +51,9 @@ function LoginFormPage() {
           placeholder="Password"
           required
         />
-        <button className="green-button" type="submit">Log In</button>
+        <br />
+        <br />
+        <button className="button is-success is-rounded is-small" type="submit">Log In</button>
       </form>
     </>
   );

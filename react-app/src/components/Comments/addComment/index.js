@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { createaCommentThunk, getAllCommentsThunk } from "../../../store/comments"
-
+import 'bulma/css/bulma.css';
 
 const CreateCommentForm = ({ recipe }) => {
     const dispatch = useDispatch()
@@ -30,7 +30,7 @@ const CreateCommentForm = ({ recipe }) => {
     };
 
     return (
-        <div >
+        <div>
             <div>
                 <form
                     onSubmit={handleSubmit}
@@ -50,7 +50,9 @@ const CreateCommentForm = ({ recipe }) => {
                     <div className="form-data">
                         <label>
                             Leave your comment Below
+                            <br />
                             <textarea
+                                className="container"
                                 value={details}
                                 onChange={(e) => setDetails(e.target.value)}
                                 placeholder={"Add Comment..."}
@@ -59,8 +61,8 @@ const CreateCommentForm = ({ recipe }) => {
                         </label>
                     </div>
                     <div className="modal-buttons">
-                        <button className="red-button" onClick={() => setDetails("")}>Clear</button>
-                        <button className="green-button" type="submit">Add Comment</button>
+                        <button className="button is-danger is-rounded is-small" onClick={() => setDetails("")}>Clear</button>
+                        <button className="button is-success is-rounded is-small" type="submit">Add Comment</button>
                     </div>
                 </form >
             </div>

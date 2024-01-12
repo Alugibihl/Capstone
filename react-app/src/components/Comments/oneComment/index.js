@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useState } from "react"
 import { deleteCommentThunk, getAllCommentsThunk } from "../../../store/comments"
+import 'bulma/css/bulma.css';
 
 const OneComment = ({ comment, recipe, allUsers, editVisibility, deleteVisible, setDeleteVisible, editFormStatus }) => {
     const dispatch = useDispatch()
@@ -23,7 +24,7 @@ const OneComment = ({ comment, recipe, allUsers, editVisibility, deleteVisible, 
                 {sessionUser.id === user.id && (
                     <div>
                         {!editFormStatus[comment.id] && !visible && !deleteVisible && (
-                            <button className="red-button" onClick={() => setVisible(true)}>
+                            <button className="button is-danger is-rounded is-small" onClick={() => setVisible(true)}>
                                 Delete Comment
                             </button>
                         )}
@@ -33,10 +34,10 @@ const OneComment = ({ comment, recipe, allUsers, editVisibility, deleteVisible, 
                                     <div>Are you sure you want to delete your comment?</div>
                                 </div>
                                 <div className="modal-buttons">
-                                    <button className="green-button" onClick={() => setVisible(false)}>
+                                    <button className="button is-success is-rounded is-small" onClick={() => setVisible(false)}>
                                         Cancel Deletion
                                     </button>
-                                    <button className="red-button" onClick={deleter} type="submit">
+                                    <button className="button is-danger is-rounded is-small" onClick={deleter} type="submit">
                                         Delete Comment
                                     </button>
                                 </div>
@@ -48,7 +49,7 @@ const OneComment = ({ comment, recipe, allUsers, editVisibility, deleteVisible, 
                     <div>
                         {!visible && !editVisibility[comment.id] && (
                             <div className={!editFormStatus[comment.id] ? "" : "hidden"}>
-                                <button className="green-button" onClick={() => {
+                                <button className="button is-success is-rounded is-small" onClick={() => {
                                     editVisibility(comment.id)
                                     setDeleteVisible(false)
                                 }}>

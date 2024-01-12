@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session"
+import 'bulma/css/bulma.css';
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -36,12 +37,13 @@ function SignupFormPage() {
 
   return (
     <>
-      <h1 className="form-title" >Sign Up</h1>
+      <h1 className="subtitle" >Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => <div className="modal-errors" key={idx}>{error}</div>)}
         </ul>
         <label for="email">Email</label>
+        <br />
         <input
           id="email"
           type="email"
@@ -50,7 +52,9 @@ function SignupFormPage() {
           placeholder="email@email.com"
           required
         />
+        <br />
         <label for="uname">Username</label>
+        <br />
         <input
           id="uname"
           type="text"
@@ -59,7 +63,9 @@ function SignupFormPage() {
           placeholder="Username"
           required
         />
+        <br />
         <label for="pwrd">Password</label>
+        <br />
         <input
           id="pwrd"
           type="password"
@@ -68,7 +74,9 @@ function SignupFormPage() {
           placeholder="Password"
           required
         />
+        <br />
         <label for="cpwrd">Confirm Password</label>
+        <br />
         <input
           id="cpwrd"
           type="password"
@@ -77,7 +85,9 @@ function SignupFormPage() {
           placeholder="Confirm Password"
           required
         />
-        <button className="green-button" type="submit">Sign Up</button>
+        <br />
+        <br />
+        <button className="button is-success is-rounded is-small" type="submit">Sign Up</button>
       </form>
     </>
   );

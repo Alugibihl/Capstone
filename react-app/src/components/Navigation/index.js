@@ -1,71 +1,111 @@
-import React, { useEffect } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
-import './Navigation.css';
 import CreateRecipeModal from '../Recipes/createRecipes';
-import OpenModalButton from '../OpenModalButton';
 import CreateIngredientModal from '../Ingredients/add_ingredient_modal';
+import LoginFormModal from '../LoginFormModal';
+import SignupFormModal from '../SignupFormModal';
 import { getAllCategoriesThunk } from '../../store/category';
-import CategoryDisplay from "../Categories/category_display"
+import CategoryDisplay from '../Categories/category_display';
+import fork from '../../Assets/fork.jpg';
+import 'bulma/css/bulma.css';
+import './Navigation.css';
 
 function Navigation({ isLoaded }) {
-	const sessionUser = useSelector(state => state.session.user);
-	let date = new Date().toDateString()
-	const history = useHistory()
-	const categories = useSelector(state => state.categories.categories.category)
-	const dispatch = useDispatch()
+	const sessionUser = useSelector((state) => state.session.user);
+	const [showMobileMenu, setShowMobileMenu] = useState(false);
+	const [showLoginModal, setShowLoginModal] = useState(false); // Add state for login modal
+	const [showSignupModal, setShowSignupModal] = useState(false); // Add state for signup modal
+	const categories = useSelector((state) => state.categories.categories.category);
 
 	useEffect(() => {
-		dispatch(getAllCategoriesThunk())
-	}, [dispatch])
+		getAllCategoriesThunk();
+	}, []);
 
-	const loginRoute = () => {
-		let path = "/login"
-		history.push(path)
-	}
-	const signupRoute = () => {
-		let path = "/signup"
-		history.push(path)
-	}
+	const toggleMobileMenu = () => {
+		setShowMobileMenu(!showMobileMenu);
+	};
+
+	const handleSignupModalOpen = () => {
+		setShowSignupModal(true);
+	};
+
+	const handleSignupModalClose = () => {
+		setShowSignupModal(false);
+	};
+
+	const handleLoginModalOpen = () => {
+		setShowLoginModal(true);
+	};
+
+	const handleLoginModalClose = () => {
+		setShowLoginModal(false);
+	};
+
+	const handleCloseModals = () => {
+		setShowLoginModal(false);
+		setShowSignupModal(false);
+
+	};
 
 	return (
 		<div>
-			<div className='nav-background'>
-				<div className='navbar'>
-					<div className='today'>{date}
+			<nav className='navbar is-info' role='navigation'>
+				<div className='navbar-brand'>
+					<NavLink className='navbar-item' to='/'>
+						<img className='image is-24x24' src={fork} alt='knife and fork' />
+						<div>The New Fork Dines</div>
+						<img className='image is-24x24' src={fork} alt='knife and fork' />
+					</NavLink>
+					<div className={`navbar-burger ${showMobileMenu ? 'is-active' : ''}`} onClick={toggleMobileMenu}>
+						<span></span>
+						<span></span>
+						<span></span>
 					</div>
-					<h1 className='title'><NavLink to="/"><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwebstockreview.net%2Fimages%2Ffork-clipart-fork-knife-12.png&f=1&nofb=1&ipt=a18a60daf24bbd79dd6ed07f3c7f8e3e931cc014b3ef3dea3f671be28d2050ed&ipo=images" alt="knife and fork">
-					</img>  The New Fork Dines  <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwebstockreview.net%2Fimages%2Ffork-clipart-fork-knife-12.png&f=1&nofb=1&ipt=a18a60daf24bbd79dd6ed07f3c7f8e3e931cc014b3ef3dea3f671be28d2050ed&ipo=images" alt="knife and fork"></img></NavLink></h1>
-					{sessionUser === null ? <div className='title-buttons'><button onClick={loginRoute} className='blue-button'>Login</button><button onClick={signupRoute} className='blue-button' >Sign Up</button></div> : null}
+				</div>
 
-					{isLoaded && (
-
-						<div className='button-sort'>
-							{sessionUser && <div className='create-buttons'>
-								<div><OpenModalButton
-									className="green-button"
-									buttonText={"Create a New Recipe!"}
-									modalComponent={<CreateRecipeModal />} /></div>
-								<div><OpenModalButton
-									className="green-button"
-									buttonText={"Create a New Ingredient!"}
-									modalComponent={<CreateIngredientModal />} /></div>
-							</div>}
-							<div className='login-icon'>
-								<ProfileButton user={sessionUser} />
+				{sessionUser === null ? (
+					<div className='navbar-end'>
+						<div className='navbar-item'>
+							<div className="container">
+								<LoginFormModal show={showLoginModal} onClose={handleLoginModalClose} />
+								<button className="button is-primary is-rounded is-small" onClick={handleLoginModalOpen}>Log In</button>
+							</div>
+							<div className="container">
+								<button className="button is-primary is-rounded is-small" onClick={handleSignupModalOpen}>Sign Up</button>
+								<SignupFormModal show={showSignupModal} onClose={handleSignupModalClose} />
 							</div>
 						</div>
-					)}
-				</div>
-			</div>
-			<div>
-				<div className="category-bar">
-					{categories?.map((category) => {
-						return <CategoryDisplay key={category.id} category={category} />
-					})}
-				</div>
-			</div>
+					</div>
+				) : null}
+
+				{isLoaded && (
+					<div className={`navbar-menu ${showMobileMenu ? 'is-active' : ''}`}>
+						{sessionUser && (
+							<div className='navbar-start'>
+								<div className='navbar-item has-dropdown is-hoverable'>
+									<div className='navbar-link'>Cuisine Categories</div>
+									<div className='navbar-dropdown'>
+										{categories?.map((category) => (
+											<CategoryDisplay className='navbar-item' key={category.id} category={category} />
+										))}
+									</div>
+								</div>
+								<div className='navbar-item'>
+									<CreateRecipeModal />
+								</div>
+								<div className='navbar-item'>
+									<CreateIngredientModal />
+								</div>
+							</div>
+						)}
+						<div className='navbar-item'>
+							<ProfileButton user={sessionUser} />
+						</div>
+					</div>
+				)}
+			</nav>
 		</div>
 	);
 }

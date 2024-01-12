@@ -28,7 +28,7 @@ def get_all_ingredients_by_user():
     return {"ingredients": response}
 
 @ingredient_routes.route('/<int:id>')
-@login_required
+# @login_required
 def get_one_ingredient(id):
     """Query for one ingredient"""
     ingredient = Ingredient.query.get(id)

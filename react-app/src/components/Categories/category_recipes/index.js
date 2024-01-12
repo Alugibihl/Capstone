@@ -1,39 +1,44 @@
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getAllCategoriesThunk, getOneCategoryThunk } from "../../../store/category";
 import { useParams } from "react-router-dom";
-import RecipeDisplay from "../../Recipes/allrecipes";
 import { getAllRecipesThunk } from "../../../store/recipes";
+import RecipeDisplay from "../../Recipes/allrecipes"; // Assuming you have a RecipeDisplay component
 import NotFound from "../../PageNotFound";
+import 'bulma/css/bulma.css';
 
 function OneCategory() {
-    const dispatch = useDispatch()
-    const { id } = useParams()
-    const categories = useSelector(state => state.recipes.recipes.categories)
-    const category = categories?.find(category => category.id === Number(id))
-    const recipes = useSelector(state => state.recipes.recipes.recipes)
-    const recArr = []
+    const dispatch = useDispatch();
+    const { id } = useParams();
+    const categories = useSelector(state => state.recipes.recipes.categories);
+    const category = categories?.find(category => category.id === Number(id));
+    const recipes = useSelector(state => state.recipes.recipes.recipes);
 
     useEffect(() => {
-        dispatch(getAllRecipesThunk())
-    }, [dispatch, id])
+        dispatch(getAllRecipesThunk());
+    }, [dispatch, id]);
 
-    if (!category) return null
-    const categoryRecipes = recipes?.map((recipe) => {
-        if (recipe.categoryId === category.id) { recArr.push(recipe) }
-        return recArr
-    })
-    if (!categoryRecipes) return <NotFound />
+    if (!category) return null;
+
+    // Filter recipes based on the category
+    const categoryRecipes = recipes?.filter(recipe => recipe.categoryId === category.id);
+
+    if (!categoryRecipes || categoryRecipes.length === 0) return <NotFound />;
 
     return (
-        <div className="single-item-container">
-            <div className="category-title"><h2>{category.name}</h2></div>
-            <div className="category-desc">{category.description}</div>
-            <div className="category-recipe-styling">{recArr?.map((recipe) => {
-                return <RecipeDisplay key={recipe.id} recipe={recipe} />
-            })}</div>
-        </div >
-    )
+        <div className="container">
+            <div className="title">
+                <h2>{category.name}</h2>
+            </div>
+            <div className="subtitle">{category.description}</div>
+            <div className="columns is-multiline">
+                {categoryRecipes.map((recipe) => (
+                    <div className="column is-half" key={recipe.id}>
+                        <RecipeDisplay recipe={recipe} />
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
 }
 
-export default OneCategory
+export default OneCategory;

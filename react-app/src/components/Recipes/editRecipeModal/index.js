@@ -1,33 +1,37 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useModal } from "../../../context/Modal";
 import { editOneRecipeThunk, getOneRecipeThunk } from "../../../store/recipes";
 import { getAllCategoriesThunk } from "../../../store/category";
 import { getAllIngredientsThunk } from "../../../store/ingredients";
 import { MultiSelect } from "react-multi-select-component"
+import 'bulma/css/bulma.css';
 
 const EditRecipeModal = ({ recipe }) => {
-    const dispatch = useDispatch()
-    const choices = useSelector((state) => state.categories.categories.category)
-    const currentUser = useSelector((state) => state.session.user)
-    const [details, setDetails] = useState(recipe.details)
-    const [image, setImage] = useState(recipe.image)
-    const ingredients = useSelector(state => state.ingredients?.ingredients?.ingredients)
-    const [errors, setErrors] = useState([])
-    const [categoryId, setCategoryId] = useState(recipe.categoryId)
-    const [name, setName] = useState(recipe.name)
-    const { closeModal } = useModal()
+    const dispatch = useDispatch();
+    const choices = useSelector((state) => state.categories.categories.category);
+    const currentUser = useSelector((state) => state.session.user);
+    const [details, setDetails] = useState(recipe.details);
+    const [image, setImage] = useState(recipe.image);
+    const ingredients = useSelector(state => state.ingredients?.ingredients?.ingredients);
+    const [errors, setErrors] = useState([]);
+    const [categoryId, setCategoryId] = useState(recipe.categoryId);
+    const [name, setName] = useState(recipe.name);
+    const [isActive, setIsActive] = useState(false);
     const starter = recipe?.relations.map((ingred) => {
         return { value: ingred.id, label: ingred.name }
-    })
+    });
+
     const [selectedIngredients, setSelectedIngredients] = useState(recipe?.relations ? starter : []);
 
     useEffect(() => {
-        dispatch(getAllCategoriesThunk())
-        dispatch(getOneRecipeThunk(recipe.id))
-        dispatch(getAllIngredientsThunk())
-    }, [dispatch, recipe])
+        dispatch(getAllCategoriesThunk());
+        dispatch(getOneRecipeThunk(recipe.id));
+        dispatch(getAllIngredientsThunk());
+    }, [dispatch, recipe]);
 
+    const closeMenu = () => {
+        setIsActive(false);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -59,7 +63,7 @@ const EditRecipeModal = ({ recipe }) => {
                     ]);
                 }
                 else if (data) {
-                    closeModal();
+                    setIsActive(false)
                     dispatch(getOneRecipeThunk(recipe.id))
                 }
             }
@@ -79,100 +83,109 @@ const EditRecipeModal = ({ recipe }) => {
         label: ingredient.name,
     }));
 
-    if (!ingredients) return null
-    if (!choices) return null
+    if (!ingredients) return null;
+    if (!choices) return null;
 
     return (
-        <div className="modal-background">
-            <div className="modal-form">
-                <div >
-                    <h1
-                        className="modal-title"
-                    >Edit a Recipe</h1>
-                </div>
-                <form
-                    onSubmit={handleSubmit}
-                    method="PUT"
-                    encType="multipart/form-data"
-                    className="form-styling"
-                >
-                    <div
-                        className="modal-error-container"
-                    >
-                        {errors.map((error, idx) => (
-                            <div
-                                key={idx}
-                                className="modal-errors"
-                            >{error}</div>
-                        ))}
-                    </div>
-                    <div className="modal-org">
-                        <div className="form-data">
-                            <label>
-                                Edit your recipe or its description
-                                <textarea
-                                    value={details}
-                                    onChange={(e) => setDetails(e.target.value)}
-                                    placeholder={`Please share a recipe you love.`}
-                                    required
-                                />
-                            </label>
-                            <label>
-                                Place a picture of your recipe here!
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={(e) => setImage(e.target.files[0])}
-                                />
-                            </label>
-                            <label>
-                                Edit the name of your dish.
-                                <input
-                                    type="text"
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
-                                    required
-                                    placeholder="Bone Soup"
-                                />
-                            </label>
-                            <label className="category">Update your cuisine classification</label>
-                            <br />
-                            <select
-                                id="cuisine"
-                                value={categoryId}
-                                onChange={(e) => setCategoryId(e.target.value)}
-                                required
-                            >
-                                <option>Select One</option>
-                                {choices?.map((choice) => (
-                                    <option key={choice.id} value={choice.id}>{choice.name}</option>
+        <div>
+            <button className="button is-success is-rounded is-small" onClick={() => setIsActive(true)}>
+                Edit this Recipe
+            </button>
+            <div className={`modal ${isActive ? 'is-active' : ''}`}>
+                <div className="modal-background" onClick={closeMenu}></div>
+                <div className="modal-card">
+                    <header className="modal-card-head">
+                        <p className="modal-card-title">Edit a Recipe</p>
+                        <button className="delete" aria-label="close" onClick={closeMenu}></button>
+                    </header>
+                    <section className="modal-card-body">
+                        <form
+                            onSubmit={handleSubmit}
+                            method="PUT"
+                            encType="multipart/form-data"
+                            className="form-styling"
+                        >
+                            <div className="modal-error-container">
+                                {errors.map((error, idx) => (
+                                    <div key={idx} className="modal-errors">{error}</div>
                                 ))}
-                            </select>
-
-                        </div>
-                        <div className="selector-ingreds">
-                            <label>Select ingredients:</label>
-                            <br />
-                            <MultiSelect
-                                selectionLimit={1}
-                                options={options}
-                                value={selectedIngredients}
-                                onChange={handleChange}
-                                labelledBy="Select"
-                                hasSelectAll={false}
-                                multiple
-                            />
-                        </div>
-
-                    </div>
-                    <div className="modal-buttons">
-                        <button className="red-button" onClick={closeModal}>Cancel</button>
-                        <button className="green-button" type="submit">Edit Recipe</button>
-                    </div>
-                </form >
+                            </div>
+                            <div className="modal-org">
+                                <div className="form-data">
+                                    <label>
+                                        Edit your recipe or its description
+                                        <br />
+                                        <textarea
+                                            className="container"
+                                            value={details}
+                                            onChange={(e) => setDetails(e.target.value)}
+                                            placeholder={`Please share a recipe you love.`}
+                                            required
+                                        />
+                                    </label>
+                                    <label>
+                                        <br />
+                                        Place a picture of your recipe here!
+                                        <br />
+                                        <input
+                                            type="file"
+                                            accept="image/*"
+                                            onChange={(e) => setImage(e.target.files[0])}
+                                        />
+                                    </label>
+                                    <label>
+                                        <br />
+                                        Edit the name of your dish.
+                                        <br />
+                                        <input
+                                            className="container"
+                                            type="text"
+                                            value={name}
+                                            onChange={(e) => setName(e.target.value)}
+                                            required
+                                            placeholder="Bone Soup"
+                                        />
+                                    </label>
+                                    <br />
+                                    Update your cuisine classification
+                                    <br />
+                                    <select
+                                        id="cuisine"
+                                        value={categoryId}
+                                        onChange={(e) => setCategoryId(e.target.value)}
+                                        required
+                                    >
+                                        <option>Select One</option>
+                                        {choices?.map((choice) => (
+                                            <option key={choice.id} value={choice.id}>{choice.name}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <br />
+                                <div className="selector-ingreds">
+                                    <label>Select ingredients:</label>
+                                    <br />
+                                    <MultiSelect
+                                        selectionLimit={1}
+                                        options={options}
+                                        value={selectedIngredients}
+                                        onChange={handleChange}
+                                        labelledBy="Select"
+                                        hasSelectAll={false}
+                                        multiple
+                                    />
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                    <footer className="modal-card-foot">
+                        <button className="button is-danger is-rounded is-small" onClick={closeMenu}>Cancel</button>
+                        <button className="button is-success is-rounded is-small" type="submit" onClick={handleSubmit}>Edit Recipe</button>
+                    </footer>
+                </div>
             </div>
-        </div >
-    )
+        </div>
+    );
 }
 
-export default EditRecipeModal
+export default EditRecipeModal;
