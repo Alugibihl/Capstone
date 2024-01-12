@@ -22,9 +22,9 @@
     align-items: center;
 } */
 
-.title-pic img {
+/* .title-pic img {
     height: 2rem;
-}
+} */
 
 /* .navbar {
     display: flex;
@@ -33,32 +33,31 @@
     margin: 0px 5% 0px 5%;
     align-items: center;
 } */
-
+/*
 .login-icon {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-}
+} */
 
 /* button {
     background-color: antiquewhite;
 } */
 
-.today {
+/* .today {
     font-size: small;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
+} */
 
-/*
 .modal-errors {
     font-size: smaller;
     color: red;
 }
 
-.modal-title {
+/* .modal-title {
     margin-top: 2vh;
     margin-bottom: 1vh;
-} */
+} * */
 /*
 .modal-background {
     background-image: url("https://img.freepik.com/premium-photo/blank-space-text-with-vegetables-surrounding-color-background_756748-3505.jpg");
@@ -242,16 +241,8 @@ a:hover {
 html {
     /* background-color: rgb(231, 196, 151); */
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: black;
 }
-
-/* img {
-    border-radius: 10px;
-} */
-/* .category-recipe-styling {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-} */
 
 .wrap-break {
     word-wrap: break-word;

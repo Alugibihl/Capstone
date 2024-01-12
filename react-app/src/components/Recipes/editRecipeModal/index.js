@@ -16,11 +16,12 @@ const EditRecipeModal = ({ recipe }) => {
     const [errors, setErrors] = useState([]);
     const [categoryId, setCategoryId] = useState(recipe.categoryId);
     const [name, setName] = useState(recipe.name);
+    const [isActive, setIsActive] = useState(false);
     const starter = recipe?.relations.map((ingred) => {
         return { value: ingred.id, label: ingred.name }
     });
+
     const [selectedIngredients, setSelectedIngredients] = useState(recipe?.relations ? starter : []);
-    const [isActive, setIsActive] = useState(false);
 
     useEffect(() => {
         dispatch(getAllCategoriesThunk());

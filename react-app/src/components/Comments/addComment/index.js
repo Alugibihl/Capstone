@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { createaCommentThunk, getAllCommentsThunk } from "../../../store/comments"
 import 'bulma/css/bulma.css';

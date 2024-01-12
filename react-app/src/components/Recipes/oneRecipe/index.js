@@ -81,7 +81,7 @@ function OneRecipe() {
                                     )}
                                     {user && user.id === recipe.userId && (
                                         <div style={{ marginLeft: "auto" }}>
-                                            <button className="button is-small" onClick={visibility}>
+                                            <button className="button is-small is-info" onClick={visibility}>
                                                 <i className="fas fa-ellipsis-h"></i>
                                             </button>
                                             <div className={editVisible ? "buttons" : "hidden"}>
@@ -101,6 +101,25 @@ function OneRecipe() {
                                 </div>
                             </div>
                             <div>Recipe By: {recipeOwner[0]?.username}</div>
+                            <div className="columns is-centered">
+                                <div className="column three-fifths">
+                                    {recipe && <p>{recipe.details}</p>}
+                                </div>
+                                <div className="column is-one-fifth">
+                                    <h4>Ingredients: </h4>
+                                    {recipe && recipe.relations.length ? (
+                                        recipe.relations.map(ingred => (
+                                            <div key={ingred.id}>
+                                                <NavLink to={`/ingredients/${ingred.id}`}>
+                                                    {ingred.name}
+                                                </NavLink>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        "Ingredients not provided"
+                                    )}
+                                </div>
+                            </div>
                         </>
                     )}
                 </div>

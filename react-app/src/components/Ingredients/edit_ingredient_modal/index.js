@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useModal } from "../../../context/Modal";
 import { editOneIngredientThunk, getOneIngredientThunk } from "../../../store/ingredients";
 import 'bulma/css/bulma.css';
 
@@ -9,10 +8,10 @@ const EditIngredientModal = ({ ingredient }) => {
     const currentUser = useSelector((state) => state.session.user)
     const [details, setDetails] = useState(ingredient.details)
     const [image, setImage] = useState(ingredient.image)
-    // const [imageLoading, setImageLoading] = useState(false)
     const [errors, setErrors] = useState([])
     const [name, setName] = useState(ingredient.name)
-    const { closeModal } = useModal()
+    const [isActive, setIsActive] = useState(false);
+
 
     useEffect(() => {
         dispatch(getOneIngredientThunk(ingredient.id))
@@ -34,7 +33,7 @@ const EditIngredientModal = ({ ingredient }) => {
                 const info = { formData, ingredient }
                 const data = await dispatch(editOneIngredientThunk(info));
                 if (data) {
-                    closeModal();
+                    setIsActive(false)
                     dispatch(getOneIngredientThunk(ingredient.id))
                 }
             }
@@ -44,66 +43,79 @@ const EditIngredientModal = ({ ingredient }) => {
             ]);
         }
     };
+
+    const closeMenu = () => {
+        setIsActive(false);
+    };
+
     return (
-        <div className="modal-background">
-            <div className="modal-form">
-                <div >
-                    <h1
-                        className="modal-title"
-                    >Edit an Ingredient</h1>
+        <div>
+            <button className="button is-success is-rounded is-small" onClick={() => setIsActive(true)}>
+                Edit this Ingredient
+            </button>
+            <div className={`modal ${isActive ? 'is-active' : ''}`}>
+                <div className="modal-background" onClick={closeMenu}></div>
+                <div className="modal-card">
+                    <header className="modal-card-head">
+                        <p className="modal-card-title">Edit an Ingredient</p>
+                        <button className="delete" aria-label="close" onClick={closeMenu}></button>
+                    </header>
+                    <section className="modal-card-body">
+                        <form
+                            onSubmit={handleSubmit}
+                            encType="multipart/form-data"
+                            className="form-styling"
+                        >
+                            <div className="modal-error-container">
+                                {errors.map((error, idx) => (
+                                    <div key={idx} className="modal-errors">{error}</div>
+                                ))}
+                            </div>
+                            <div className="form-data">
+                                <label>
+                                    Edit your Ingredient description and its uses
+                                    <br />
+                                    <textarea
+                                        className="container"
+                                        value={details}
+                                        onChange={(e) => setDetails(e.target.value)}
+                                        placeholder={`Please share an ingredient you love.`}
+                                        required
+                                    />
+                                </label>
+                                <label>
+                                    <br />
+                                    Place a picture of your ingredient here!
+                                    <br />
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={(e) => setImage(e.target.files[0])}
+                                    />
+                                </label>
+                                <label>
+                                    <br />
+                                    Edit the name of your dish.
+                                    <br />
+                                    <input
+                                        type="text"
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        required
+                                        placeholder="Ingredient"
+                                    />
+                                </label>
+                            </div>
+                        </form>
+                    </section>
+                    <footer className="modal-card-foot">
+                        <button className="button is-danger is-rounded is-small" onClick={closeMenu}>Cancel</button>
+                        <button className="button is-success is-rounded is-small" type="submit" onClick={handleSubmit}>Edit Ingredient</button>
+                    </footer>
                 </div>
-                <form
-                    onSubmit={handleSubmit}
-                    encType="multipart/form-data"
-                    className="form-styling"
-                >
-                    <div
-                        className="modal-error-container"
-                    >
-                        {errors.map((error, idx) => (
-                            <div
-                                key={idx}
-                                className="modal-errors"
-                            >{error}</div>
-                        ))}
-                    </div>
-                    <div className="form-data">
-                        <label>
-                            Edit your Ingredient description and it's uses
-                            <textarea
-                                value={details}
-                                onChange={(e) => setDetails(e.target.value)}
-                                placeholder={`Please share a ingredient you love.`}
-                                required
-                            />
-                        </label>
-                        <label>
-                            Place a picture of your ingredient here!
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={(e) => setImage(e.target.files[0])}
-                            />
-                        </label>
-                        <label>
-                            Edit the name of your dish.
-                            <input
-                                type="text"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                required
-                                placeholder="Ingredient"
-                            />
-                        </label>
-                    </div>
-                    <div className="modal-buttons">
-                        <button className="button is-danger is-rounded is-small" onClick={closeModal}>Cancel</button>
-                        <button className="button is-success is-rounded is-small" type="submit">Edit Ingredient</button>
-                    </div>
-                </form >
             </div>
-        </div >
+        </div>
     )
 }
 
-export default EditIngredientModal
+export default EditIngredientModal;

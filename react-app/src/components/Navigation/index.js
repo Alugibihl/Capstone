@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import CreateRecipeModal from '../Recipes/createRecipes';
-import OpenModalButton from '../OpenModalButton';
 import CreateIngredientModal from '../Ingredients/add_ingredient_modal';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
@@ -94,18 +93,10 @@ function Navigation({ isLoaded }) {
 									</div>
 								</div>
 								<div className='navbar-item'>
-									<OpenModalButton
-										className='button is-success is-rounded is-small'
-										buttonText='Create a New Recipe!'
-										modalComponent={<CreateRecipeModal />}
-									/>
+									<CreateRecipeModal />
 								</div>
 								<div className='navbar-item'>
-									<OpenModalButton
-										className='button is-success is-rounded is-small'
-										buttonText='Create a New Ingredient!'
-										modalComponent={<CreateIngredientModal />}
-									/>
+									<CreateIngredientModal />
 								</div>
 							</div>
 						)}
