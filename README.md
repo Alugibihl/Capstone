@@ -23,21 +23,25 @@ To see how it should look, you can see it by going to <a href="https://the-new-f
 ---
 
 
-# Splash Page
+# Login Modal
 
-![Screenshot 2023-06-02 130305](https://github.com/Alugibihl/The-New-Fork-Dines/assets/111261195/8ae1f890-dc04-4338-b202-a35da3cfbaee)
+![image](https://github.com/Alugibihl/The-New-Fork-Dines/assets/111261195/6b22d926-9812-4279-9153-4d61d7015489)
+
 
 # Home Page
 
-![Screenshot 2023-06-02 130250](https://github.com/Alugibihl/The-New-Fork-Dines/assets/111261195/9567f16b-6ab8-455b-b7bd-6a58992cf4bb)
+![Screenshot 2024-01-12 162759](https://github.com/Alugibihl/The-New-Fork-Dines/assets/111261195/f0e78242-ec63-4cf5-8b73-6f0a2a792b08)
 
-# Create a Recipe
 
-![Screenshot 2023-06-02 130333](https://github.com/Alugibihl/The-New-Fork-Dines/assets/111261195/011cc519-f24b-442c-b2e1-8463e181f390)
+# Edit a Recipe
 
-# Comments Tab
+![Screenshot 2024-01-12 162824](https://github.com/Alugibihl/The-New-Fork-Dines/assets/111261195/9320f104-0c23-4a57-bb8e-137fbe606cea)
 
-![commenttab](https://github.com/Alugibihl/The-New-Fork-Dines/assets/111261195/5fc50f93-508c-4d5c-ab7a-d13071b2f4a8)
+
+# Mobile Friendly
+
+![Screenshot 2024-01-12 162925](https://github.com/Alugibihl/The-New-Fork-Dines/assets/111261195/61c68560-767f-4d47-b198-bf55c4562952)
+
 
 ---
 
