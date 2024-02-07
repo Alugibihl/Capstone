@@ -23,6 +23,12 @@
   display: none;
 }
 
+.nav-buttons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 3px;
+}
+
 /* .navbar {
   display: flex;
   justify-content: space-between;

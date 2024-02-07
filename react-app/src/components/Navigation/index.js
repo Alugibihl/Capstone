@@ -67,46 +67,49 @@ function Navigation({ isLoaded }) {
 
 				{sessionUser === null ? (
 					<div className='navbar-end'>
-						<div className='navbar-item'>
-							<div className="container">
+						<div className='navbar-item' style={{ gap: "3px" }}>
+							<div className="container" style={{ margin: "3px" }}>
 								<LoginFormModal show={showLoginModal} onClose={handleLoginModalClose} />
-								<button className="button is-primary is-rounded is-small" onClick={handleLoginModalOpen}>Log In</button>
+								<button className="button is-primary is-rounded is-small navbar-start" onClick={handleLoginModalOpen}>Log In</button>
 							</div>
-							<div className="container">
-								<button className="button is-primary is-rounded is-small" onClick={handleSignupModalOpen}>Sign Up</button>
+							<div className="container" style={{ margin: "3px" }}>
+								<button className="button is-primary is-rounded is-small navbar-start" onClick={handleSignupModalOpen}>Sign Up</button>
 								<SignupFormModal show={showSignupModal} onClose={handleSignupModalClose} />
 							</div>
 						</div>
 					</div>
-				) : null}
+				) : null
+				}
 
-				{isLoaded && (
-					<div className={`navbar-menu ${showMobileMenu ? 'is-active' : ''}`}>
-						{sessionUser && (
-							<div className='navbar-start'>
-								<div className='navbar-item has-dropdown is-hoverable'>
-									<div className='navbar-link'>Cuisine Categories</div>
-									<div className='navbar-dropdown'>
-										{categories?.map((category) => (
-											<CategoryDisplay className='navbar-item' key={category.id} category={category} />
-										))}
+				{
+					isLoaded && (
+						<div className={`navbar-menu ${showMobileMenu ? 'is-active' : ''}`}>
+							{sessionUser && (
+								<div className='navbar-start'>
+									<div className='navbar-item has-dropdown is-hoverable'>
+										<div className='navbar-link'>Cuisine Categories</div>
+										<div className='navbar-dropdown'>
+											{categories?.map((category) => (
+												<CategoryDisplay className='navbar-item' key={category.id} category={category} />
+											))}
+										</div>
+									</div>
+									<div className='navbar-item'>
+										<CreateRecipeModal />
+									</div>
+									<div className='navbar-item'>
+										<CreateIngredientModal />
 									</div>
 								</div>
-								<div className='navbar-item'>
-									<CreateRecipeModal />
-								</div>
-								<div className='navbar-item'>
-									<CreateIngredientModal />
-								</div>
+							)}
+							<div className='navbar-item'>
+								<ProfileButton user={sessionUser} />
 							</div>
-						)}
-						<div className='navbar-item'>
-							<ProfileButton user={sessionUser} />
 						</div>
-					</div>
-				)}
-			</nav>
-		</div>
+					)
+				}
+			</nav >
+		</div >
 	);
 }
 
